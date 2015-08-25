@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 等待对话框样式 -->
+    <style name="ouer_theme_dialog_waiting" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/ouer_color_transparent</item>
+        <item name="android:backgroundDimAmount">0.35</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!--Top bar样式 -->
+    <style name="ouer_style_topbar"  >
+        <item name="android:background">@color/ouer_color_primary</item>
+        <item name="android:layout_height">@dimen/ouer_actionbar_size</item>
+    </style>
+
+    <!--Top bar title样式 -->
+    <style name="ouer_style_topbar_title"  >
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_toRightOf">@+id/ouer_id_navigation</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:textColor">@color/ouer_color_white</item>
+        <item name="android:textSize">@dimen/ouer_font_xxmsize</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--top阴影 -->
+    <style name="ouer_style_topbar_shadow"  >
+        <item name="android:layout_height">16dp</item>
+        <item name="android:background">@drawable/ouer_ic_topbar_shadow</item>
+    </style>
+</resources>

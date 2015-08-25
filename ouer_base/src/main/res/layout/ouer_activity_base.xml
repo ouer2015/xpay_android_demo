@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <!-- 标题栏区域 -->
+	<ViewStub
+	    android:id="@+id/ouer_id_stub_top"
+	    android:layout_width="match_parent"
+    	android:layout_height="@dimen/ouer_actionbar_size"
+    	android:layout="@layout/ouer_layout_base_top"/>
+	
+    <!-- 内容区域 --> 
+    <RelativeLayout 
+	    android:layout_width="match_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="1">
+    	<FrameLayout 
+		    android:id="@+id/ouer_id_content"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	>
+	    	
+	    </FrameLayout>
+	    <ViewStub
+		    android:id="@+id/ouer_id_stub_net"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:layout="@layout/ouer_layout_base_net"/>
+		<View
+			android:id="@+id/ouer_id_shadow"
+			android:layout_width="match_parent"
+			android:layout_alignParentTop="true"
+			android:visibility="gone"
+			style="@style/ouer_style_topbar_shadow"/>
+    </RelativeLayout>
+</LinearLayout>
