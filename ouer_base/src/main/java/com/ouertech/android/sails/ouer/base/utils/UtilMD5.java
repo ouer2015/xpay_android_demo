@@ -32,12 +32,22 @@ public class UtilMD5 {
      * @return
      */
     public static String getStringMD5(String string) {
+        return getStringMD5(string, CstCharset.UTF_8);
+    }
+
+    /**
+     * 获取字符串MD5值
+     * @param string
+     * @param charset
+     * @return
+     */
+    public static String getStringMD5(String string, String charset) {
         String md5Str = null;
 
         if(string != null) {
             try {
                 byte[] bytes = MessageDigest.getInstance(CstCrypt.MD5).digest(
-                        string.getBytes(CstCharset.UTF_8));
+                        string.getBytes(charset));
                 md5Str = UtilNumBase.bytesToHexString(bytes);
             } catch (Exception ex) {
                 ex.printStackTrace();

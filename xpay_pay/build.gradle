@@ -1,10 +1,12 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
     defaultConfig {
+        applicationId "com.ouertech.android.sails.xpay.pay"
+        minSdkVersion 9
         minSdkVersion 9
         targetSdkVersion 22
         versionCode 1000
@@ -22,4 +24,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile project(':xpay_lib')
+    compile 'com.nispok:snackbar:2.11.+'
+    compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
 }

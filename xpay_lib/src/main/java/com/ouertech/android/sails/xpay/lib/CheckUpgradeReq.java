@@ -10,7 +10,7 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.xpay.lib.future;
+package com.ouertech.android.sails.xpay.lib;
 
 
 import com.ouertech.android.sails.ouer.base.bean.BaseRequest;
@@ -35,7 +35,7 @@ public class CheckUpgradeReq extends BaseRequest {
 
     public void setClientVersion(int clientVersion) {
         this.clientVersion = clientVersion;
-        super.add("clientVersion", String.valueOf(clientVersion));
+        add("clientVersion", String.valueOf(clientVersion));
     }
 
     public String getOsType() {
@@ -44,7 +44,7 @@ public class CheckUpgradeReq extends BaseRequest {
 
     public void setOsType(String osType) {
         this.osType = osType;
-        super.add("osType", osType);
+        add("osType", osType);
     }
 
 	public String getChannel() {
@@ -53,6 +53,6 @@ public class CheckUpgradeReq extends BaseRequest {
 
 	public void setChannel(String channel) {
 		this.channel = channel;
-		super.add("channel", channel);
+		add("channel", channel);
 	}
 }

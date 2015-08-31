@@ -10,7 +10,7 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.xpay.lib.future;
+package com.ouertech.android.sails.xpay.lib;
 
 import com.ouertech.android.sails.ouer.base.bean.BaseBean;
 

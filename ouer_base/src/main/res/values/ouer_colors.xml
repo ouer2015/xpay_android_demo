@@ -41,4 +41,5 @@
     <drawable name="ouer_bg_topbar_item_normal">@color/ouer_color_transparent</drawable>
     <!-- Top bar menu按下状态背景图片 -->
     <drawable name="ouer_bg_topbar_item_pressed">#5fbcbcbc</drawable>
+
 </resources>

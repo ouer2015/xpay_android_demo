@@ -10,7 +10,7 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.xpay.lib.future;
+package com.ouertech.android.sails.xpay.lib;
 
 import android.content.Context;
 
@@ -25,7 +25,7 @@ import com.ouertech.android.sails.ouer.base.future.impl.OuerFutureImpl;
  * @date : 2015/8/13.
  * @desc : 漩付接口实现
  */
-public class XPay extends OuerFutureImpl implements IXPay{
+public class XPay extends OuerFutureImpl implements IXPay {
     //服务端接口地址
     private static final String API_URL = "http://www.kuaikanduanzi.com/api";
 
