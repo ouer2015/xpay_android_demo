@@ -10,7 +10,7 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.xpay.lib;
+package com.ouertech.android.sails.xpay.lib.data.req;
 
 
 import com.ouertech.android.sails.ouer.base.bean.BaseRequest;

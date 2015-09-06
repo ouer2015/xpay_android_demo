@@ -10,20 +10,28 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.ouer.base.constant;
+package com.ouertech.android.sails.xpay.pay.data.enums;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/6/30.
- * @desc : 框架模块中相关常量的定义
+ * @date : 2015/9/1.
+ * @desc : 支付渠道
  */
-public class CstBase {
-    //项目名
-    public static String PROJECT 					= "sails";
-    //项目是否处于调试模式
-    public static boolean DEBUG 					= true;
-    //渠道名
-    public static String CHANNEL_META               = "OUER_CHANNEL";
-    //app key
-    public static String APP_KEY                    = "OUER_APPKEY";
+public enum EXPayChannel {
+    //支付宝支付
+    XPAY_CHANNEL_ALIPAY("alipay"),
+    //微信支付
+    XPAY_CHANNEL_WX("wx"),
+    //银行卡支付
+    XPAY_CHANNEL_BANK("bank");
+
+    private String mValue;
+
+    EXPayChannel(String value) {
+        this.mValue = value;
+    }
+
+    public String getValue() {
+        return this.mValue;
+    }
 }

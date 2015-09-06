@@ -13,10 +13,17 @@
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 
+import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.ui.activity.BaseTopActivity;
+import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.R;
+import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
 
 /**
  * @author : Zhenshui.Xia
@@ -24,7 +31,7 @@ import com.ouertech.android.sails.xpay.pay.R;
  * @desc : 订单界面
  */
 public class OrderActivity extends BaseTopActivity {
-
+    private long mOrderTime;
 
     @Override
     protected void initTop() {
@@ -47,8 +54,56 @@ public class OrderActivity extends BaseTopActivity {
         super.onClick(v);
         //提交订单
         if(v.getId() == R.id.xpay_id_order) {
-            Intent intent = new Intent(this, XPayActivity.class);
-            startActivity(intent);
+            order();
         }
+    }
+
+    /**
+     * 下单
+     */
+    private void order() {
+        AgnettyFuture future = XPay.getInstance(this).order(new OuerFutureListener(this) {
+
+            @Override
+            public void onStart(AgnettyResult result) {
+                super.onStart(result);
+                mOrderTime = System.currentTimeMillis();
+                setWaitingDialog(true);
+            }
+
+            @Override
+            public void onComplete(AgnettyResult result) {
+                super.onComplete(result);
+
+                long delay = System.currentTimeMillis() - mOrderTime;
+                delay = delay < 1500 ? 1500-delay : delay;
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setWaitingDialog(false);
+                        Intent intent = new Intent(OrderActivity.this, XPayActivity.class);
+                        startActivity(intent);
+                    }
+                }, delay);
+
+            }
+
+            @Override
+            public void onException(AgnettyResult result) {
+                super.onException(result);
+                UtilXPay.showTip(OrderActivity.this, R.string.xpay_string_order_failure);
+                setWaitingDialog(false);
+            }
+
+            @Override
+            public void onNetUnavaiable(AgnettyResult result) {
+                UtilXPay.showNetworkUnavaiable(OrderActivity.this);
+                setWaitingDialog(false);
+            }
+
+        });
+
+        attachDestroyFutures(future);
     }
 }

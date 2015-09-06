@@ -13,6 +13,9 @@
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import com.ouertech.android.sails.ouer.base.ui.activity.BaseTabActivity;
+import com.ouertech.android.sails.xpay.pay.R;
+import com.ouertech.android.sails.xpay.pay.ui.fragment.CreditCardFragment;
+import com.ouertech.android.sails.xpay.pay.ui.fragment.DepositCardFragment;
 
 /**
  * @author : Zhenshui.Xia
@@ -23,16 +26,13 @@ public class BanksActivity extends BaseTabActivity{
 
     @Override
     protected void initTop() {
-
+        setNavigation(R.drawable.xpay_ic_close);
+        setTitle(R.string.xpay_string_bank_title);
     }
 
     @Override
-    protected void initLayout() {
-
-    }
-
-    @Override
-    protected void initViews() {
-
+    public void initTabs() {
+        addTab(R.string.xpay_string_bank_credit, CreditCardFragment.class.getName());
+        addTab(R.string.xpay_string_bank_deposit, DepositCardFragment.class.getName());
     }
 }

@@ -39,8 +39,8 @@ import java.lang.reflect.Type;
  * @desc : 封装基类的http任务处理器
  */
 public abstract class OuerHttpHandler extends HttpHandler {
-	private Gson mGson;
-	private Type mType;
+	protected Gson mGson;
+	protected Type mType;
 
 	public OuerHttpHandler(Context context) {
 		super(context);
@@ -100,14 +100,14 @@ public abstract class OuerHttpHandler extends HttpHandler {
 		UtilLog.i(evt.getFuture().getName() + " onDecode: " + jsonResp);
 		JSONObject obj = new JSONObject(jsonResp);
 
-		int code = obj.optInt(KEY.ERRORCODE);
+		int status = obj.optInt(KEY.STATUS);
 		//接口失败
-		if(code != STATUS.OK ) {
-			if(code == STATUS.UNAUTH) {
+		if(status != STATUS.OK ) {
+			if(status == STATUS.UNAUTH) {
 
 			}
 
-			OuerException oe = new OuerException(obj.optString(KEY.MOREINFO), code);
+			OuerException oe = new OuerException(obj.optString(KEY.MSG), status);
 			evt.getFuture().commitException(null, oe);
 
 			return true;

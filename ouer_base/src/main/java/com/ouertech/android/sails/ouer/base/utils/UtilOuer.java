@@ -24,8 +24,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.ouertech.android.sails.ouer.base.bean.AppInfo;
 import com.ouertech.android.sails.ouer.base.constant.CstBase;
+import com.ouertech.android.sails.ouer.base.future.base.OuerStat;
 
 import java.util.Locale;
 
@@ -120,7 +120,22 @@ public class UtilOuer {
         String channel = getMetaValue(context, CstBase.CHANNEL_META);
 
         if(UtilString.isBlank(channel)) {
-            channel = UNKNOWN;
+            channel = "";
+        }
+
+        return channel;
+    }
+
+    /**
+     * 获取当前的APP_KEY
+     * @param context
+     * @return
+     */
+    public static String getAppKey(Context context	) {
+        String channel = getMetaValue(context, CstBase.APP_KEY);
+
+        if(UtilString.isBlank(channel)) {
+            channel = "";
         }
 
         return channel;
@@ -188,13 +203,14 @@ public class UtilOuer {
         return name;
     }
 
+
     /**
-     * 获取手机设备信息
+     * 获取统计信息
      * @param ctx
      * @return
      */
-    public static AppInfo getAppInfo(Context ctx) {
-        AppInfo info = new AppInfo();
+    public static OuerStat getOuerStat(Context ctx) {
+        OuerStat info = new OuerStat();
         if (UtilString.isBlank(Build.MANUFACTURER)) {
             info.setManufacturer(UNKNOWN);
         } else {
@@ -208,43 +224,37 @@ public class UtilOuer {
         }
 
         info.setSdk((short) Build.VERSION.SDK_INT);
-
-
-        String osId = UtilDevice.getAndroidID(ctx);
-        if(UtilString.isBlank(osId)) {
-            osId = UNKNOWN;
-        }
+        info.setClient("Android" + Build.VERSION.RELEASE);
+        info.setDevice(UtilDevice.isTablet(ctx) ? "pad" : "phone");
+        info.setVersionCode(getVersionCode(ctx));
+        info.setVersionName(getVersionName(ctx));
+        info.setAppChannel(getAppChannel(ctx));
 
         String imei = UtilDevice.getImei(ctx);
         if(UtilString.isBlank(imei)) {
             imei = UNKNOWN;
         }
 
-        info.setImei(imei);
-        info.setOsId(osId);
-        String deviceId = Base64.encodeToString((imei + "|" + osId).getBytes(), Base64.NO_WRAP);
-        info.setDeviceId(deviceId);
-
-        String imsi = UtilDevice.getImsi(ctx);
-        if(UtilString.isBlank(imsi)) {
-            info.setImsi(UNKNOWN);
-        } else {
-            info.setImsi(imsi);
+        String osId = UtilDevice.getAndroidID(ctx);
+        if(UtilString.isBlank(osId)) {
+            osId = UNKNOWN;
         }
 
-        info.setVersion("Android" + Build.VERSION.RELEASE);
+        String mac = UtilDevice.getMAC(ctx);
+        if(UtilString.isBlank(mac)) {
+            mac = UNKNOWN;
+        }
 
-        info.setVersionCode(getVersionCode(ctx));
-        info.setVersionName(getVersionName(ctx));
-        info.setAppChannel(getAppChannel(ctx));
-        info.setWebUA(getWebUA(ctx));
+        String deviceId = Base64.encodeToString((imei + "|" + osId + "|" + mac).getBytes(), Base64.NO_WRAP);
+        info.setDeviceId(deviceId);
 
         UtilDevice.Device device = UtilDevice.getDevice(ctx);
         info.setSize(device.getWidth()+"x"+device.getHeight());
+        info.setAppKey(getAppKey(ctx));
         UtilLog.d(info.toString());
+
         return info;
     }
-
 
     /**
      * 显示Toast

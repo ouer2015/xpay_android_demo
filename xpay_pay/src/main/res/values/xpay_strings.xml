@@ -5,6 +5,8 @@
     <string name="xpay_string_buy">立即购买</string>
     <string name="xpay_string_order_title">订单</string>
     <string name="xpay_string_order">提交订单</string>
+    <string name="xpay_string_order_failure">提交订单失败</string>
+
     <string name="xpay_string_pay_title">收银台</string>
     <string name="xpay_string_pay">付款</string>
 
@@ -15,11 +17,14 @@
     <string name="xpay_string_notify_wx_title">微信</string>
     <string name="xpay_string_notify_wx_failure">微信下载失败</string>
 
-
-    <string name="xpay_string_pay_alipay">支付宝支付</string>
-    <string name="xpay_string_pay_wx">微信支付</string>
-    <string name="xpay_string_pay_bank">银行卡支付</string>
+    <string name="xpay_string_pay_empty">很抱歉，暂无支付方式</string>
+    <string name="xpay_string_pay_get_payments_failure">获取支付方式失败</string>
 
     <string name="xpay_string_pay_tip">支付： </string>
     <string name="xpay_string_pay_total">￥0.01</string>
+
+    <string name="xpay_string_bank_title">选择银行</string>
+    <string name="xpay_string_bank_credit">信用卡</string>
+    <string name="xpay_string_bank_deposit">存储卡</string>
+
 </resources>

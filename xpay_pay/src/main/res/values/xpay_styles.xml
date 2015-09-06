@@ -4,6 +4,6 @@
     <style name="xpay_theme" parent="@android:style/Theme.NoTitleBar">
         <!-- 背景 -->
         <item name="android:windowBackground">@color/ouer_color_white</item>
-
     </style>
+
 </resources>

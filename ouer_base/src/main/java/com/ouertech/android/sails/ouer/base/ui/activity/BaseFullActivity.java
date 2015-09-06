@@ -172,7 +172,7 @@ public abstract class BaseFullActivity extends BaseActivity
             }
         } else {
             if(mWaitDialog != null && mWaitDialog.isShowing()) {
-                mWaitDialog.show();
+                mWaitDialog.cancel();
             }
         }
     }

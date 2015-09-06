@@ -25,18 +25,24 @@
         <activity android:name=".ui.activity.ProductActivity">
 
         </activity>
+
         <activity android:name=".ui.activity.BanksActivity">
+
+        </activity>
+
+        <activity android:name=".ui.activity.OrderActivity"/>
+
+        <activity android:name=".ui.activity.XPayActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.OrderActivity"/>
-
-        <activity android:name=".ui.activity.XPayActivity">
-
-        </activity>
+        <!-- 支付渠道 -->
+        <meta-data android:name="OUER_CHANNEL" android:value="ouertech" />
+        <!-- 支付APP KEY -->
+        <meta-data android:name="OUER_APPKEY" android:value="A8ZM5GNXL13J" />
     </application>
-
 </manifest>

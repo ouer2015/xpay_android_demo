@@ -12,12 +12,29 @@
  */
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.ui.activity.BaseTopActivity;
+import com.ouertech.android.sails.ouer.base.utils.UtilList;
+import com.ouertech.android.sails.ouer.base.utils.UtilPref;
+import com.ouertech.android.sails.xpay.lib.constant.PayChannel;
+import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
+import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.R;
-import com.ouertech.android.sails.xpay.pay.ui.widget.RadioButton;
+import com.ouertech.android.sails.xpay.pay.ui.adapter.PaymentAdapter;
 import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
+
+import java.util.List;
 
 /**
  * @author : Zhenshui.Xia
@@ -25,9 +42,11 @@ import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
  * @desc :付款界面
  */
 public class XPayActivity extends BaseTopActivity {
-    private RadioButton mRbAlipay;
-    private RadioButton mRbWx;
-    private RadioButton mRbBank;
+    private long mPaymentTime;
+
+    private LinearLayout mLlPayment;
+    private TextView mTvEmpty;
+    private PaymentAdapter mAdapter;
 
     @Override
     protected void initTop() {
@@ -42,33 +61,42 @@ public class XPayActivity extends BaseTopActivity {
 
     @Override
     protected void initViews() {
-        mRbAlipay = (RadioButton)findViewById(R.id.xpay_id_radio_alipay);
-        mRbWx = (RadioButton)findViewById(R.id.xpay_id_radio_wx);
-        mRbBank = (RadioButton)findViewById(R.id.xpay_id_radio_bank);
-        mRbAlipay.setOnClickListener(this);
-        mRbWx.setOnClickListener(this);
-        mRbBank.setOnClickListener(this);
+        mLlPayment = (LinearLayout)findViewById(R.id.xpay_id_pay_root);
+        mTvEmpty = (TextView)findViewById(R.id.xpay_id_pay_empty);
+
+        ListView lvPayments = (ListView)findViewById(R.id.xpay_id_pay_list);
+        mAdapter = new PaymentAdapter(this, null);
+        lvPayments.setAdapter(mAdapter);
+
         findViewById(R.id.xpay_id_pay).setOnClickListener(this);
+
+        //失败重试
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                getPayments();
+            }
+        });
+
+        List<Payment> payments = new Gson().fromJson(
+                UtilPref.getString(this, "payments", ""),
+                new TypeToken<List<Payment>>() {}.getType());
+
+        if(UtilList.isEmpty(payments)) {
+            //获取支付方式
+            getPayments();
+        } else {
+            mAdapter.refresh(payments);
+            getPaymentsBackground();
+        }
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
         int id = v.getId();
-        if(id == R.id.xpay_id_radio_alipay) {//支付宝支付
-            mRbAlipay.setChecked(true);
-            mRbWx.setChecked(false);
-            mRbBank.setChecked(false);
-        } else if(id == R.id.xpay_id_radio_wx) {//微信支付
-            mRbAlipay.setChecked(false);
-            mRbWx.setChecked(true);
-            mRbBank.setChecked(false);
-        } else if(id == R.id.xpay_id_radio_bank) {//银行卡支付
-            mRbAlipay.setChecked(false);
-            mRbWx.setChecked(false);
-            mRbBank.setChecked(true);
-        } else if(id == R.id.xpay_id_pay) {//付款
-            UtilXPay.showNetworkUnavaiable(XPayActivity.this);
+        if(id == R.id.xpay_id_pay) {//付款
+            pay();
         }
     }
 
@@ -88,5 +116,102 @@ public class XPayActivity extends BaseTopActivity {
 //                XPay.getInstance(MainActivity.this).checkUpgrade(1000, "ANDROID", "ouer", null);
 //            }
 //        });
+
+    /**
+     * 获取支付方式
+     */
+    private void getPayments() {
+        AgnettyFuture future = XPay.getInstance(this).getPayments(
+                new OuerFutureListener(this) {
+
+                    @Override
+                    public void onStart(AgnettyResult result) {
+                        super.onStart(result);
+                        mPaymentTime = System.currentTimeMillis();
+                        setLoading(true);
+                    }
+
+                    @Override
+                    public void onComplete(final AgnettyResult result) {
+                        super.onComplete(result);
+                        long delay = System.currentTimeMillis() - mPaymentTime;
+                        delay = delay < 1500 ? 1500 - delay : delay;
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                setLoading(false);
+
+                                List<Payment> datas = (List<Payment>) result.getAttach();
+                                if (UtilList.isNotEmpty(datas)) {
+                                    mLlPayment.setVisibility(View.VISIBLE);
+                                    mTvEmpty.setVisibility(View.GONE);
+                                } else {
+                                    mLlPayment.setVisibility(View.GONE);
+                                    mTvEmpty.setVisibility(View.VISIBLE);
+                                }
+
+                                mAdapter.refresh(datas);
+                            }
+                        }, delay);
+                    }
+
+                    @Override
+                    public void onException(AgnettyResult result) {
+                        super.onException(result);
+                        UtilXPay.showTip(XPayActivity.this, R.string.xpay_string_pay_get_payments_failure);
+                        setRetry(true);
+                    }
+
+                    @Override
+                    public void onNetUnavaiable(AgnettyResult result) {
+                        UtilXPay.showNetworkUnavaiable(XPayActivity.this);
+                        setRetry(true);
+                    }
+
+                });
+
+        attachDestroyFutures(future);
+    }
+
+    /**
+     * 后台更新支付方式
+     */
+    private void getPaymentsBackground() {
+        AgnettyFuture future = XPay.getInstance(this).getPayments(
+                new OuerFutureListener(this){
+
+                    @Override
+                    public void onComplete(final AgnettyResult result) {
+                        super.onComplete(result);
+
+                        List<Payment> datas = (List<Payment>) result.getAttach();
+                        if(UtilList.isNotEmpty(datas)) {
+                            mLlPayment.setVisibility(View.VISIBLE);
+                            mTvEmpty.setVisibility(View.GONE);
+                        } else {
+                            mLlPayment.setVisibility(View.GONE);
+                            mTvEmpty.setVisibility(View.VISIBLE);
+                        }
+
+                        mAdapter.refresh(datas);
+                    }
+
+                });
+
+        attachDestroyFutures(future);
+    }
+
+
+    /**
+     * 付款
+     */
+    private void pay(){
+        String channel = mAdapter.getChannel();
+        if(PayChannel.XPAY_CHANNEL_BANK.equals(channel)) {//银行卡支付，打开银行卡选择界面
+            Intent intent = new Intent(this, BanksActivity.class);
+            startActivity(intent);
+        }
+    }
 
 }

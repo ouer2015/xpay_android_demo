@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.ouertech.android.sails.ouer.base.ui.widget.PagerSlidingTabStrip
+        android:id="@+id/ouer_id_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/ouer_color_primary"
+        android:textColor="@drawable/ouer_ic_tab_txt_selector"
+        android:textSize="@dimen/ouer_font_msize"
+        app:pstsDividerColor="@color/ouer_color_transparent"
+        app:pstsShouldExpand="true"
+        app:pstsIndicatorColor="@color/ouer_color_white"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsUnderlineHeight="0dp"
+        app:pstsTextAllCaps="true"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ouer_id_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ouer_id_tabs"/>
+    <View
+        android:id="@+id/ouer_id_shadow"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/ouer_id_tabs"
+        style="@style/ouer_style_topbar_shadow"/>
+</RelativeLayout>

@@ -14,12 +14,11 @@ package com.ouertech.android.sails.ouer.base.future.impl;
 
 import android.content.Context;
 
-import com.ouertech.android.sails.ouer.base.bean.AppInfo;
 import com.ouertech.android.sails.ouer.base.bean.BaseRequest;
 import com.ouertech.android.sails.ouer.base.constant.CstHttp;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureData;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
-import com.ouertech.android.sails.ouer.base.future.base.OuerUserAgnet;
+import com.ouertech.android.sails.ouer.base.future.base.OuerStat;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
@@ -35,27 +34,41 @@ import java.util.Map;
  * @desc   : 接口实现常用方法
  */
 public class OuerFutureImpl {
+	//统计请求头属性
+	private static final String STAT_MFR 		= "_mfr";
+	private static final String STAT_MODEL 		= "_model";
+	private static final String STAT_SDK 		= "_sdk";
+	private static final String STAT_CLIENT 	= "_client";
+	private static final String STAT_DEVICE 	= "_device";
+	private static final String STAT_VCODE 		= "_vcode";
+	private static final String STAT_VNAME 		= "_vname";
+	private static final String STAT_CH 		= "_ch";
+	private static final String STAT_DID 		= "_did";
+	private static final String STAT_SIZE 		= "_size";
+	private static final String STAT_KEY 		= "_key";
+
 	protected Context mContext;
-	protected OuerUserAgnet mUserAgnet;
-	
+	protected Map<String, String> mProperties;
+
 	public OuerFutureImpl(Context context) {
 		this.mContext = context;
-		AppInfo info = UtilOuer.getAppInfo(context);
-		this.mUserAgnet = new OuerUserAgnet(info);
+		OuerStat stat = UtilOuer.getOuerStat(context);
+		mProperties = new HashMap<String, String>();
+		mProperties.put(CstHttp.CONTENT_TYPE, CstHttp.APPLICATION_URLENCODED_FORM);
+		mProperties.put(CstHttp.ACCEPT_LANGUAGE, UtilOuer.getLocale());
+		mProperties.put(STAT_MFR, 		stat.getManufacturer());
+		mProperties.put(STAT_MODEL, 	stat.getModel());
+		mProperties.put(STAT_SDK, 		String.valueOf(stat.getSdk()));
+		mProperties.put(STAT_CLIENT, 	stat.getClient());
+		mProperties.put(STAT_DEVICE, 	stat.getDevice());
+		mProperties.put(STAT_VCODE, 	String.valueOf(stat.getVersionCode()));
+		mProperties.put(STAT_VNAME, 	stat.getVersionName());
+		mProperties.put(STAT_CH, 		stat.getAppChannel());
+		mProperties.put(STAT_DID, 		stat.getDeviceId());
+		mProperties.put(STAT_SIZE, 		stat.getSize());
+		mProperties.put(STAT_KEY, 		stat.getAppKey());
 	}
 
-
-	/**
-	 * 
-	 * @return
-	 */
-	protected Map<String, String> getProperties() {
-		Map<String, String> properties = new HashMap<String, String>();
-		properties.put(CstHttp.CONTENT_TYPE, CstHttp.APPLICATION_URLENCODED_FORM);
-		properties.put(CstHttp.ACCEPT_LANGUAGE, UtilOuer.getLocale());
-		properties.put(CstHttp.USER_AGNET, mUserAgnet.getUA());
-		return properties;
-	}
 	
 	/**
 	 * 执行http get请求任务
@@ -66,7 +79,7 @@ public class OuerFutureImpl {
 	 * @param listener 请求响应监听器
 	 * @return
 	 */
-	protected AgnettyFuture execHttpGetFuture(String url,
+	public AgnettyFuture execHttpGetFuture(String url,
 			Class<? extends AgnettyHandler> handler,
 			BaseRequest req,
 			Type respType,
@@ -77,7 +90,7 @@ public class OuerFutureImpl {
 			.setHandler(handler)
 			.setData(new OuerFutureData(req, respType))
 			.setListener(listener)
-			.setProperties(getProperties())
+			.setProperties(mProperties)
 			.execute();
 	}
 	
@@ -92,7 +105,7 @@ public class OuerFutureImpl {
 	 * @param listener 请求响应监听器
 	 * @return
 	 */
-	protected AgnettyFuture execHttpGetDelayFuture(String url,
+	public AgnettyFuture execHttpGetDelayFuture(String url,
 			Class<? extends AgnettyHandler> handler,
 			BaseRequest req,
 			Type respType,
@@ -104,7 +117,7 @@ public class OuerFutureImpl {
 			.setData(new OuerFutureData(req, respType))
 			.setDelay(delay)
 			.setListener(listener)
-			.setProperties(getProperties())
+			.setProperties(mProperties)
 			.execute();
 	}
 	
@@ -118,7 +131,7 @@ public class OuerFutureImpl {
 	 * @param listener 请求响应监听器
 	 * @return
 	 */
-	protected AgnettyFuture execHttpPostFuture(String url,
+	public AgnettyFuture execHttpPostFuture(String url,
 			Class<? extends AgnettyHandler> handler,
 			BaseRequest req,
 			Type respType,
@@ -128,7 +141,7 @@ public class OuerFutureImpl {
 			.setHandler(handler)
 			.setData(new OuerFutureData(req, respType))
 			.setListener(listener)
-			.setProperties(getProperties())
+			.setProperties(mProperties)
 			.execute();
 	}
 	
@@ -143,7 +156,7 @@ public class OuerFutureImpl {
 	 * @param listener 请求响应监听器
 	 * @return
 	 */
-	protected AgnettyFuture execHttpPostDelayFuture(String url,
+	public AgnettyFuture execHttpPostDelayFuture(String url,
 			Class<? extends AgnettyHandler> handler,
 			BaseRequest req,
 			Type respType,
@@ -155,7 +168,7 @@ public class OuerFutureImpl {
 			.setData(new OuerFutureData(req, respType))
 			.setDelay(delay)
 			.setListener(listener)
-			.setProperties(getProperties())
+			.setProperties(mProperties)
 			.execute();
 	}
 	

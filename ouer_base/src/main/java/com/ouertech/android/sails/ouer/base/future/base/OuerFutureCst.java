@@ -28,11 +28,11 @@ public class OuerFutureCst {
 
     public static class KEY {
         // 错误码
-        protected static final String ERRORCODE = "errorCode";
+        protected static final String STATUS    = "errorCode";
         // 错误消息
-        protected static final String ERROR     = "error";
+        protected static final String ERROR     = "errorInfo";
         // 更多信息
-        protected static final String MOREINFO  = "moreInfo";
+        protected static final String MSG       = "moreInfo";
         // 响应数据
         protected static final String DATA      = "data";
     }

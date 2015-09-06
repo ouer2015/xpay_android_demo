@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+    <com.ouertech.android.sails.xpay.pay.cache.image.SmartImageView
+        android:id="@+id/xpay_id_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true"/>
+    <TextView
+        android:id="@+id/xpay_id_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/xpay_id_img"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/ouer_color_black_text"
+        android:textSize="@dimen/ouer_font_msize"/>
+    <com.ouertech.android.sails.xpay.pay.ui.widget.RadioButton
+        android:id="@+id/xpay_id_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
