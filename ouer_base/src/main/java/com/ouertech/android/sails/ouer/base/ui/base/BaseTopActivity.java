@@ -11,7 +11,7 @@
  * ========================================================
  */
 
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;

@@ -85,10 +85,12 @@ public abstract class HttpHandler extends AgnettyHandler {
 			return;
 		}
 
+
 		HttpEvent evt = (HttpEvent)hevt;
 		HttpFuture future = (HttpFuture) evt.getFuture();
 		evt.setStatus(AgnettyStatus.START);
 		future.commitStart(evt.getData());
+
 
 		//网络没连上
 		if(!UtilNetwork.isNetAvailable(mContext)) {

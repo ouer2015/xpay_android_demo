@@ -24,7 +24,8 @@ public class Payment {
     private String name;
     //渠道图标
     private String imgUrl;
-    //
+    //组别
+    private String group;
 
 
     public String getChannel() {
@@ -49,5 +50,13 @@ public class Payment {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

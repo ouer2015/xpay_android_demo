@@ -11,31 +11,27 @@
  * ========================================================
  */
 
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
-import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewStub;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ouertech.android.sails.ouer.base.R;
 import com.ouertech.android.sails.ouer.base.ui.widget.ProgressWheel;
 
-
 /**
  * @author : Zhenshui.Xia
  * @date   :  2014年11月20日
- * @desc   : 全屏无标题界面
+ * @desc   :
  */
-public abstract class BaseFullActivity extends BaseActivity
-        implements OnClickListener {
+public abstract class BaseFullFragment extends BaseFragment
+        implements OnClickListener{
     //
     private FrameLayout mFlRoot;
     //数据加载中
@@ -45,8 +41,6 @@ public abstract class BaseFullActivity extends BaseActivity
     //网络请求重试监听器
     private OnRetryListener mRetryListener;
 
-    //状态栏&导航栏管理器
-    private SystemBarTintManager mSbtManager;
     //等待对话框
     private Dialog mWaitDialog;
 
@@ -59,24 +53,11 @@ public abstract class BaseFullActivity extends BaseActivity
         public void onRetry();
     }
 
-    protected void initBaseViews() {
-        super.setContentView(R.layout.ouer_activity_base);
-        mFlRoot = (FrameLayout)findViewById(R.id.ouer_id_content);
-
-        //android4.4以上的手机启用设置状态栏背景
-        //导航栏背景默认不设置，并只支持api>=21以上设置，api 19、20也可以
-        //做到设置导航栏背景，但会引起很多兼容性和体验问题
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT
-                || Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT_WATCH) {
-            setTranslucentStatus(true);
-            mSbtManager = new SystemBarTintManager(this);
-            mSbtManager.setStatusBarTintEnabled(true);
-            mSbtManager.setStatusBarTintResource(R.color.ouer_color_primary);
-        } else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int color = getResources().getColor(R.color.ouer_color_primary);
-            getWindow().setStatusBarColor(color);
-        }
-
+    @Override
+    protected View initBaseViews() {
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.ouer_activity_base, null);
+        mFlRoot = (FrameLayout)view.findViewById(R.id.ouer_id_content);
+        return view;
     }
 
     /**
@@ -86,9 +67,11 @@ public abstract class BaseFullActivity extends BaseActivity
     public void setStatusBarColor(int color) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT
                 || Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT_WATCH) {
-            mSbtManager.setStatusBarTintColor(color);
+            SystemBarTintManager manager = new SystemBarTintManager(mActivity);
+            manager.setStatusBarTintEnabled(true);
+            manager.setStatusBarTintColor(color);
         } else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(color);
+            mActivity.getWindow().setStatusBarColor(color);
         }
     }
 
@@ -98,7 +81,7 @@ public abstract class BaseFullActivity extends BaseActivity
      */
     public void setNavigationBarColor(int color) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(color);
+            mActivity.getWindow().setNavigationBarColor(color);
         }
     }
 
@@ -107,10 +90,10 @@ public abstract class BaseFullActivity extends BaseActivity
      */
     public void setRetry(boolean enabled) {
         if(mTvRetry == null) {
-            ViewStub netStub = (ViewStub)findViewById(R.id.ouer_id_stub_net);
+            ViewStub netStub = (ViewStub)mViewCache.findViewById(R.id.ouer_id_stub_net);
             netStub.inflate();
-            mPwLoading = (ProgressWheel)findViewById(R.id.ouer_id_progress);
-            mTvRetry = (TextView)findViewById(R.id.ouer_id_retry);
+            mPwLoading = (ProgressWheel)mViewCache.findViewById(R.id.ouer_id_progress);
+            mTvRetry = (TextView)mViewCache.findViewById(R.id.ouer_id_retry);
 
             mTvRetry.setOnClickListener(this);
         }
@@ -138,10 +121,10 @@ public abstract class BaseFullActivity extends BaseActivity
      */
     public void setLoading(boolean enabled) {
         if(mPwLoading == null) {
-            ViewStub netStub = (ViewStub)findViewById(R.id.ouer_id_stub_net);
+            ViewStub netStub = (ViewStub)mViewCache.findViewById(R.id.ouer_id_stub_net);
             netStub.inflate();
-            mPwLoading = (ProgressWheel)findViewById(R.id.ouer_id_progress);
-            mTvRetry = (TextView)findViewById(R.id.ouer_id_retry);
+            mPwLoading = (ProgressWheel)mViewCache.findViewById(R.id.ouer_id_progress);
+            mTvRetry = (TextView)mViewCache.findViewById(R.id.ouer_id_retry);
 
             mTvRetry.setOnClickListener(this);
         }
@@ -163,7 +146,7 @@ public abstract class BaseFullActivity extends BaseActivity
     public void setWaitingDialog(boolean enabled) {
         if(enabled) {
             if(mWaitDialog == null) {
-                mWaitDialog = new Dialog(this, R.style.ouer_theme_dialog_waiting);
+                mWaitDialog = new Dialog(mActivity, R.style.ouer_theme_dialog_waiting);
                 mWaitDialog.setContentView(R.layout.ouer_layout_base_progress);
                 mWaitDialog.show();
                 mWaitDialog.setCanceledOnTouchOutside(false);
@@ -172,25 +155,27 @@ public abstract class BaseFullActivity extends BaseActivity
             }
         } else {
             if(mWaitDialog != null && mWaitDialog.isShowing()) {
-                mWaitDialog.cancel();
+                mWaitDialog.show();
             }
         }
     }
 
-    @Override
+
     public void setContentView(int layoutResId) {
         if(layoutResId > 0 ) {
-            View view = LayoutInflater.from(this).inflate(layoutResId, null);
+            View view = LayoutInflater.from(mActivity).inflate(layoutResId, null);
             mFlRoot.addView(view);
         }
     }
 
-
-    @Override
     public void setContentView(View view) {
         if(view != null) {
             mFlRoot.addView(view);
         }
+    }
+
+    public View findViewById(int id) {
+        return mFlRoot.findViewById(id);
     }
 
     @Override
@@ -198,10 +183,6 @@ public abstract class BaseFullActivity extends BaseActivity
         if(v.getId() == R.id.ouer_id_retry) {
             retry();
         }
-    }
-
-    public int getContentId() {
-        return R.id.ouer_id_content;
     }
 
     /**
@@ -213,25 +194,5 @@ public abstract class BaseFullActivity extends BaseActivity
         }
     }
 
-
-    /**
-     * 设置是否启动透明状态栏
-     * @param status
-     */
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean status) {
-        Window window = getWindow();
-        WindowManager.LayoutParams params = window.getAttributes();
-        //透明状态栏
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-
-        if (status) {
-            params.flags |= bits;
-        } else {
-            params.flags &= ~bits;
-        }
-
-        window.setAttributes(params);
-    }
 
 }

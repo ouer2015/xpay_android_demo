@@ -14,15 +14,15 @@ package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
-import com.ouertech.android.sails.ouer.base.ui.activity.BaseTopActivity;
+import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.R;
+import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
 
 /**
@@ -62,7 +62,7 @@ public class OrderActivity extends BaseTopActivity {
      * 下单
      */
     private void order() {
-        AgnettyFuture future = XPay.getInstance(this).order(new OuerFutureListener(this) {
+        AgnettyFuture future = ExPay.order(new OuerFutureListener(this) {
 
             @Override
             public void onStart(AgnettyResult result) {
@@ -76,7 +76,7 @@ public class OrderActivity extends BaseTopActivity {
                 super.onComplete(result);
 
                 long delay = System.currentTimeMillis() - mOrderTime;
-                delay = delay < 1500 ? 1500-delay : delay;
+                delay = delay < 1500 ? 1500 - delay : delay;
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

@@ -53,20 +53,20 @@ public abstract class DownloadHandler extends AgnettyHandler {
 		if(!(devt instanceof DownloadEvent)) {
 			return;
 		}
-		
+
+
 		DownloadEvent evt = (DownloadEvent)devt;
 		//下载任务开始
 		DownloadFuture future = (DownloadFuture) evt.getFuture();
 		evt.setStatus(AgnettyStatus.START);
 		onHandle(evt);
-				
-				
+
 		//网络没连上
 		if(!UtilNetwork.isNetAvailable(mContext)) {
 			AgnettyException ex = new AgnettyException("Network isn't avaiable", AgnettyException.CODE_NET_UNAVAILABLE);
 			throw ex;
-		}		
-		
+		}
+
 
 		int downloadMode = future.getDownloadMode();		
 		if(downloadMode == DownloadFuture.DIRECT_MODE) {//直接下载

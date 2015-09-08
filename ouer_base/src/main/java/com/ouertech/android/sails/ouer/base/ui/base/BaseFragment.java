@@ -2,7 +2,7 @@
  * ========================================================
  * Copyright(c) 2014 杭州偶尔科技-版权所有
  * ========================================================
- * 本软件由杭州龙骞科技所有, 未经书面许可, 任何单位和个人不得以
+ * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
  * 公司网址
  * 
@@ -10,12 +10,15 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.ouer.base.ui.activity;
+
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
@@ -30,28 +33,16 @@ import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/7/7.
- * @desc :
+ * @date   :  2014年11月19日
+ * @desc   :
  */
-public abstract class BaseActivity extends AbsActivity {
+public abstract class BaseFragment extends AbsFragment {
+    //所属activity
+    protected BaseActivity mActivity;
     //保存当前界面执行的任务
     private List<AgnettyFuture> mFutures;
-
     //保存注册的receiver
-    private Map<String, ActivityReceiver> mReceiverMap;
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //腾讯页面统计
-        //StatService.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //StatService.onPause(this);
-    }
+    private Map<String, FragmentReceiver> mReceiverMap;
 
     /**
      * 添加到销毁任务队列
@@ -80,10 +71,28 @@ public abstract class BaseActivity extends AbsActivity {
         }
     }
 
+    /**
+     * 获取相关联的基类fragment activity
+     * @return
+     */
+    public BaseActivity getBaseActivity() {
+        FragmentActivity activity = getActivity();
 
+        if(activity instanceof BaseActivity) {
+            return (BaseActivity)activity;
+        }
+
+        return null;
+    }
 
     @Override
-    protected void onDestroy() {
+    protected void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
+        mActivity = getBaseActivity();
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
 
         //退出界面，取消所有任务监听处理
@@ -92,7 +101,7 @@ public abstract class BaseActivity extends AbsActivity {
         //取消广播监听
         if(mReceiverMap != null) {
             for(String key : mReceiverMap.keySet()) {
-                LocalBroadcastManager.getInstance(this)
+                LocalBroadcastManager.getInstance(getActivity())
                         .unregisterReceiver(mReceiverMap.get(key));
             }
 
@@ -110,14 +119,14 @@ public abstract class BaseActivity extends AbsActivity {
         }
 
         if(mReceiverMap == null) {
-            mReceiverMap = new HashMap<String, ActivityReceiver>();
+            mReceiverMap = new HashMap<String, FragmentReceiver>();
         }
 
         if(!mReceiverMap.containsKey(action)) {
-            ActivityReceiver receiver = new ActivityReceiver();
+            FragmentReceiver receiver = new FragmentReceiver();
             IntentFilter filter = new IntentFilter();
             filter.addAction(action);
-            LocalBroadcastManager.getInstance(this)
+            LocalBroadcastManager.getInstance(getActivity())
                     .registerReceiver(receiver, filter);
             mReceiverMap.put(action, receiver);
         }
@@ -133,7 +142,7 @@ public abstract class BaseActivity extends AbsActivity {
         }
 
         if(mReceiverMap.containsKey(action)) {
-            LocalBroadcastManager.getInstance(this)
+            LocalBroadcastManager.getInstance(getActivity())
                     .unregisterReceiver(mReceiverMap.get(action));
             mReceiverMap.remove(action);
         }
@@ -152,13 +161,13 @@ public abstract class BaseActivity extends AbsActivity {
      * @author zhenshui.xia
      *
      */
-    private class ActivityReceiver extends BroadcastReceiver {
+    private class FragmentReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent != null) {
                 UtilLog.d(getClass().getSimpleName() + " action:" + intent.getAction());
-                BaseActivity.this.onReceive(intent);
+                BaseFragment.this.onReceive(intent);
             }
         }
     }

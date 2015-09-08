@@ -39,8 +39,8 @@ import java.lang.reflect.Type;
  * @desc : 封装基类的http任务处理器
  */
 public abstract class OuerHttpHandler extends HttpHandler {
-	protected Gson mGson;
-	protected Type mType;
+	private Gson mGson;
+	private Type mType;
 
 	public OuerHttpHandler(Context context) {
 		super(context);

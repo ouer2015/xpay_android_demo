@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.ouertech.android.sails.xpay.pay.ui.widget.sticky.StickyListHeadersListView
+        android:id="@+id/xpay_id_bank_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="@drawable/xpay_bg_list_item_selector"
+        android:scrollbars="none"
+        android:dividerHeight="1px"
+        android:divider="@color/ouer_color_black_divider"/>
+    <TextView
+        android:id="@+id/xpay_id_bank_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/ouer_color_black_hint_text"
+        android:textSize="@dimen/ouer_font_msize"
+        android:visibility="gone"/>
+</RelativeLayout>

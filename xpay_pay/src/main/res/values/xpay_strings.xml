@@ -1,5 +1,5 @@
 <resources>
-    <string name="xpay_string_app_name">漩付</string>
+    <string name="xpay_string_app_name">XPay</string>
     <string name="xpay_string_network_connect">连接</string>
 
     <string name="xpay_string_buy">立即购买</string>
@@ -25,6 +25,14 @@
 
     <string name="xpay_string_bank_title">选择银行</string>
     <string name="xpay_string_bank_credit">信用卡</string>
-    <string name="xpay_string_bank_deposit">存储卡</string>
+    <string name="xpay_string_bank_deposit">储蓄卡</string>
+
+    <string name="xpay_string_bank_get_credits_failure">获取信用卡失败</string>
+    <string name="xpay_string_bank_get_deposits_failure">获取储蓄卡失败</string>
+
+    <string name="xpay_string_credit_empty">很抱歉，暂无可选信用卡</string>
+    <string name="xpay_string_deposit_empty">很抱歉，暂无可选储蓄卡</string>
+
+    <string name="xpay_string_bank_pay_title">银行卡支付</string>
 
 </resources>

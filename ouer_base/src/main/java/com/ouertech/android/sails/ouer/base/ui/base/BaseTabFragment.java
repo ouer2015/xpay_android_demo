@@ -10,7 +10,7 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 /**
  * @author : Zhenshui.Xia

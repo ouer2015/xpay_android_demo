@@ -10,20 +10,14 @@
  * 
  * ========================================================
  */
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.ouertech.android.sails.ouer.base.R;
 import com.ouertech.android.sails.ouer.base.ui.widget.PagerSlidingTabStrip;

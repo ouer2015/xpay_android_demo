@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.Adapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
@@ -76,7 +77,7 @@ public class StickyListHeadersListView extends FrameLayout {
     }
 
     /* --- Children --- */
-    private WrapperViewList mList;
+    private IndexableListView mList;
     private View mHeader;
 
     /* --- Header state --- */
@@ -127,7 +128,7 @@ public class StickyListHeadersListView extends FrameLayout {
         mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
 
         // Initialize the wrapped list
-        mList = new WrapperViewList(context);
+        mList = new IndexableListView(context);
 
         // null out divider, dividers are handled by adapter so they look good with headers
         mDivider = mList.getDivider();
@@ -1127,5 +1128,9 @@ public class StickyListHeadersListView extends FrameLayout {
 
     public boolean isStackFromBottom() {
     	return mList.isStackFromBottom();
+    }
+
+    public void setScrollerAdapter(Adapter adapter) {
+        mList.setScrollerAdapter(adapter);
     }
 }

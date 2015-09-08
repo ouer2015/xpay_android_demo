@@ -13,27 +13,28 @@
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
-import com.ouertech.android.sails.ouer.base.ui.activity.BaseTopActivity;
+import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
 import com.ouertech.android.sails.ouer.base.utils.UtilList;
-import com.ouertech.android.sails.ouer.base.utils.UtilPref;
 import com.ouertech.android.sails.xpay.lib.constant.PayChannel;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
-import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.R;
+import com.ouertech.android.sails.xpay.pay.constant.CstXPay.BROADCAST_ACTION;
+import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 import com.ouertech.android.sails.xpay.pay.ui.adapter.PaymentAdapter;
+import com.ouertech.android.sails.xpay.pay.utils.UtilCache;
 import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +48,13 @@ public class XPayActivity extends BaseTopActivity {
     private LinearLayout mLlPayment;
     private TextView mTvEmpty;
     private PaymentAdapter mAdapter;
+
+
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
+        registerAction(BROADCAST_ACTION.UPDATE_PAYMENTS_ACTION);
+    }
 
     @Override
     protected void initTop() {
@@ -78,15 +86,12 @@ public class XPayActivity extends BaseTopActivity {
             }
         });
 
-        List<Payment> payments = new Gson().fromJson(
-                UtilPref.getString(this, "payments", ""),
-                new TypeToken<List<Payment>>() {}.getType());
-
-        if(UtilList.isEmpty(payments)) {
+        List<Payment> datas = getCachePayments();
+        if(UtilList.isEmpty(datas)) {
             //获取支付方式
             getPayments();
         } else {
-            mAdapter.refresh(payments);
+            mAdapter.refresh(datas);
             getPaymentsBackground();
         }
     }
@@ -100,7 +105,15 @@ public class XPayActivity extends BaseTopActivity {
         }
     }
 
-
+    @Override
+    protected void onReceive(Intent intent) {
+        super.onReceive(intent);
+        String action = intent.getAction();
+        if(BROADCAST_ACTION.UPDATE_PAYMENTS_ACTION.equals(action)) {
+            List<Payment> datas = getCachePayments();
+            mAdapter.refresh(datas);
+        }
+    }
 
     //        Button button = (Button)findViewById(R.id.button);
 //        button.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +134,7 @@ public class XPayActivity extends BaseTopActivity {
      * 获取支付方式
      */
     private void getPayments() {
-        AgnettyFuture future = XPay.getInstance(this).getPayments(
+        AgnettyFuture future = ExPay.getPayments(
                 new OuerFutureListener(this) {
 
                     @Override
@@ -159,8 +172,17 @@ public class XPayActivity extends BaseTopActivity {
                     @Override
                     public void onException(AgnettyResult result) {
                         super.onException(result);
-                        UtilXPay.showTip(XPayActivity.this, R.string.xpay_string_pay_get_payments_failure);
-                        setRetry(true);
+                        long delay = System.currentTimeMillis() - mPaymentTime;
+                        delay = delay < 1500 ? 1500 - delay : delay;
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                UtilXPay.showTip(XPayActivity.this, R.string.xpay_string_pay_get_payments_failure);
+                                setRetry(true);
+                            }
+                        }, delay);
+
                     }
 
                     @Override
@@ -178,15 +200,15 @@ public class XPayActivity extends BaseTopActivity {
      * 后台更新支付方式
      */
     private void getPaymentsBackground() {
-        AgnettyFuture future = XPay.getInstance(this).getPayments(
-                new OuerFutureListener(this){
+        AgnettyFuture future = ExPay.getPayments(
+                new OuerFutureListener(this) {
 
                     @Override
                     public void onComplete(final AgnettyResult result) {
                         super.onComplete(result);
 
                         List<Payment> datas = (List<Payment>) result.getAttach();
-                        if(UtilList.isNotEmpty(datas)) {
+                        if (UtilList.isNotEmpty(datas)) {
                             mLlPayment.setVisibility(View.VISIBLE);
                             mTvEmpty.setVisibility(View.GONE);
                         } else {
@@ -197,6 +219,10 @@ public class XPayActivity extends BaseTopActivity {
                         mAdapter.refresh(datas);
                     }
 
+                    @Override
+                    public void onNetUnavaiable(AgnettyResult result) {
+
+                    }
                 });
 
         attachDestroyFutures(future);
@@ -212,6 +238,21 @@ public class XPayActivity extends BaseTopActivity {
             Intent intent = new Intent(this, BanksActivity.class);
             startActivity(intent);
         }
+    }
+
+    private List<Payment> getCachePayments() {
+        List<Payment> datas = UtilCache.getPayments(this);
+        Payment payment = UtilCache.getBankPayment(this);
+
+        if(datas == null) {
+            datas = new ArrayList<>();
+        }
+
+        if(payment != null) {
+            datas.add(0, payment);
+        }
+
+        return datas;
     }
 
 }

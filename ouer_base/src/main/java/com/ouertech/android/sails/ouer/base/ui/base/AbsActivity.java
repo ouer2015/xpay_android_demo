@@ -11,64 +11,42 @@
  * ========================================================
  */
 
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * @author : Zhenshui.Xia
  * @date   :  2014年11月20日
- * @desc   :抽象fragment，将fragment的oncreateview生命周期细分为
+ * @desc   :抽象fragment activity，将fragment activity的oncreate生命周期细分为
  *           init：初始化
  *           initBaseViews：初始化基类View
  *           initLayout：初始化布局
  *           initViews：初始化视图
  */
-public abstract class AbsFragment extends Fragment {
-	protected View mViewCache;
-	
-    @Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		init(savedInstanceState); 
-		mViewCache= null;
-	}
-    
-	
+public abstract class AbsActivity extends FragmentActivity {
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		if(mViewCache == null) {
-			mViewCache = initBaseViews();
-	        initLayout();
-	        initViews();
-		} else {
-			ViewGroup group = (ViewGroup) mViewCache.getParent();
-			if(group != null) {
-				group.removeView(mViewCache);
-			}
-		}
-		
-		return mViewCache;
-	}
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init(savedInstanceState);
+        initBaseViews();
+        initLayout();
+        initViews();
+    }
 
-
-
-	/**
+    
+    /**
      * 初始化
      */
     protected void init(Bundle savedInstanceState){
-    	
+
     }
     
     /**
      * 初始化基类View
      */
-    protected abstract View initBaseViews();
+    protected abstract void initBaseViews();
     
     /**
      * 初始化布局
@@ -79,4 +57,5 @@ public abstract class AbsFragment extends Fragment {
      * 初始化视图
      */
     protected abstract void initViews();
+
 }

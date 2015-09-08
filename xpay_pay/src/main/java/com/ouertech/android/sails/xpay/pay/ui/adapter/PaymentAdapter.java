@@ -13,7 +13,6 @@
 package com.ouertech.android.sails.xpay.pay.ui.adapter;
 
 import android.content.Context;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +20,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ouertech.android.sails.ouer.base.utils.UtilList;
-import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.ouer.base.utils.UtilPref;
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
 import com.ouertech.android.sails.xpay.pay.R;
-import com.ouertech.android.sails.xpay.pay.cache.image.SmartImage;
 import com.ouertech.android.sails.xpay.pay.cache.image.SmartImageView;
 import com.ouertech.android.sails.xpay.pay.cache.image.WebImage;
 import com.ouertech.android.sails.xpay.pay.ui.widget.RadioButton;
+import com.ouertech.android.sails.xpay.pay.utils.UtilCache;
 
 import java.util.List;
 
@@ -51,11 +49,11 @@ public class PaymentAdapter extends BaseAdapter{
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.mDatas = datas;
-        mChannel = UtilPref.getString(mContext, KEY_CHANNEL, "");
+        mChannel = UtilCache.getPaychannel(mContext);
         if(UtilList.isNotEmpty(mDatas)) {
             if(UtilString.isBlank(mChannel)) {
                 mChannel = mDatas.get(0).getChannel();
-                UtilPref.putString(mContext, KEY_CHANNEL, mChannel);
+                UtilCache.savePaychannel(mContext, mChannel);
             } else {
                 boolean flag = false;
                 for(int i=0; i<mDatas.size(); i++) {
@@ -67,7 +65,7 @@ public class PaymentAdapter extends BaseAdapter{
 
                 if(!flag) {
                     mChannel = mDatas.get(0).getChannel();
-                    UtilPref.putString(mContext, KEY_CHANNEL, mChannel);
+                    UtilCache.savePaychannel(mContext, mChannel);
                 }
             }
         }
@@ -90,20 +88,27 @@ public class PaymentAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Holder holder;
+        final ViewHolder holder;
         if (null == convertView) {
             convertView = mInflater.inflate(R.layout.xpay_layout_payment_item, null);
-            holder = new Holder();
+            holder = new ViewHolder();
             holder.mSivImg = (SmartImageView) convertView.findViewById(R.id.xpay_id_img);
             holder.mTvName = (TextView) convertView.findViewById(R.id.xpay_id_name);
             holder.mRbRadio = (RadioButton) convertView.findViewById(R.id.xpay_id_radio);
             convertView.setTag(holder);
         } else {
-            holder = (Holder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         final Payment data = mDatas.get(position);
-        holder.mSivImg.setImage(new WebImage(data.getImgUrl()), R.drawable.xpay_ic_launcher);
+        String url = data.getImgUrl();
+        if(UtilString.isBlank(url)) {
+            holder.mSivImg.setVisibility(View.GONE);
+        } else {
+            holder.mSivImg.setVisibility(View.VISIBLE);
+            holder.mSivImg.setImage(new WebImage(url), R.drawable.xpay_ic_launcher);
+        }
+
         holder.mTvName.setText(data.getName());
 
         final String channel = data.getChannel();
@@ -158,11 +163,11 @@ public class PaymentAdapter extends BaseAdapter{
         mDatas = datas;
 
         if(UtilList.isNotEmpty(mDatas)) {
-            mChannel = UtilPref.getString(mContext, KEY_CHANNEL, "");
+            mChannel = UtilCache.getPaychannel(mContext);
 
             if(UtilString.isBlank(mChannel)) {
                 mChannel = mDatas.get(0).getChannel();
-                UtilPref.putString(mContext, KEY_CHANNEL, mChannel);
+                UtilCache.savePaychannel(mContext, mChannel);
             } else {
                 boolean flag = false;
                 for(int i=0; i<mDatas.size(); i++) {
@@ -174,18 +179,18 @@ public class PaymentAdapter extends BaseAdapter{
 
                 if(!flag) {
                     mChannel = mDatas.get(0).getChannel();
-                    UtilPref.putString(mContext, KEY_CHANNEL, mChannel);
+                    UtilCache.savePaychannel(mContext, mChannel);
                 }
             }
         } else {
             mChannel = "";
-            UtilPref.putString(mContext, KEY_CHANNEL, mChannel);
+            UtilCache.savePaychannel(mContext, mChannel);
         }
 
         notifyDataSetChanged();
     }
 
-    class Holder {
+    class ViewHolder {
         //支付渠道图标
         public SmartImageView mSivImg;
         //支付渠道名

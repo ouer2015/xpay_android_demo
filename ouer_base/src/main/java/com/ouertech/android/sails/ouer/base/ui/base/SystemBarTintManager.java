@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ouertech.android.sails.ouer.base.ui.activity;
+package com.ouertech.android.sails.ouer.base.ui.base;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

@@ -1,12 +1,12 @@
 package com.ouertech.android.sails.xpay.pay.cache.image;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class WebImage implements SmartImage {
     private static final int CONNECT_TIMEOUT = 5000;

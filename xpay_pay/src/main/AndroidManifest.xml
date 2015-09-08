@@ -21,6 +21,7 @@
     <application android:allowBackup="true"
                  android:icon="@drawable/xpay_ic_launcher"
                  android:theme="@style/xpay_theme"
+                 android:name=".system.global.XPayApplication"
                  android:label="@string/xpay_string_app_name">
         <activity android:name=".ui.activity.ProductActivity">
 
@@ -31,6 +32,8 @@
         </activity>
 
         <activity android:name=".ui.activity.OrderActivity"/>
+
+        <activity android:name=".ui.activity.BankPayActivity"/>
 
         <activity android:name=".ui.activity.XPayActivity"
             >

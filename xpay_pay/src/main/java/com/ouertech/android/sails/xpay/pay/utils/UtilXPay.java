@@ -230,4 +230,6 @@ public class UtilXPay extends UtilOuer {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(APP_DOWNLOAD_NOTIFY_ID);
     }
+
+
 }

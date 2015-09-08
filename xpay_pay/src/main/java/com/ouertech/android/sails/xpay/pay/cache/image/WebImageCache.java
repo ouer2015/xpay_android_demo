@@ -1,5 +1,12 @@
 package com.ouertech.android.sails.xpay.pay.cache.image;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
+
+import com.ouertech.android.sails.ouer.base.utils.UtilMD5;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,14 +16,6 @@ import java.lang.ref.SoftReference;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
-
-import com.ouertech.android.sails.ouer.base.utils.UtilLog;
-import com.ouertech.android.sails.ouer.base.utils.UtilMD5;
 
 public class WebImageCache {
     private static final String DISK_CACHE_PATH = "/web_image_cache/";

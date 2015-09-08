@@ -12,27 +12,29 @@
  */
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
-import com.ouertech.android.sails.ouer.base.ui.base.BaseTabActivity;
+import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
 import com.ouertech.android.sails.xpay.pay.R;
-import com.ouertech.android.sails.xpay.pay.ui.fragment.CreditCardFragment;
-import com.ouertech.android.sails.xpay.pay.ui.fragment.DepositCardFragment;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/8/31.
- * @desc : 选择银行支付界面
+ * @date : 2015/9/8.
+ * @desc :
  */
-public class BanksActivity extends BaseTabActivity{
+public class BankPayActivity extends BaseTopActivity{
 
     @Override
     protected void initTop() {
-        setNavigation(R.drawable.xpay_ic_close);
-        setTitle(R.string.xpay_string_bank_title);
+        setNavigation(R.drawable.xpay_ic_arrow_left);
+        setTitle(R.string.xpay_string_bank_pay_title);
     }
 
     @Override
-    public void initTabs() {
-        addTab(R.string.xpay_string_bank_credit, CreditCardFragment.class.getName());
-        addTab(R.string.xpay_string_bank_deposit, DepositCardFragment.class.getName());
+    protected void initLayout() {
+
+    }
+
+    @Override
+    protected void initViews() {
+
     }
 }

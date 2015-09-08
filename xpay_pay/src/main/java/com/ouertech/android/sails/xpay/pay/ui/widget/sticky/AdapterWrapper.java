@@ -1,8 +1,5 @@
 package com.ouertech.android.sails.xpay.pay.ui.widget.sticky;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Checkable;
 import android.widget.ListAdapter;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A {@link ListAdapter} which wraps a {@link StickyListHeadersAdapter} and
