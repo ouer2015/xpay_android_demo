@@ -11,16 +11,32 @@ android {
         versionCode 1000
         versionName "1.0.00"
     }
+
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'xiangqu'
+            keyPassword 'xiangqu'
+            storeFile file('E:\\XPay\\code\\docs\\微信支付\\xiangqu.keystore')
+            storePassword 'xiangqu'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            signingConfig signingConfigs.releaseConfig
         }
     }
+
+
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile project(':xpay_pay')
 }

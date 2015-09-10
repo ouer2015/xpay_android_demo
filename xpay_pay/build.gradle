@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.ouertech.android.sails.xpay.pay"
+        applicationId "com.xiangqu.app"
         minSdkVersion 9
         minSdkVersion 9
         targetSdkVersion 22
@@ -26,4 +26,5 @@ dependencies {
     compile project(':xpay_lib')
     compile 'com.nispok:snackbar:2.11.+'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
+    compile project(':ouer_base')
 }

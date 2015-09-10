@@ -25,9 +25,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
-
-import com.ouertech.android.sails.xpay.pay.R;
 import com.ouertech.android.sails.xpay.pay.ui.widget.sticky.WrapperViewList.LifeCycleListener;
+import com.xiangqu.app.R;
 
 /**
  * Even though this is a FrameLayout subclass we still consider it a ListView.

@@ -35,7 +35,7 @@ import com.ouertech.android.sails.ouer.base.utils.UtilMD5;
 import com.ouertech.android.sails.ouer.base.utils.UtilOuer;
 import com.ouertech.android.sails.ouer.base.utils.UtilPackage;
 import com.ouertech.android.sails.ouer.base.utils.UtilStorage;
-import com.ouertech.android.sails.xpay.pay.R;
+import com.xiangqu.app.R;
 
 import java.io.File;
 

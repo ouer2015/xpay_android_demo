@@ -13,7 +13,7 @@
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
-import com.ouertech.android.sails.xpay.pay.R;
+import com.xiangqu.app.R;
 
 /**
  * @author : Zhenshui.Xia

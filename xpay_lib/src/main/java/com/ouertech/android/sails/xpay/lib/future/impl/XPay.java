@@ -16,6 +16,7 @@ import android.content.Context;
 
 import com.ouertech.android.sails.ouer.base.constant.CstBase;
 import com.ouertech.android.sails.ouer.base.future.impl.OuerFutureImpl;
+import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 
 /**
  * @author : Zhenshui.Xia
@@ -41,5 +42,7 @@ public class XPay {
     }
 
 
+    public static void pay(Charge charge) {
 
+    }
 }

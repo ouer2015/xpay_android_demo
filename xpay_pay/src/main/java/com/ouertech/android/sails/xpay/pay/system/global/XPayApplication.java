@@ -16,6 +16,7 @@ import android.app.Application;
 
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.constant.CstXPay;
+import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 
 /**
  * @author : Zhenshui.Xia
@@ -26,6 +27,7 @@ public class XPayApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        XPay.init(this, true, CstXPay.PROJECT);
+        //初始化xpay
+        ExPay.init(this, true, CstXPay.PROJECT);
     }
 }

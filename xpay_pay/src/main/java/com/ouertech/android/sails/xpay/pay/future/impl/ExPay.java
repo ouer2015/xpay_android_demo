@@ -19,9 +19,11 @@ import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandl
 import com.ouertech.android.sails.xpay.lib.data.bean.UpdateInfo;
 import com.ouertech.android.sails.xpay.lib.data.req.CheckUpgradeReq;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
+import com.ouertech.android.sails.xpay.pay.data.req.OrderReq;
 import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetCreditCardsHandler;
 import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetDepositCardsHandler;
 import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetPaymentsHandler;
+import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.OrderHandler;
 
 /**
  * @author : Zhenshui.Xia
@@ -29,14 +31,17 @@ import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetPaymentsH
  * @desc : XPay接口功能的扩展
  */
 public class ExPay extends XPay{
+    //
+    private static final String CALL_EXCEPTION_MSG = "Please init XPay before call this method!!!";
+
     //下单接口地址
-    private static final String ORDER = API_URL + "/checkUpdate"; // "/order";
+    private static final String ORDER               = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // "/order";
     //获取支付方式接口地址
-    private static final String GET_PAYMENTS = API_URL + "/checkUpdate"; // "/getPayments";
+    private static final String GET_PAYMENTS        = API_URL + "/checkUpdate"; // "/getPayments";
     //获取信用卡列表接口地址
-    private static final String GET_CREDIT_CARDS = API_URL + "/checkUpdate"; // "/getCreditCards";
+    private static final String GET_CREDIT_CARDS    = API_URL + "/checkUpdate"; // "/getCreditCards";
     //获取储蓄卡接口地址
-    private static final String GET_DEPOSIT_CARDS = API_URL + "/checkUpdate"; // "/getDepositCards";
+    private static final String GET_DEPOSIT_CARDS   = API_URL + "/checkUpdate"; // "/getDepositCards";
 
     /**
      * 下单接口
@@ -44,20 +49,16 @@ public class ExPay extends XPay{
      * @return
      */
     public static AgnettyFuture order(OuerFutureListener listener) {
-        CheckUpgradeReq req = new CheckUpgradeReq();
-        req.setClientVersion(1000);
-        req.setOsType("ANDROID");
-        req.setChannel("ouertech");
+        OrderReq req = new OrderReq();
 
         if(mFuture == null) {
-            throw new RuntimeException("Please init XPay before call this method!!!");
+            throw new RuntimeException(CALL_EXCEPTION_MSG);
         }
 
         return mFuture.execHttpPostFuture(ORDER,
-                OuerHttpDefaultHandler.class,
+                OrderHandler.class,
                 req,
-                new TypeToken<UpdateInfo>() {
-                }.getType(),
+                new TypeToken<Void>() {}.getType(),
                 listener);
     }
 
@@ -73,14 +74,13 @@ public class ExPay extends XPay{
         req.setChannel("ouertech");
 
         if(mFuture == null) {
-            throw new RuntimeException("Please init XPay before call this method!!!");
+            throw new RuntimeException(CALL_EXCEPTION_MSG);
         }
 
         return mFuture.execHttpGetFuture(GET_PAYMENTS,
                 GetPaymentsHandler.class,
                 req,
-                new TypeToken<UpdateInfo>() {
-                }.getType(),
+                new TypeToken<UpdateInfo>() {}.getType(),
                 listener);
     }
 
@@ -96,14 +96,13 @@ public class ExPay extends XPay{
         req.setChannel("ouertech");
 
         if(mFuture == null) {
-            throw new RuntimeException("Please init XPay before call this method!!!");
+            throw new RuntimeException(CALL_EXCEPTION_MSG);
         }
 
         return mFuture.execHttpGetFuture(GET_CREDIT_CARDS,
                 GetCreditCardsHandler.class,
                 req,
-                new TypeToken<UpdateInfo>() {
-                }.getType(),
+                new TypeToken<UpdateInfo>() {}.getType(),
                 listener);
     }
 
@@ -119,14 +118,13 @@ public class ExPay extends XPay{
         req.setChannel("ouertech");
 
         if(mFuture == null) {
-            throw new RuntimeException("Please init XPay before call this method!!!");
+            throw new RuntimeException(CALL_EXCEPTION_MSG);
         }
 
         return mFuture.execHttpGetFuture(GET_DEPOSIT_CARDS,
                 GetDepositCardsHandler.class,
                 req,
-                new TypeToken<UpdateInfo>() {
-                }.getType(),
+                new TypeToken<UpdateInfo>() {}.getType(),
                 listener);
     }
 }

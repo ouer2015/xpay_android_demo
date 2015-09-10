@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ouertech.android.sails.xpay.pay" >
+    package="com.xiangqu.app" >
 
     <!--微信支付权限-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,27 +21,45 @@
     <application android:allowBackup="true"
                  android:icon="@drawable/xpay_ic_launcher"
                  android:theme="@style/xpay_theme"
-                 android:name=".system.global.XPayApplication"
+                 android:name="com.ouertech.android.sails.xpay.pay.system.global.XPayApplication"
                  android:label="@string/xpay_string_app_name">
-        <activity android:name=".ui.activity.ProductActivity">
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.ProductActivity">
 
         </activity>
 
-        <activity android:name=".ui.activity.BanksActivity">
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.BanksActivity">
 
         </activity>
 
-        <activity android:name=".ui.activity.OrderActivity"/>
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.OrderActivity"/>
 
-        <activity android:name=".ui.activity.BankPayActivity"/>
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.BankPayActivity"/>
 
-        <activity android:name=".ui.activity.XPayActivity"
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.XPayActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+
+
 
         <!-- 支付渠道 -->
         <meta-data android:name="OUER_CHANNEL" android:value="ouertech" />

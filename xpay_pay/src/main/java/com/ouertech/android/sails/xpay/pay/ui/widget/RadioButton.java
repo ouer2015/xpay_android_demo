@@ -16,7 +16,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-import com.ouertech.android.sails.xpay.pay.R;
+import com.xiangqu.app.R;
+
 
 /**
  * @author : Zhenshui.Xia

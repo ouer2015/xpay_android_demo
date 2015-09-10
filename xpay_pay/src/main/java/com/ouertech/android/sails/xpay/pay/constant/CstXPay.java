@@ -15,12 +15,13 @@ package com.ouertech.android.sails.xpay.pay.constant;
 /**
  * @author : Zhenshui.Xia
  * @date : 2015/9/8.
- * @desc :
+ * @desc : 项目常用常量
  */
 public class CstXPay {
-    public static final String PROJECT  = "xpay";
-    // 包名
-    public static final String PACKAGE_NAME = "com.ouertech.android.sails.xpay.pay";
+    //项目名
+    public static final String PROJECT          = "xpay";
+    //包名
+    public static final String PACKAGE_NAME     = "com.ouertech.android.sails.xpay.pay";
 
 
     /**
@@ -29,12 +30,26 @@ public class CstXPay {
      * @author zhenshui.xia
      */
     public static class KEY {
-        public static final String CHANNEL      = "channel";
-        public static final String PAYMENTS     = "payments";
+        public static final String CHANNEL              = "channel";
+        public static final String PAYMENTS             = "payments";
         public static final String BANK_PAYMENT         = "bankPayment";
-
         public static final String CREDIT_CARDS         = "creditCards";
-        public static final String DEPOSIT_CARDS         = "depositCards";
+        public static final String DEPOSIT_CARDS        = "depositCards";
+    }
+
+
+    /**
+     * 微信相关常量
+     * @author zhenshui.xia
+     *
+     */
+    public static class WEIXIN {
+        //微信app id
+        public static final String APP_ID       = "wxe4564ca5ef3c23ef";
+        //商户号
+        public static final String MCH_ID       = "1248744501";
+        //API密钥，在商户平台设置
+        public static final  String API_KEY     ="jfoi34lkjsfsdf10dsflklaidoweqlsk";
     }
 
     /**

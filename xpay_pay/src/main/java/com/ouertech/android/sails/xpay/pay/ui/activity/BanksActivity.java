@@ -13,9 +13,9 @@
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
 import com.ouertech.android.sails.ouer.base.ui.base.BaseTabActivity;
-import com.ouertech.android.sails.xpay.pay.R;
 import com.ouertech.android.sails.xpay.pay.ui.fragment.CreditCardFragment;
 import com.ouertech.android.sails.xpay.pay.ui.fragment.DepositCardFragment;
+import com.xiangqu.app.R;
 
 /**
  * @author : Zhenshui.Xia

@@ -35,4 +35,16 @@
 
     <string name="xpay_string_bank_pay_title">银行卡支付</string>
 
+
+    <!-- WXPayEntryActivity -->
+    <string name="app_tip">提示</string>
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+
+    <string name="xpay_string_wx_uninstalled">您尚未安装微信</string>
+    <string name="xpay_string_wx_unsupport">您当前的微信不支持支付</string>
+    <string name="xpay_string_install">安装</string>
+    <string name="xpay_string_update">升级</string>
+
+
 </resources>

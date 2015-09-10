@@ -23,11 +23,11 @@ import com.ouertech.android.sails.ouer.base.utils.UtilList;
 import com.ouertech.android.sails.ouer.base.utils.UtilPref;
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
-import com.ouertech.android.sails.xpay.pay.R;
 import com.ouertech.android.sails.xpay.pay.cache.image.SmartImageView;
 import com.ouertech.android.sails.xpay.pay.cache.image.WebImage;
 import com.ouertech.android.sails.xpay.pay.ui.widget.RadioButton;
 import com.ouertech.android.sails.xpay.pay.utils.UtilCache;
+import com.xiangqu.app.R;
 
 import java.util.List;
 
