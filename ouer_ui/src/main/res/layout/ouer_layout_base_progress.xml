@@ -5,7 +5,7 @@
               android:gravity="center"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <com.ouertech.android.sails.ouer.base.ui.widget.ProgressWheel
+    <com.ouertech.android.sails.ouer.ui.widget.ProgressWheel
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerInParent="true"

@@ -19,7 +19,7 @@ import android.view.View;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
-import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
+import com.ouertech.android.sails.ouer.ui.base.BaseTopActivity;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;

@@ -12,7 +12,7 @@
  */
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
-import com.ouertech.android.sails.ouer.base.ui.base.BaseTabActivity;
+import com.ouertech.android.sails.ouer.ui.base.BaseTabActivity;
 import com.ouertech.android.sails.xpay.pay.ui.fragment.CreditCardFragment;
 import com.ouertech.android.sails.xpay.pay.ui.fragment.DepositCardFragment;
 import com.xiangqu.app.R;
@@ -22,7 +22,7 @@ import com.xiangqu.app.R;
  * @date : 2015/8/31.
  * @desc : 选择银行支付界面
  */
-public class BanksActivity extends BaseTabActivity{
+public class BanksActivity extends BaseTabActivity {
 
     @Override
     protected void initTop() {

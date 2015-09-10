@@ -26,5 +26,5 @@ dependencies {
     compile project(':xpay_lib')
     compile 'com.nispok:snackbar:2.11.+'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
-    compile project(':ouer_base')
+    compile project(':ouer_ui')
 }

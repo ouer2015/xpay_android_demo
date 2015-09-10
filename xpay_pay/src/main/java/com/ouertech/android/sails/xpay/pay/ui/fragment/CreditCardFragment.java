@@ -22,8 +22,8 @@ import android.widget.TextView;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
-import com.ouertech.android.sails.ouer.base.ui.base.BaseFullFragment;
 import com.ouertech.android.sails.ouer.base.utils.UtilList;
+import com.ouertech.android.sails.ouer.ui.base.BaseFullFragment;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
 import com.ouertech.android.sails.xpay.pay.constant.CstXPay.BROADCAST_ACTION;
 import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
@@ -41,7 +41,7 @@ import java.util.List;
  * @date : 2015/8/31.
  * @desc : 信用卡界面
  */
-public class CreditCardFragment extends BaseFullFragment{
+public class CreditCardFragment extends BaseFullFragment {
     private long mPaymentTime;
     private CreditCardAdapter mAdapter;
 

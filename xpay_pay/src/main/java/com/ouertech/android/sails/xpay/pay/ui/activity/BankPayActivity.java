@@ -12,7 +12,7 @@
  */
 package com.ouertech.android.sails.xpay.pay.ui.activity;
 
-import com.ouertech.android.sails.ouer.base.ui.base.BaseTopActivity;
+import com.ouertech.android.sails.ouer.ui.base.BaseTopActivity;
 import com.xiangqu.app.R;
 
 /**
@@ -20,7 +20,7 @@ import com.xiangqu.app.R;
  * @date : 2015/9/8.
  * @desc :
  */
-public class BankPayActivity extends BaseTopActivity{
+public class BankPayActivity extends BaseTopActivity {
 
     @Override
     protected void initTop() {

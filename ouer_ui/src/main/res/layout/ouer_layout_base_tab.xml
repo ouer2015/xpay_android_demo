@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <com.ouertech.android.sails.ouer.base.ui.widget.PagerSlidingTabStrip
+    <com.ouertech.android.sails.ouer.ui.widget.PagerSlidingTabStrip
         android:id="@+id/ouer_id_tabs"
         android:layout_width="match_parent"
         android:layout_height="40dp"
