@@ -15,10 +15,9 @@ package com.ouertech.android.sails.xpay.pay.future.impl;
 import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
-import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
-import com.ouertech.android.sails.xpay.lib.data.bean.UpdateInfo;
-import com.ouertech.android.sails.xpay.lib.data.req.CheckUpgradeReq;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
+import com.ouertech.android.sails.xpay.pay.data.bean.UpdateInfo;
+import com.ouertech.android.sails.xpay.pay.data.req.CheckUpgradeReq;
 import com.ouertech.android.sails.xpay.pay.data.req.OrderReq;
 import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetCreditCardsHandler;
 import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.GetDepositCardsHandler;
@@ -31,8 +30,6 @@ import com.ouertech.android.sails.xpay.pay.future.impl.handler.http.OrderHandler
  * @desc : XPay接口功能的扩展
  */
 public class ExPay extends XPay{
-    //
-    private static final String CALL_EXCEPTION_MSG = "Please init XPay before call this method!!!";
 
     //下单接口地址
     private static final String ORDER               = "https://api.mch.weixin.qq.com/pay/unifiedorder"; // "/order";

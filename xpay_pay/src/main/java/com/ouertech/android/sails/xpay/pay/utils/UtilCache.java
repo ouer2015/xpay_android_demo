@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.utils.UtilPref;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
-import com.ouertech.android.sails.xpay.pay.constant.CstXPay.KEY;
+import com.ouertech.android.sails.xpay.pay.constant.CstExPay.KEY;
 
 import java.util.List;
 

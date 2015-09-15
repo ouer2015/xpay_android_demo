@@ -14,7 +14,6 @@ package com.ouertech.android.sails.ouer.base.future.base;
 
 import android.content.Context;
 
-import com.ouertech.android.sails.ouer.base.R;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.utils.UtilOuer;
@@ -34,6 +33,6 @@ public class OuerFutureListener extends AgnettyFutureListener {
 	public void onNetUnavaiable(AgnettyResult result) {
 		super.onNetUnavaiable(result);
 		//无网络情况界面公共处理
-		UtilOuer.toast(mContext, R.string.ouer_string_network_unavaiable);
+		UtilOuer.toast(mContext, "无法连接到网络，请检查网络配置");
 	}
 }

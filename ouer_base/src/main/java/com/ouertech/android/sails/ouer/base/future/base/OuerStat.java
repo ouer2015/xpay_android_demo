@@ -38,8 +38,8 @@ public class OuerStat {
     private String deviceId;
     // 屏幕尺寸
     private String size;
-    //app key
-    private String appKey;
+    //app ID
+    private String appId;
 
     @Override
     public String toString() {
@@ -53,7 +53,7 @@ public class OuerStat {
                 +"_ch:"          + appChannel    + "\n"
                 +"_did:"         + deviceId      + "\n"
                 +"_size:"        + size          + "\n"
-                +"_key:"         + appKey ;
+                +"_appid:"       + appId;
     }
 
     public String getManufacturer() {
@@ -136,11 +136,11 @@ public class OuerStat {
         this.size = size;
     }
 
-    public String getAppKey() {
-        return appKey;
+    public String getAppId() {
+        return appId;
     }
 
-    public void setAppKey(String appKey) {
-        this.appKey = appKey;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 }

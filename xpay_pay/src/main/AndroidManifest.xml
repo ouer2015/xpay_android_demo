@@ -35,7 +35,7 @@
 
         <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.BankPayActivity"/>
 
-        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.XPayActivity"
+        <activity android:name="com.ouertech.android.sails.xpay.pay.ui.activity.PaymentActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,7 +63,7 @@
 
         <!-- 支付渠道 -->
         <meta-data android:name="OUER_CHANNEL" android:value="ouertech" />
-        <!-- 支付APP KEY -->
-        <meta-data android:name="OUER_APPKEY" android:value="A8ZM5GNXL13J" />
+        <!-- 支付APP ID -->
+        <meta-data android:name="OUER_APPKID" android:value="A8ZM5GNXL13J" />
     </application>
 </manifest>

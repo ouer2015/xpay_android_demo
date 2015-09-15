@@ -25,7 +25,7 @@ import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.utils.UtilList;
 import com.ouertech.android.sails.ouer.ui.base.BaseFullFragment;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
-import com.ouertech.android.sails.xpay.pay.constant.CstXPay.BROADCAST_ACTION;
+import com.ouertech.android.sails.xpay.pay.constant.CstExPay.BROADCAST_ACTION;
 import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 import com.ouertech.android.sails.xpay.pay.ui.activity.BankPayActivity;
 import com.ouertech.android.sails.xpay.pay.ui.adapter.CreditCardAdapter;

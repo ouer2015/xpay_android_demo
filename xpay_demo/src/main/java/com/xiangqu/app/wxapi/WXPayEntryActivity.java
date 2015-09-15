@@ -1,10 +1,9 @@
 package com.xiangqu.app.wxapi;
 
 
-import com.xiangqu.app.R;
-import net.sourceforge.simcpux.Constants;
 
 
+import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -27,9 +26,9 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pay_result);
+        //setContentView(R.layout.pay_result);
         
-    	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+    	api = WXAPIFactory.createWXAPI(this, "wxe4564ca5ef3c23ef");
 
         api.handleIntent(getIntent(), this);
     }
@@ -47,13 +46,9 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 
 	@Override
 	public void onResp(BaseResp resp) {
-		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-
+		UtilLog.d("onPayFinish, errCode = " + resp.errCode);
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.app_tip);
-			builder.setMessage(getString(R.string.pay_result_callback_msg, resp.errStr +";code=" + String.valueOf(resp.errCode)));
-			builder.show();
+
 		}
 	}
 }

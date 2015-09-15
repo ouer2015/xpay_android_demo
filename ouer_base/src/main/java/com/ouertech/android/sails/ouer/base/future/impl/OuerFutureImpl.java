@@ -45,7 +45,7 @@ public class OuerFutureImpl {
 	private static final String STAT_CH 		= "_ch";
 	private static final String STAT_DID 		= "_did";
 	private static final String STAT_SIZE 		= "_size";
-	private static final String STAT_KEY 		= "_key";
+	private static final String STAT_ID 		= "_appid";
 
 	protected Context mContext;
 	protected Map<String, String> mProperties;
@@ -66,7 +66,7 @@ public class OuerFutureImpl {
 		mProperties.put(STAT_CH, 		stat.getAppChannel());
 		mProperties.put(STAT_DID, 		stat.getDeviceId());
 		mProperties.put(STAT_SIZE, 		stat.getSize());
-		mProperties.put(STAT_KEY, 		stat.getAppKey());
+		mProperties.put(STAT_ID, 		stat.getAppId());
 	}
 
 	

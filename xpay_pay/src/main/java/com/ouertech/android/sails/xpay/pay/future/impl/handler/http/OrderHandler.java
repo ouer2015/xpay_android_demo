@@ -22,7 +22,7 @@ import com.ouertech.android.sails.ouer.base.future.http.HttpEvent;
 import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.ouer.base.utils.UtilMD5;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
-import com.ouertech.android.sails.xpay.pay.constant.CstXPay.WEIXIN;
+import com.ouertech.android.sails.xpay.pay.constant.CstExPay.WEIXIN;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;

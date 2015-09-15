@@ -131,8 +131,8 @@ public class UtilOuer {
      * @param context
      * @return
      */
-    public static String getAppKey(Context context	) {
-        String channel = getMetaValue(context, CstBase.APP_KEY);
+    public static String getAppID(Context context	) {
+        String channel = getMetaValue(context, CstBase.APP_ID);
 
         if(UtilString.isBlank(channel)) {
             channel = "";
@@ -250,7 +250,7 @@ public class UtilOuer {
 
         UtilDevice.Device device = UtilDevice.getDevice(ctx);
         info.setSize(device.getWidth()+"x"+device.getHeight());
-        info.setAppKey(getAppKey(ctx));
+        info.setAppId(getAppID(ctx));
         UtilLog.d(info.toString());
 
         return info;

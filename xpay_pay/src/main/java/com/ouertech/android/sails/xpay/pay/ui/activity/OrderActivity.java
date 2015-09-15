@@ -20,7 +20,6 @@ import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.ui.base.BaseTopActivity;
-import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.ouertech.android.sails.xpay.pay.future.impl.ExPay;
 import com.ouertech.android.sails.xpay.pay.utils.UtilXPay;
 import com.xiangqu.app.R;
@@ -62,7 +61,7 @@ public class OrderActivity extends BaseTopActivity {
      * 下单
      */
     private void order() {
-        AgnettyFuture future = ExPay.order(new OuerFutureListener(this) {
+        AgnettyFuture future = ExPay.getInstance(this).order(new OuerFutureListener(this) {
 
             @Override
             public void onStart(AgnettyResult result) {
@@ -82,7 +81,7 @@ public class OrderActivity extends BaseTopActivity {
                     @Override
                     public void run() {
                         setWaitingDialog(false);
-                        Intent intent = new Intent(OrderActivity.this, XPayActivity.class);
+                        Intent intent = new Intent(OrderActivity.this, PaymentActivity.class);
                         startActivity(intent);
                     }
                 }, delay);

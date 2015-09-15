@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="xpay_string_app_name">XPay_Demo</string>
+    <string name="xpay_string_wx">微信支付</string>
+    <string name="xpay_string_alipay">支付宝支付</string>
+</resources>

@@ -23,10 +23,7 @@ public class Payment {
     //渠道名称
     private String name;
     //渠道图标
-    private String imgUrl;
-    //组别
-    private String group;
-
+    private String icon;
 
     public String getChannel() {
         return channel;
@@ -36,12 +33,12 @@ public class Payment {
         this.channel = channel;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getName() {
@@ -50,13 +47,5 @@ public class Payment {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
     }
 }

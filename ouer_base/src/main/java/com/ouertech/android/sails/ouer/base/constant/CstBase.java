@@ -24,6 +24,6 @@ public class CstBase {
     public static boolean DEBUG 					= true;
     //渠道名
     public static String CHANNEL_META               = "OUER_CHANNEL";
-    //app key
-    public static String APP_KEY                    = "OUER_APPKEY";
+    //app ID
+    public static String APP_ID                    = "OUER_APPID";
 }

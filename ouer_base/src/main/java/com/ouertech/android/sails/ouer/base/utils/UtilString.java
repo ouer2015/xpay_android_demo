@@ -17,6 +17,7 @@ package com.ouertech.android.sails.ouer.base.utils;
 import com.ouertech.android.sails.ouer.base.constant.CstCharset;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 
@@ -163,7 +164,7 @@ public class UtilString {
     
     
     /**
-     * 将字符串用UTF-8编码，发生异常时，抛出异常
+     * 将字符串用UTF-8编码
      * 
      * <pre>
      * utf8Encode(null)        =   null
@@ -192,6 +193,33 @@ public class UtilString {
                 return URLEncoder.encode(str, charset);
             } catch (UnsupportedEncodingException ex) {
             	ex.printStackTrace();
+            }
+        }
+
+        return str;
+    }
+
+    /**
+     * 将字符串用UTF-8解码
+     * @param str
+     * @return
+     */
+    public static String utf8UrlDecode(String str) {
+        return urlDecode(str, CstCharset.UTF_8);
+    }
+
+    /**
+     * 将字符串用指定的编码进行解码，发生异常时，源字符串直接返回，不做解码
+     * @param str
+     * @param charset
+     * @return
+     */
+    public static String urlDecode(String str, String charset) {
+        if (!isEmpty(str)) {
+            try {
+                return URLDecoder.decode(str, charset);
+            } catch (UnsupportedEncodingException ex) {
+                ex.printStackTrace();
             }
         }
 
