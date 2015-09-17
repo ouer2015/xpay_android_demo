@@ -26,7 +26,7 @@ import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
  */
 abstract class AbsPay {
     //支付备注信息
-    protected static final String INVALID_CHARGE_FORMAT       = "支付凭证格式不合法";
+    protected static final String INVALID_CHARGE              = "支付凭证格式不合法";
     protected static final String INVALID_CHARGE_CREDENTIAL   = "支付认证数据缺失";
     protected static final String INVALID_PAY_CHANNEL         = "支付渠道不合法";
     protected static final String INVALID_WX_UNINSTALLED      = "微信未安装";
@@ -46,13 +46,20 @@ abstract class AbsPay {
         this.mCharge = charge;
     }
 
-    //支付
+    /**
+     * 支付
+     */
     protected abstract void pay();
 
-    //
+    /**
+     * activity onRestrat回调
+     */
     protected abstract void onRestart();
 
-    //
+    /**
+     * activity onNewIntent回调
+     * @param intent
+     */
     protected abstract void onNewIntent(Intent intent);
 
     /**

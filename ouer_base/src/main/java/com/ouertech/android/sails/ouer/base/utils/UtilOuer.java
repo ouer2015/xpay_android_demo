@@ -127,21 +127,6 @@ public class UtilOuer {
     }
 
     /**
-     * 获取当前的APP_KEY
-     * @param context
-     * @return
-     */
-    public static String getAppID(Context context	) {
-        String channel = getMetaValue(context, CstBase.APP_ID);
-
-        if(UtilString.isBlank(channel)) {
-            channel = "";
-        }
-
-        return channel;
-    }
-
-    /**
      * 获取系统ua信息
      * @return
      */
@@ -250,7 +235,7 @@ public class UtilOuer {
 
         UtilDevice.Device device = UtilDevice.getDevice(ctx);
         info.setSize(device.getWidth()+"x"+device.getHeight());
-        info.setAppId(getAppID(ctx));
+        info.setAppId(CstBase.APP_ID);
         UtilLog.d(info.toString());
 
         return info;

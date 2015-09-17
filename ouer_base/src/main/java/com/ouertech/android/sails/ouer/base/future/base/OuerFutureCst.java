@@ -21,18 +21,18 @@ public class OuerFutureCst {
 
     public static class STATUS {
         //请求成功
-        protected static final int OK       = 200;
+        protected static final int OK       = 1;
         //未授权
         protected static final int UNAUTH   = 401;
     }
 
     public static class KEY {
         // 错误码
-        protected static final String STATUS    = "errorCode";
+        protected static final String STATUS    = "status";
         // 错误消息
-        protected static final String ERROR     = "errorInfo";
+        protected static final String ERROR     = "details";
         // 更多信息
-        protected static final String MSG       = "moreInfo";
+        protected static final String MSG       = "msg";
         // 响应数据
         protected static final String DATA      = "data";
     }

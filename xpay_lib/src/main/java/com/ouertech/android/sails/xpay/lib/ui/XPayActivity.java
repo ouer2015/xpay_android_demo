@@ -15,10 +15,12 @@ package com.ouertech.android.sails.xpay.lib.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.utils.UtilLog;
+import com.ouertech.android.sails.ouer.base.utils.UtilRef;
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
@@ -30,6 +32,10 @@ import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
  * @desc : 支付处理界面
  */
 public class XPayActivity extends Activity{
+    //存在微信支付sdk检查类
+    private static final String CLASS_VERIFY_WXPAY         = "com.tencent.mm.sdk.openapi.IWXAPI";
+    //存在支付宝支付sdk检查类
+    private static final String CLASS_VERIFY_ALIPAY        = "com.alipay.sdk.app.PayTask";
 
     private AbsPay mAbsPay;
 
@@ -47,13 +53,14 @@ public class XPayActivity extends Activity{
                         new TypeToken<Charge>(){}.getType());
                 if(charge.getCredential() == null) {
                     UtilLog.d("Charge credential is null");
-                    setPayResult(CstXPay.PAY_INVALID, AbsPay.INVALID_CHARGE_CREDENTIAL, charge.getExtra());
+                    setPayResult(CstXPay.PAY_INVALID_CHARGE,
+                            AbsPay.INVALID_CHARGE_CREDENTIAL, charge.getExtra());
                     return;
                 }
             } catch (Exception ex) {
                 //解析失败，支付凭证不合法
                 UtilLog.d("Parse charge failed:" + ex.getMessage());
-                setPayResult(CstXPay.PAY_INVALID, AbsPay.INVALID_CHARGE_FORMAT, null);
+                setPayResult(CstXPay.PAY_INVALID_CHARGE, AbsPay.INVALID_CHARGE, null);
                 return;
             }
 
@@ -61,9 +68,11 @@ public class XPayActivity extends Activity{
             String channel = charge.getChannel();
             UtilLog.d("Pay channel:" + channel);
 
-            if(CstXPay.CHANNEL_WX.equals(channel)) {  //微信渠道支付
+            if(CstXPay.CHANNEL_WX.equals(channel)
+                    && UtilRef.isClassExist(CLASS_VERIFY_WXPAY)) {  //微信渠道支付
                 mAbsPay = new WxPay(this, charge);
-            } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)) {//支付宝渠道支付
+            } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
+                    && UtilRef.isClassExist(CLASS_VERIFY_ALIPAY)) {//支付宝渠道支付
                 mAbsPay = new AlipayPay(this, charge);
             } else {//不支持的渠道支付
                 mAbsPay = new UnknownPay(this, charge);
@@ -76,7 +85,9 @@ public class XPayActivity extends Activity{
     @Override
     protected void onRestart() {
         super.onRestart();
-        if(mAbsPay != null) mAbsPay.onRestart();;
+        if (mAbsPay != null)
+            mAbsPay.onRestart();
+        ;
     }
 
     @Override

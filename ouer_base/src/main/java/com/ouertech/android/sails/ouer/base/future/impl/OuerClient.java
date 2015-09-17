@@ -54,16 +54,20 @@ public class OuerClient {
     public static Map<String, String> mProperties;
 
     /**
-     *
+     * 初始化
      * @param context
+     * @param appId
      * @param debug
      * @param project
      */
-    public static void init(Context context, boolean debug, String project) {
-        if(context == null || UtilString.isBlank(project)) {
+    public static void init(Context context, String appId, boolean debug, String project) {
+        if(context == null
+                || UtilString.isBlank(appId)
+                || UtilString.isBlank(project)) {
             throw new RuntimeException("OuerClient init() params error!!!");
         }
 
+        CstBase.APP_ID = appId;
         CstBase.DEBUG = debug;
         CstBase.PROJECT = project;
         mContext = context;

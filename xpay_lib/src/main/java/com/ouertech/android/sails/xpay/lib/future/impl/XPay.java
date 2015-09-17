@@ -27,6 +27,7 @@ import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
 import com.ouertech.android.sails.xpay.lib.data.req.PaymentsReq;
+import com.ouertech.android.sails.xpay.lib.future.handler.http.PaymentsHandler;
 
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class XPay{
         }
 
         return OuerClient.execHttpGetFuture(GET_PAYMENTS,
-                OuerHttpDefaultHandler.class,
+                PaymentsHandler.class,
                 req,
                 new TypeToken<List<Payment>>() {}.getType(),
                 listener);

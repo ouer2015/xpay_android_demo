@@ -19,7 +19,7 @@ package com.ouertech.android.sails.xpay.lib.constant;
  */
 public class CstXPay {
     //当前支付的版本
-    public static final String VERSION = "V1.0.00";
+    public static final String VERSION          = "1.0.00";
 
     public static final int REQUEST_CODE_PAY    = 100;
 
@@ -29,15 +29,21 @@ public class CstXPay {
     public static final String KEY_PAY_RESULT   = "payResult";
 
     //支付成功
-    public static final int PAY_SUCCESS     = 100;
-    //支付确认中
-    public static final int PAY_PENDING     = 101;
+    public static final int PAY_SUCCESS                         = 100;
     //支付失败
-    public static final int PAY_FAILED      = 102;
+    public static final int PAY_FAILED                          = PAY_SUCCESS + 1;
     //支付取消
-    public static final int PAY_CANCELED    = 103;
-    //支付不合法(如支付插件没安装,支付插件版本不支持)
-    public static final int PAY_INVALID     = 104;
+    public static final int PAY_CANCELED                        = PAY_FAILED  + 1;
+    //支付结果确认中
+    public static final int PAY_PENDING                         = PAY_CANCELED + 1;
+    //支付凭证格式不合法
+    public static final int PAY_INVALID_CHARGE                  = PAY_PENDING + 1;
+    //支付渠道不合法
+    public static final int PAY_INVALID_PAY_CHANNEL             = PAY_INVALID_CHARGE + 1;
+    //微信未安装
+    public static final int PAY_INVALID_WX_UNINSTALLED          = PAY_INVALID_PAY_CHANNEL + 1;
+    //微信版本不支持支付
+    public static final int PAY_INVALID_WX_UNSUPPORTED          = PAY_INVALID_WX_UNINSTALLED + 1;
 
     //支付宝支付
     public static final String CHANNEL_ALIPAY          = "alipay";

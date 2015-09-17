@@ -16,7 +16,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -32,7 +31,6 @@ import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.Credential;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
-import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.xiangqu.app.R;
 
@@ -40,26 +38,29 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 /**
  * @author : Zhenshui.Xia
  * @date : 2015/9/10.
- * @desc :
+ * @desc : XPay示例程序，仅供开发者参考
  */
 public class DemoActivity extends Activity implements View.OnClickListener{
+    //填写开发者申请应用的app ID
+    private static final String APP_ID = "###";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xpay_activity_demo);
 
+        //平台初始化，初始化工作必须放在平台服务调用之前，建议初始化工作放在Application里
+        OuerClient.init(getApplication(), APP_ID, true, "xpay");
 
-        OuerClient.init(this, true, "xpay");
-
+        //微信支付
         findViewById(R.id.xpay_id_wx).setOnClickListener(this);
+        //支付宝支付
         findViewById(R.id.xpay_id_alipay).setOnClickListener(this);
     }
 
@@ -78,26 +79,46 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                 break;
         }
 
-        order(channel, "测试的商品", "该测试商品的详细描述", "0.01");
+        //支付
+        pay(channel, "测试的商品", "该测试商品的详细描述", "0.01");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //获取支付结果
         PayResult result = XPay.getPayResult(requestCode, resultCode, data);
         if(result != null) {
-            //if(result.getStatus() == CstXPay.PAY_SUCCESS) {
+            int status = result.getStatus(); //支付状态
+            String memo = result.getMemo(); //支付状态说明
+            String extra = result.getExtra();//额外信息
 
-            Toast.makeText(this, result.getMemo(), Toast.LENGTH_SHORT).show();
-            //}
-        } else {
+            switch (status) {
+                case CstXPay.PAY_SUCCESS: //支付成功
+                    break;
+                case CstXPay.PAY_CANCELED://支付取消
+                    break;
+                case CstXPay.PAY_FAILED: //支付失败
+                    break;
+                case CstXPay.PAY_PENDING: //支付结果确认中,最终交易是否成功以服务端异步通知为准
+                    break;
+                case CstXPay.PAY_INVALID_CHARGE: //支付凭证格式不合法
+                    break;
+                case CstXPay.PAY_INVALID_PAY_CHANNEL: //支付渠道不合法
+                    break;
+                case CstXPay.PAY_INVALID_WX_UNINSTALLED: //微信未安装
+                    break;
+                case CstXPay.PAY_INVALID_WX_UNSUPPORTED: //微信版本不支持支付
+                    break;
+            }
 
+            Toast.makeText(this, memo, Toast.LENGTH_SHORT).show();
         }
     }
 
 
 
-    private void order(String channel, String subject, String body, String price) {
+    private void pay(String channel, String subject, String body, String price) {
         if(CstXPay.CHANNEL_WX.equals(channel)) {
             new HttpFuture.Builder(this, CstHttp.POST)
                     .setUrl("https://api.mch.weixin.qq.com/pay/unifiedorder")
@@ -120,8 +141,8 @@ public class DemoActivity extends Activity implements View.OnClickListener{
             credential.setSign(alipayPay());
             ch.setCredential(credential);
 
-//            String orderInfo = UtilString.utf8UrlEncode(alipayPay());
-//            String charge = "{\"channel\":\"alipay\", \"credential\":{\"sign\":\""+orderInfo+"\"}}";
+//          String orderInfo = UtilString.utf8UrlEncode(alipayPay());
+//          String charge = "{\"channel\":\"alipay\", \"credential\":{\"sign\":\""+orderInfo+"\"}}";
             String charge = new Gson().toJson(ch);
             UtilLog.d("--charge:" + charge);
             XPay.pay(this, charge);

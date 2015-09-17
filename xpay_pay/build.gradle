@@ -22,7 +22,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
     compile project(':xpay_lib')
     compile 'com.nispok:snackbar:2.11.+'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'

@@ -21,9 +21,9 @@ public class CstBase {
     //项目名
     public static String PROJECT 					= "sails";
     //项目是否处于调试模式
-    public static boolean DEBUG 					= true;
+    public static boolean DEBUG 					= false;
     //渠道名
     public static String CHANNEL_META               = "OUER_CHANNEL";
     //app ID
-    public static String APP_ID                    = "OUER_APPID";
+    public static String APP_ID                     = "";
 }

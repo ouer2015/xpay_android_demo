@@ -20,8 +20,18 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
     compile project(':ouer_base')
-    compile files('libs/libammsdk.jar')
     compile files('libs/alipaySDK-20150610.jar')
+    compile files('libs/libammsdk.jar')
 }
+
+//task makeJar(type: Copy) {
+//    delete 'build/libs/mysdk.jar'
+//    from('build/intermediates/bundles/release/')
+//    into('build/libs/')
+//    include('classes.jar')
+//    rename ('classes.jar', 'mysdk.jar')
+//}
+//
+//makeJar.dependsOn(build)

@@ -39,7 +39,6 @@
         <activity-alias
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"
             android:targetActivity="com.ouertech.android.sails.xpay.lib.ui.XPayActivity" />
 
         <!-- 支付宝注册 -->
@@ -51,10 +50,8 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
 
-        <!-- 支付渠道 -->
+        <!-- XPay支付渠道 -->
         <meta-data android:name="OUER_CHANNEL" android:value="ouertech" />
-        <!-- 支付APP ID -->
-        <meta-data android:name="OUER_APPID" android:value="A8ZM5GNXL13J" />
 
     </application>
 
