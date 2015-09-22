@@ -17,6 +17,9 @@ import android.content.Context;
 import com.ouertech.android.sails.ouer.base.bean.BaseRequest;
 import com.ouertech.android.sails.ouer.base.constant.CstBase;
 import com.ouertech.android.sails.ouer.base.constant.CstHttp;
+import com.ouertech.android.sails.ouer.base.cookie.CookieConfig;
+import com.ouertech.android.sails.ouer.base.cookie.SCookieManager;
+import com.ouertech.android.sails.ouer.base.cookie.impl.CookieDBImpl;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureData;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.base.OuerStat;
@@ -49,9 +52,13 @@ public class OuerClient {
     private static final String STAT_SIZE 		= "_size";
     private static final String STAT_ID 		= "_appid";
 
+    //上下文
     private static Context mContext;
-
+    //请求头属性map
     public static Map<String, String> mProperties;
+    //cookie 管理器
+    private static SCookieManager mSCookieManager;
+
 
     /**
      * 初始化
@@ -86,8 +93,21 @@ public class OuerClient {
         mProperties.put(STAT_DID, 		stat.getDeviceId());
         mProperties.put(STAT_SIZE, 		stat.getSize());
         mProperties.put(STAT_ID, 		stat.getAppId());
+
+
+        CookieConfig config = new CookieConfig.Builder().setCookie(new CookieDBImpl(context)).build();
+        mSCookieManager = SCookieManager.getInstance(config);
     }
 
+
+    /**
+     * 清除cookie，暂不开放
+     */
+    private static void clearCookie() {
+        if(mSCookieManager != null) {
+            mSCookieManager.clearCookie();
+        }
+    }
 
     /**
      * 执行http get请求任务

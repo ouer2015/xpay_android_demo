@@ -33,6 +33,27 @@ import java.util.Random;
 public class OrderReq extends BaseRequest {
     private static final long serialVersionUID = 1L;
 
+    private String channel;
+    private String productId;
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+        add("channel", channel);
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+        add("productId", productId);
+    }
+
     //微信app id
     public static final String APP_ID       = "wxe4564ca5ef3c23ef";
     //商户号

@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -23,7 +24,10 @@ import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.constant.CstHttp;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureData;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
+import com.ouertech.android.sails.ouer.base.future.core.AgnettyManager;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
+import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
 import com.ouertech.android.sails.ouer.base.future.impl.OuerClient;
 import com.ouertech.android.sails.ouer.base.utils.UtilLog;
@@ -31,6 +35,7 @@ import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.Credential;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
+import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.xiangqu.app.R;
 
@@ -38,17 +43,30 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 /**
  * @author : Zhenshui.Xia
  * @date : 2015/9/10.
- * @desc : XPay示例程序，仅供开发者参考
+ * @desc : XPay示例程序，仅供开发者参考。当前demo仅提供使用流程，尚不能演示完整的渠道支付流程，
+ * 我们会在后续迭代中完善。
+ * 【说明文档】开发前请参考XPay安卓SDK开发者使用指南，地址：http://xxx
+ * 【开发流程】
+ * 1）客户端下单和支付可以合并为一个流程也可以分开处理，如果分开处理，下单可以分为交易下单、支付下单，无论哪种方式
+ *    支付前都需要先获取到支付凭证。
+ * 2）客户端请求服务端获得charge。获取charge的接口需要商户服务端自己开发，相关接口开发规范请参考XPay官方文档，
+ *    地址： http://xxx
+ * 3）收到服务端的charge，调用XPay SDK的支付接口：XPay.pay(activty, charge)。
+ * 4）onActivityResult 中获得支付结果，开发者根据支付结果做出相应的处理
+ * 5）如果支付成功。服务端会收到XPay的异步通知，支付成功依据服务端异步通知为准。
  */
 public class DemoActivity extends Activity implements View.OnClickListener{
     //填写开发者申请应用的app ID
     private static final String APP_ID = "###";
+    //下单地址
+    private static final String ORDER_URL = "###";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +97,14 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                 break;
         }
 
-        //支付
-        pay(channel, "测试的商品", "该测试商品的详细描述", "0.01");
+        //下单支付
+        orderPay(channel, "productId");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         //获取支付结果
         PayResult result = XPay.getPayResult(requestCode, resultCode, data);
         if(result != null) {
@@ -93,6 +112,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
             String memo = result.getMemo(); //支付状态说明
             String extra = result.getExtra();//额外信息
 
+            //todo 此处开发者根据支付结果做出相应的处理
             switch (status) {
                 case CstXPay.PAY_SUCCESS: //支付成功
                     break;
@@ -115,6 +135,60 @@ public class DemoActivity extends Activity implements View.OnClickListener{
             Toast.makeText(this, memo, Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * 下单获取charge ，需要异步处理，此处类似于系统的AsyncTask的HTTP异步任务，开发者根据自己客户端的
+     * 异步处理框架自行开发就行
+     * @param channel   支付渠道
+     * @param productId 商品ID
+     */
+    private void orderPay(String channel, String productId) {
+        OrderReq req = new OrderReq();
+        req.setChannel(channel);
+        req.setProductId(productId);
+
+
+        new HttpFuture.Builder(this, CstHttp.POST)
+                .setUrl(ORDER_URL)
+                .setHandler(OuerHttpDefaultHandler.class)
+                .setData(new OuerFutureData(req, new TypeToken<String>() {}.getType()))
+                .setListener(new OuerFutureListener(this) {
+                    @Override
+                    public void onStart(AgnettyResult result) {
+                        super.onStart(result);
+                        //todo ui线程回调，任务开始
+                    }
+
+                    @Override
+                    public void onComplete(AgnettyResult result) {
+                        super.onComplete(result);
+                        //todo ui线程回调，获取charge成功
+                        String charge = (String) result.getAttach();
+                        XPay.pay(DemoActivity.this, charge);
+
+                    }
+
+                    @Override
+                    public void onException(AgnettyResult result) {
+                        super.onException(result);
+                        //todo ui线程回调，获取charge失败
+                    }
+
+                    @Override
+                    public void onNetUnavaiable(AgnettyResult result) {
+                        super.onNetUnavaiable(result);//主要此处有个默认的Toast提示，如果不展示，可以删除父类方法的实现
+                        //todo ui线程回调，当前网络不给力
+                    }
+                })
+                .execute();
+
+
+    }
+
+
+
+
+
 
 
 

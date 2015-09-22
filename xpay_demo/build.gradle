@@ -39,7 +39,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:22.2.0'
+//    compile 'com.android.support:support-v4:22.2.0'
         compile project(':xpay_lib')
 //    compile files('libs/alipaySDK-20150610.jar')
 //    compile files('libs/gson-2.3.1.jar')

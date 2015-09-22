@@ -17,6 +17,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 
 import com.google.gson.reflect.TypeToken;
+import com.ouertech.android.sails.ouer.base.constant.CstBase;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureListener;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
@@ -68,7 +69,14 @@ public class XPay{
     }
 
     /**
-     *
+     * 获取当前支付的版本号
+     */
+    public static String getVersion() {
+        return CstXPay.VERSION;
+    }
+
+    /**
+     * 解析onActivityResult返回的值，获取支付结果
      * @param requestCode
      * @param resultCode
      * @param data

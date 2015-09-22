@@ -13,6 +13,7 @@
 
 package com.ouertech.android.sails.ouer.base.bean;
 
+import com.ouertech.android.sails.ouer.base.constant.CstBase;
 import com.ouertech.android.sails.ouer.base.constant.CstCharset;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -39,8 +40,19 @@ public abstract class BaseRequest extends BaseBean{
     protected ConcurrentHashMap<String, String> urlParams;
     protected ConcurrentHashMap<String, Object> urlParamsWithObjects;
 
+    private String appId;
+
     public BaseRequest() {
         init();
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+        add("appId", CstBase.APP_ID);
     }
 
     /**
