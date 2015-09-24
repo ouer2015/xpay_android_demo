@@ -41,17 +41,17 @@ class WxPay extends AbsPay implements IWXAPIEventHandler {
 
     @Override
     public void pay() {
-        String extra = mCharge.getExtra();
+        String attach = mCharge.getAttach();
 
         if(!mWxApi.isWXAppInstalled()) {//微信未安装
             UtilLog.d("Weixin isn't installed");
-            setPayResult(CstXPay.PAY_INVALID_WX_UNINSTALLED, INVALID_WX_UNINSTALLED, extra);
+            setPayResult(CstXPay.PAY_INVALID_WX_UNINSTALLED, INVALID_WX_UNINSTALLED, attach);
             return;
         }
 
         if(!mWxApi.isWXAppSupportAPI()) {//微信版本不支持支付
             UtilLog.d("Weixin isn't support API");
-            setPayResult(CstXPay.PAY_INVALID_WX_UNSUPPORTED, INVALID_WX_UNSUPPORTED, extra);
+            setPayResult(CstXPay.PAY_INVALID_WX_UNSUPPORTED, INVALID_WX_UNSUPPORTED, attach);
             return;
         }
 
@@ -62,7 +62,7 @@ class WxPay extends AbsPay implements IWXAPIEventHandler {
         req.partnerId = credential.getPartnerId();
         req.prepayId = credential.getPrepayId();
         req.packageValue = credential.getPackageValue();
-        req.nonceStr = credential.getNonceStr();
+        req.nonceStr = credential.getNoncestr();
         req.timeStamp = credential.getTimeStamp();
         req.sign = credential.getSign();
         mWxApi.sendReq(req);
@@ -71,13 +71,18 @@ class WxPay extends AbsPay implements IWXAPIEventHandler {
     @Override
     protected void onRestart() {
         //取消支付
-        setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, mCharge.getExtra());
+        setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, mCharge.getAttach());
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         mActivity.setIntent(intent);
         mWxApi.handleIntent(intent, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 
     @Override
@@ -89,14 +94,14 @@ class WxPay extends AbsPay implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         UtilLog.d("Weixin pay result: errCode=" + resp.errCode
                 + "  errStr=" + resp.errStr);
-        String extra = mCharge.getExtra();
+        String attach = mCharge.getAttach();
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if(resp.errCode == BaseResp.ErrCode.ERR_OK) {//微信支付成功
-                setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, extra);
+                setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, attach);
             } else if(resp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {//微信取消支付
-                setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, extra);
+                setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, attach);
             } else {//微信支付失败
-                setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, extra);
+                setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, attach);
             }
         }
     }

@@ -53,7 +53,9 @@ public class Charge extends BaseBean{
     //已退款金额
     private int refundedAmount;
     //额外数据
-    private String extra;
+    private Extra extra;
+    //附件
+    private String attach;
     //认证信息
     private Credential credential;
 
@@ -185,12 +187,20 @@ public class Charge extends BaseBean{
         this.refundedAmount = refundedAmount;
     }
 
-    public String getExtra() {
+    public Extra getExtra() {
         return extra;
     }
 
-    public void setExtra(String extra) {
+    public void setExtra(Extra extra) {
         this.extra = extra;
+    }
+
+    public String getAttach() {
+        return attach;
+    }
+
+    public void setAttach(String attach) {
+        this.attach = attach;
     }
 
     public Credential getCredential() {

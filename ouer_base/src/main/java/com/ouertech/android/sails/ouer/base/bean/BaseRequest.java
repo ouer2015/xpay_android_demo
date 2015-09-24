@@ -40,20 +40,12 @@ public abstract class BaseRequest extends BaseBean{
     protected ConcurrentHashMap<String, String> urlParams;
     protected ConcurrentHashMap<String, Object> urlParamsWithObjects;
 
-    private String appId;
 
     public BaseRequest() {
         init();
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
         add("appId", CstBase.APP_ID);
     }
+
 
     /**
      * Adds a key/value string pair to the request.

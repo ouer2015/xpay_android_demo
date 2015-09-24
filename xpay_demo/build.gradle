@@ -15,9 +15,9 @@ android {
     signingConfigs {
         release {
             storeFile file("E:\\XPay\\code\\docs\\漩付\\xpay.keystore")
-            storePassword "xiangqu"
-            keyAlias "xiangqu"
-            keyPassword "xiangqu"
+            storePassword "ouer@2015"
+            keyAlias "xpay"
+            keyPassword "ouer@2015"
         }
     }
 

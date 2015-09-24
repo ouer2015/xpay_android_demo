@@ -30,7 +30,7 @@ public class OuerFutureCst {
         // 错误码
         protected static final String STATUS    = "status";
         // 错误消息
-        protected static final String ERROR     = "details";
+        protected static final String DETAILS   = "details";
         // 更多信息
         protected static final String MSG       = "msg";
         // 响应数据

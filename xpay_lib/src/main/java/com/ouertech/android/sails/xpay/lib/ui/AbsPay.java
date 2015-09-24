@@ -63,16 +63,24 @@ abstract class AbsPay {
     protected abstract void onNewIntent(Intent intent);
 
     /**
+     * activity onActivityResult回调
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    protected abstract void onActivityResult(int requestCode, int resultCode, Intent data) ;
+
+    /**
      * 设置支付结果
      * @param status
      * @param memo
-     * @param extra
+     * @param attach
      */
-    protected void setPayResult(int status, String memo, String extra){
+    protected void setPayResult(int status, String memo, String attach){
         PayResult result = new PayResult();
         result.setStatus(status);
         result.setMemo(memo);
-        result.setExtra(extra);
+        result.setAttach(attach);
         Intent intent = new Intent();
         intent.putExtra(CstXPay.KEY_PAY_RESULT, result);
         mActivity.setResult(Activity.RESULT_OK, intent);

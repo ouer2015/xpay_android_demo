@@ -24,7 +24,7 @@ public class CstXPay {
     public static final int REQUEST_CODE_PAY    = 100;
 
     //key-支付凭证
-    public static final String KEY_CHARGE       = "charge";
+    public static final String KEY_CHARGE       = "chargeStr";
     //key-支付结果
     public static final String KEY_PAY_RESULT   = "payResult";
 
@@ -46,7 +46,16 @@ public class CstXPay {
     public static final int PAY_INVALID_WX_UNSUPPORTED          = PAY_INVALID_WX_UNINSTALLED + 1;
 
     //支付宝支付
-    public static final String CHANNEL_ALIPAY          = "alipay";
+    public static final String CHANNEL_ALIPAY          = "ALIPAY";
     //微信支付
-    public static final String CHANNEL_WX              = "weixin";
+    public static final String CHANNEL_WX              = "WXPAY";
+    //银联支付
+    public static final String CHANNEL_UNIONPAY        = "UNIONPAY";
+
+    //支付宝支付
+    public static final String SUBCHANNEL_ALIPAY_APP          = "ALIPAY_APP";
+    //微信支付
+    public static final String SUBCHANNEL_WX_APP              = "WXPAY_APP";
+    //银联支付
+    public static final String SUBCHANNEL_UNIONPAY_APP        = "UNIONPAY_APP";
 }

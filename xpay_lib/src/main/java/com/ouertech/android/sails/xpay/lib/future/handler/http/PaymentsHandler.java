@@ -19,6 +19,8 @@ import com.ouertech.android.sails.ouer.base.future.http.HttpEvent;
 import com.ouertech.android.sails.ouer.base.utils.UtilRef;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Payment;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +33,8 @@ public class PaymentsHandler extends OuerHttpHandler {
     private static final String CLASS_VERIFY_WXPAY         = "com.tencent.mm.sdk.openapi.IWXAPI";
     //存在支付宝支付sdk检查类
     private static final String CLASS_VERIFY_ALIPAY        = "com.alipay.sdk.app.PayTask";
+    //存在银联支付sdk检查类
+    private static final String CLASS_VERIFY_UNIONPAY      = "com.unionpay.UPPayAssistEx";
 
     public PaymentsHandler(Context context) {
         super(context);
@@ -38,35 +42,46 @@ public class PaymentsHandler extends OuerHttpHandler {
 
     @Override
     public void onHandle(HttpEvent evt) throws Exception {
-        List<Payment> datas = ( List<Payment>)evt.getData();
-        //支付宝支付方式检查
-        Payment payment = null;
-        for(Payment p : datas) {
-            if(CstXPay.CHANNEL_ALIPAY.equals(p.getChannel())
-                    && !UtilRef.isClassExist(CLASS_VERIFY_ALIPAY)) {
-                payment = p;
-                break;
-            }
-        }
-
-        if(payment != null) {
-            datas.remove(payment);
-            payment = null;
-        }
-
+        List<Payment> datas = (List<Payment>)evt.getData();
+        List<Verify> verifies = new ArrayList<>();
         //微信支付方式检查
-        for(Payment p : datas) {
-            if(CstXPay.CHANNEL_WX.equals(p.getChannel())
-                    && !UtilRef.isClassExist(CLASS_VERIFY_WXPAY)) {
-                payment = p;
-                break;
-            }
-        }
+        Verify wxVerify = new Verify();
+        wxVerify.channel = CstXPay.CHANNEL_WX;
+        wxVerify.verifyCls = CLASS_VERIFY_WXPAY;
+        verifies.add(wxVerify);
 
-        if(payment != null) {
-            datas.remove(payment);
+        //支付宝支付方式检查
+        Verify alipayVerify = new Verify();
+        alipayVerify.channel = CstXPay.CHANNEL_ALIPAY;
+        alipayVerify.verifyCls = CLASS_VERIFY_ALIPAY;
+        verifies.add(alipayVerify);
+
+        //银联支付方式检查
+        Verify unionpayVerify = new Verify();
+        unionpayVerify.channel = CstXPay.CHANNEL_UNIONPAY;
+        unionpayVerify.verifyCls = CLASS_VERIFY_UNIONPAY;
+        verifies.add(unionpayVerify);
+
+        for(Verify verify : verifies) {
+            Payment payment = null;
+            for(Payment p : datas) {
+                if(verify.channel.equals(p.getChannel())
+                        && !UtilRef.isClassExist(verify.verifyCls)) {
+                    payment = p;
+                    break;
+                }
+            }
+
+            if(payment != null) {
+                datas.remove(payment);
+            }
         }
 
         evt.getFuture().commitComplete(datas);
+    }
+
+    private class Verify {
+        public String channel;
+        public String verifyCls;
     }
 }

@@ -53,7 +53,7 @@ public class OuerClient {
     private static final String STAT_ID 		= "_appid";
 
     //上下文
-    private static Context mContext;
+    public static Context mContext;
     //请求头属性map
     public static Map<String, String> mProperties;
     //cookie 管理器

@@ -37,7 +37,7 @@ class AlipayPay extends AbsPay{
             @Override
             public void run() {
                 String sign = mCharge.getCredential().getSign();
-                String extra = mCharge.getExtra();
+                String attach = mCharge.getAttach();
 
                 //调用支付接口，获取支付结果
                 PayTask alipay = new PayTask(mActivity);
@@ -48,17 +48,17 @@ class AlipayPay extends AbsPay{
 
                 //判断resultStatus 为“9000”则代表支付成功
                 if("9000".equals(resultStatus)) {
-                    setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, extra);
+                    setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, attach);
                 } else if("8000".equals(resultStatus)) {
                     //“8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，
                     // 最终交易是否成功以服务端异步通知为准（小概率状态）
-                    setPayResult(CstXPay.PAY_PENDING, PENDING_PAY_RESULT, extra);
+                    setPayResult(CstXPay.PAY_PENDING, PENDING_PAY_RESULT, attach);
                 } else if("6001".equals(resultStatus)) {
                     //"6001"代表支付取消
-                    setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, extra);
+                    setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, attach);
                 } else {
                     //其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                    setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, extra);
+                    setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, attach);
                 }
             }
         };
@@ -75,6 +75,11 @@ class AlipayPay extends AbsPay{
 
     @Override
     protected void onNewIntent(Intent intent) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
 

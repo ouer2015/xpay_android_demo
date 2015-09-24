@@ -31,7 +31,7 @@ class UnknownPay extends AbsPay {
     @Override
     protected void pay() {
         UtilLog.d("Unsupported pay channel:" + mCharge.getChannel());
-        setPayResult(CstXPay.PAY_INVALID_PAY_CHANNEL, INVALID_PAY_CHANNEL, mCharge.getExtra());
+        setPayResult(CstXPay.PAY_INVALID_PAY_CHANNEL, INVALID_PAY_CHANNEL, mCharge.getAttach());
     }
 
     @Override
@@ -41,6 +41,11 @@ class UnknownPay extends AbsPay {
 
     @Override
     protected void onNewIntent(Intent intent) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
 }

@@ -36,6 +36,8 @@ public class XPayActivity extends Activity{
     private static final String CLASS_VERIFY_WXPAY         = "com.tencent.mm.sdk.openapi.IWXAPI";
     //存在支付宝支付sdk检查类
     private static final String CLASS_VERIFY_ALIPAY        = "com.alipay.sdk.app.PayTask";
+    //存在银联支付sdk检查类
+    private static final String CLASS_VERIFY_UNIONPAY      = "com.unionpay.UPPayAssistEx";
 
     private AbsPay mAbsPay;
 
@@ -54,7 +56,7 @@ public class XPayActivity extends Activity{
                 if(charge.getCredential() == null) {
                     UtilLog.d("Charge credential is null");
                     setPayResult(CstXPay.PAY_INVALID_CHARGE,
-                            AbsPay.INVALID_CHARGE_CREDENTIAL, charge.getExtra());
+                            AbsPay.INVALID_CHARGE_CREDENTIAL, charge.getAttach());
                     return;
                 }
             } catch (Exception ex) {
@@ -74,6 +76,9 @@ public class XPayActivity extends Activity{
             } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_ALIPAY)) {//支付宝渠道支付
                 mAbsPay = new AlipayPay(this, charge);
+            } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
+                    && UtilRef.isClassExist(CLASS_VERIFY_UNIONPAY)) {//银联支付
+                mAbsPay = new UnionPay(this, charge);
             } else {//不支持的渠道支付
                 mAbsPay = new UnknownPay(this, charge);
             }
@@ -85,9 +90,7 @@ public class XPayActivity extends Activity{
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (mAbsPay != null)
-            mAbsPay.onRestart();
-        ;
+        if (mAbsPay != null) mAbsPay.onRestart();
     }
 
     @Override
@@ -96,17 +99,23 @@ public class XPayActivity extends Activity{
         if(mAbsPay != null) mAbsPay.onNewIntent(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(mAbsPay != null) mAbsPay.onActivityResult(requestCode, resultCode, data);
+    }
+
     /**
      * 设置支付结果
      * @param status
      * @param memo
-     * @param extra
+     * @param attach
      */
-    protected void setPayResult(int status, String memo, String extra){
+    protected void setPayResult(int status, String memo, String attach){
         PayResult result = new PayResult();
         result.setStatus(status);
         result.setMemo(memo);
-        result.setExtra(extra);
+        result.setAttach(attach);
         Intent intent = new Intent();
         intent.putExtra(CstXPay.KEY_PAY_RESULT, result);
         setResult(Activity.RESULT_OK, intent);

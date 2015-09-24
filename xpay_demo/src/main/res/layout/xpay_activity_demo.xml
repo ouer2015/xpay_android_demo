@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -29,4 +28,18 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/xpay_string_alipay"/>
+
+    <Button
+        android:id="@+id/xpay_id_unionpay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="银联支付"/>
+
+    <Button
+        android:id="@+id/xpay_id_baidupay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="百度支付"/>
 </LinearLayout>

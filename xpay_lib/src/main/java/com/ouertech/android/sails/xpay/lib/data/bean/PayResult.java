@@ -25,7 +25,7 @@ public class PayResult extends BaseBean{
     //支付结果备注信息
     private String memo;
     //附带的额外信息
-    private String extra;
+    private String attach;
 
     public int getStatus() {
         return status;
@@ -43,11 +43,11 @@ public class PayResult extends BaseBean{
         this.memo = memo;
     }
 
-    public String getExtra() {
-        return extra;
+    public String getAttach() {
+        return attach;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
+    public void setAttach(String extra) {
+        this.attach = extra;
     }
 }

@@ -27,7 +27,7 @@ public class Credential {
     //固定值Sign=WXPay
     private String packageValue;
     //随机串
-    private String nonceStr;
+    private String noncestr;
     //时间戳
     private String timeStamp;
     //签名结果
@@ -65,12 +65,12 @@ public class Credential {
         this.packageValue = packageValue;
     }
 
-    public String getNonceStr() {
-        return nonceStr;
+    public String getNoncestr() {
+        return noncestr;
     }
 
-    public void setNonceStr(String nonceStr) {
-        this.nonceStr = nonceStr;
+    public void setNoncestr(String noncestr) {
+        this.noncestr = noncestr;
     }
 
     public String getTimeStamp() {
