@@ -38,6 +38,8 @@ public class XPayActivity extends Activity{
     private static final String CLASS_VERIFY_ALIPAY        = "com.alipay.sdk.app.PayTask";
     //存在银联支付sdk检查类
     private static final String CLASS_VERIFY_UNIONPAY      = "com.unionpay.UPPayAssistEx";
+    //存在百度支付sdk检查类
+    private static final String CLASS_VERIFY_BAIDUPAY      = "com.baidu.paysdk.api.BaiduPay";
 
     private AbsPay mAbsPay;
 
@@ -55,14 +57,14 @@ public class XPayActivity extends Activity{
                         new TypeToken<Charge>(){}.getType());
                 if(charge.getCredential() == null) {
                     UtilLog.d("Charge credential is null");
-                    setPayResult(CstXPay.PAY_INVALID_CHARGE,
+                    setPayResult(CstXPay.PAY_INVALID,
                             AbsPay.INVALID_CHARGE_CREDENTIAL, charge.getAttach());
                     return;
                 }
             } catch (Exception ex) {
                 //解析失败，支付凭证不合法
                 UtilLog.d("Parse charge failed:" + ex.getMessage());
-                setPayResult(CstXPay.PAY_INVALID_CHARGE, AbsPay.INVALID_CHARGE, null);
+                setPayResult(CstXPay.PAY_INVALID, AbsPay.INVALID_CHARGE, null);
                 return;
             }
 
@@ -71,14 +73,17 @@ public class XPayActivity extends Activity{
             UtilLog.d("Pay channel:" + channel);
 
             if(CstXPay.CHANNEL_WX.equals(channel)
-                    && UtilRef.isClassExist(CLASS_VERIFY_WXPAY)) {  //微信渠道支付
+                    && UtilRef.isClassExist(CLASS_VERIFY_WXPAY)) {//微信渠道支付
                 mAbsPay = new WxPay(this, charge);
             } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_ALIPAY)) {//支付宝渠道支付
                 mAbsPay = new AlipayPay(this, charge);
-            } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
+            } else if(CstXPay.CHANNEL_UNIONPAY.equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_UNIONPAY)) {//银联支付
                 mAbsPay = new UnionPay(this, charge);
+            } else if(CstXPay.CHANNEL_BAIDUPAY.equals(channel)
+                    && UtilRef.isClassExist(CLASS_VERIFY_BAIDUPAY)) {//百度支付
+                mAbsPay = new BaiduPay(this, charge);
             } else {//不支持的渠道支付
                 mAbsPay = new UnknownPay(this, charge);
             }

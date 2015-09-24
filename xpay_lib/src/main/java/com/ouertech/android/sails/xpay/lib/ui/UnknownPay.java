@@ -31,7 +31,7 @@ class UnknownPay extends AbsPay {
     @Override
     protected void pay() {
         UtilLog.d("Unsupported pay channel:" + mCharge.getChannel());
-        setPayResult(CstXPay.PAY_INVALID_PAY_CHANNEL, INVALID_PAY_CHANNEL, mCharge.getAttach());
+        setPayResult(CstXPay.PAY_INVALID, INVALID_PAY_CHANNEL, mCharge.getAttach());
     }
 
     @Override

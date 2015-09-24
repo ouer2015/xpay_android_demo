@@ -35,6 +35,9 @@ public class PaymentsHandler extends OuerHttpHandler {
     private static final String CLASS_VERIFY_ALIPAY        = "com.alipay.sdk.app.PayTask";
     //存在银联支付sdk检查类
     private static final String CLASS_VERIFY_UNIONPAY      = "com.unionpay.UPPayAssistEx";
+    //存在百度支付sdk检查类
+    private static final String CLASS_VERIFY_BAIDUPAY      = "com.baidu.paysdk.api.BaiduPay";
+
 
     public PaymentsHandler(Context context) {
         super(context);
@@ -60,6 +63,12 @@ public class PaymentsHandler extends OuerHttpHandler {
         Verify unionpayVerify = new Verify();
         unionpayVerify.channel = CstXPay.CHANNEL_UNIONPAY;
         unionpayVerify.verifyCls = CLASS_VERIFY_UNIONPAY;
+        verifies.add(unionpayVerify);
+
+        //百度支付方式检查
+        Verify baiduVerify = new Verify();
+        unionpayVerify.channel = CstXPay.CHANNEL_BAIDUPAY;
+        unionpayVerify.verifyCls = CLASS_VERIFY_BAIDUPAY;
         verifies.add(unionpayVerify);
 
         for(Verify verify : verifies) {

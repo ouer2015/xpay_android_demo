@@ -31,6 +31,10 @@ abstract class AbsPay {
     protected static final String INVALID_PAY_CHANNEL         = "支付渠道不合法";
     protected static final String INVALID_WX_UNINSTALLED      = "微信未安装";
     protected static final String INVALID_WX_UNSUPPORTED      = "微信版本不支持支付";
+    protected static final String INVALID_BAIDU_NOSUPPORT     = "百度支付不支持该种支付方式";
+    protected static final String INVALID_BAIDU_TOKEN_INVALID = "百度支付无效的登陆状态";
+    protected static final String INVALID_BAIDU_LOGIN_ERROR   = "百度支付登陆失败";
+    protected static final String INVALID_BAIDU_LOGIN_OUT     = "百度支付退出登录";
     protected static final String SUCCESS_PAY_RESULT          = "支付成功";
     protected static final String PENDING_PAY_RESULT          = "支付结果确认中";
     protected static final String FAILED_PAY_RESULT           = "支付失败";

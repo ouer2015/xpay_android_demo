@@ -45,13 +45,13 @@ class WxPay extends AbsPay implements IWXAPIEventHandler {
 
         if(!mWxApi.isWXAppInstalled()) {//微信未安装
             UtilLog.d("Weixin isn't installed");
-            setPayResult(CstXPay.PAY_INVALID_WX_UNINSTALLED, INVALID_WX_UNINSTALLED, attach);
+            setPayResult(CstXPay.PAY_INVALID, INVALID_WX_UNINSTALLED, attach);
             return;
         }
 
         if(!mWxApi.isWXAppSupportAPI()) {//微信版本不支持支付
             UtilLog.d("Weixin isn't support API");
-            setPayResult(CstXPay.PAY_INVALID_WX_UNSUPPORTED, INVALID_WX_UNSUPPORTED, attach);
+            setPayResult(CstXPay.PAY_INVALID, INVALID_WX_UNSUPPORTED, attach);
             return;
         }
 

@@ -15,9 +15,15 @@ package com.ouertech.android.sails.xpay.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.baidu.android.pay.PayCallBack;
+import com.baidu.paysdk.PayCallBackManager;
+import com.baidu.paysdk.api.BaiduPay;
+import com.baidu.wallet.core.utils.LogUtil;
 import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.constant.CstHttp;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureData;
@@ -26,11 +32,17 @@ import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
 import com.ouertech.android.sails.ouer.base.future.impl.OuerClient;
+import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 import com.xiangqu.app.R;
+
+import java.math.BigDecimal;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
@@ -65,7 +77,10 @@ public class DemoActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.xpay_id_wx).setOnClickListener(this);
         //支付宝支付
         findViewById(R.id.xpay_id_alipay).setOnClickListener(this);
+        //
         findViewById(R.id.xpay_id_unionpay).setOnClickListener(this);
+        //
+        findViewById(R.id.xpay_id_baidupay).setOnClickListener(this);
     }
 
 
@@ -79,9 +94,16 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                 subChannel = CstXPay.SUBCHANNEL_WX_APP;
                 break;
             case R.id.xpay_id_alipay:
-            case R.id.xpay_id_unionpay:
                 channel = CstXPay.CHANNEL_ALIPAY;
                 subChannel = CstXPay.SUBCHANNEL_ALIPAY_APP;
+                break;
+            case R.id.xpay_id_unionpay:
+                channel = CstXPay.CHANNEL_UNIONPAY;
+                subChannel = CstXPay.SUBCHANNEL_UNIONPAY_APP;
+                break;
+            case R.id.xpay_id_baidupay:
+                channel = CstXPay.CHANNEL_BAIDUPAY;
+                subChannel = CstXPay.SUBCHANNEL_BAIDUPAY_APP;
                 break;
             default:
                 break;
@@ -112,13 +134,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     break;
                 case CstXPay.PAY_PENDING: //支付结果确认中,最终交易是否成功以服务端异步通知为准
                     break;
-                case CstXPay.PAY_INVALID_CHARGE: //支付凭证格式不合法
-                    break;
-                case CstXPay.PAY_INVALID_PAY_CHANNEL: //支付渠道不合法
-                    break;
-                case CstXPay.PAY_INVALID_WX_UNINSTALLED: //微信未安装
-                    break;
-                case CstXPay.PAY_INVALID_WX_UNSUPPORTED: //微信版本不支持支付
+                case CstXPay.PAY_INVALID: //支付凭证格式不合法
                     break;
             }
 
@@ -158,7 +174,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     public void onComplete(AgnettyResult result) {
                         super.onComplete(result);
                         //todo ui线程回调，获取charge成功
-                        Charge charge = (Charge)result.getAttach();
+                        Charge charge = (Charge) result.getAttach();
                         XPay.pay(DemoActivity.this, charge);
 
                     }
@@ -180,4 +196,11 @@ public class DemoActivity extends Activity implements View.OnClickListener{
 
 
     }
+
+
+
+
+
+
+
 }

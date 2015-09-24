@@ -40,60 +40,13 @@ public class UnionPay extends AbsPay{
 
     @Override
     protected void pay() {
-        final MyHandler mHandler = new MyHandler();
+        // “00” – 银联正式环境
+        // “01” – 银联测试环境，该环境中不发生真实交易
+        String serverMode = CstBase.DEBUG ? "01" : "00";
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String tn = null;
-                InputStream is;
-                try {
-
-                    String url = TN_URL_01;
-
-                    URL myURL = new URL(url);
-                    URLConnection ucon = myURL.openConnection();
-                    ucon.setConnectTimeout(120000);
-                    is = ucon.getInputStream();
-                    int i = -1;
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    while ((i = is.read()) != -1) {
-                        baos.write(i);
-                    }
-
-                    tn = baos.toString();
-                    is.close();
-                    baos.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                Message msg = mHandler.obtainMessage();
-                msg.obj = tn;
-                mHandler.sendMessage(msg);
-            }
-        }).start();
-
-
-
-
-    }
-
-    private static final String TN_URL_01 = "http://101.231.204.84:8091/sim/getacptn";
-
-    private class MyHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            String tn = (String) msg.obj;
-            // “00” – 银联正式环境
-            // “01” – 银联测试环境，该环境中不发生真实交易
-            String serverMode = CstBase.DEBUG ? "01" : "00";
-
-            //启动银联jar支付
-            UPPayAssistEx.startPayByJAR(mActivity, PayActivity.class, null, null,
-                    tn, serverMode);
-        }
+        //启动银联jar支付
+        UPPayAssistEx.startPayByJAR(mActivity, PayActivity.class, null, null,
+                mCharge.getPartnerTradeNo(), serverMode);
     }
 
     @Override
