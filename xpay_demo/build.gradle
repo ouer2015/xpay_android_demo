@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.xiangqu.app"
+        applicationId "com.ouertech.android.sails.xpay.demo"
         minSdkVersion 9
         targetSdkVersion 22
         versionCode 1000

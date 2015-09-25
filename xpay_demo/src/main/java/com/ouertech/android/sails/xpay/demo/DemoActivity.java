@@ -2,7 +2,7 @@
  * ========================================================
  * Copyright(c) 2014 杭州偶尔科技-版权所有
  * ========================================================
- * 本软件由杭州龙骞科技所有, 未经书面许可, 任何单位和个人不得以
+ * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
  * 公司网址
  * 
@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.baidu.android.pay.PayCallBack;
@@ -37,7 +38,6 @@ import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
-import com.xiangqu.app.R;
 
 import java.math.BigDecimal;
 import java.net.URLEncoder;
@@ -61,9 +61,9 @@ import java.util.Map;
  */
 public class DemoActivity extends Activity implements View.OnClickListener{
     //填写开发者申请应用的app ID
-    private static final String APP_ID = "abc";
+    private static final String APP_ID      = "abc";
     //下单地址
-    private static final String ORDER_URL = "http://api.kkkdtest.com/payDemo/chargeSubmit.jsp";
+    private static final String ORDER_URL   = "http://api.kkkdtest.com/payDemo/chargeSubmit.jsp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +77,6 @@ public class DemoActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.xpay_id_wx).setOnClickListener(this);
         //支付宝支付
         findViewById(R.id.xpay_id_alipay).setOnClickListener(this);
-        //
-        findViewById(R.id.xpay_id_unionpay).setOnClickListener(this);
-        //
-        findViewById(R.id.xpay_id_baidupay).setOnClickListener(this);
     }
 
 
@@ -97,17 +93,10 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                 channel = CstXPay.CHANNEL_ALIPAY;
                 subChannel = CstXPay.SUBCHANNEL_ALIPAY_APP;
                 break;
-            case R.id.xpay_id_unionpay:
-                channel = CstXPay.CHANNEL_UNIONPAY;
-                subChannel = CstXPay.SUBCHANNEL_UNIONPAY_APP;
-                break;
-            case R.id.xpay_id_baidupay:
-                channel = CstXPay.CHANNEL_BAIDUPAY;
-                subChannel = CstXPay.SUBCHANNEL_BAIDUPAY_APP;
-                break;
             default:
                 break;
         }
+
 
         //下单支付
         orderPay(channel, subChannel, String.valueOf(System.currentTimeMillis()), 1, "XPay测试");
@@ -134,7 +123,9 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     break;
                 case CstXPay.PAY_PENDING: //支付结果确认中,最终交易是否成功以服务端异步通知为准
                     break;
-                case CstXPay.PAY_INVALID: //支付凭证格式不合法
+                case CstXPay.PAY_INVALID: //支付不合法
+                    break;
+                default:
                     break;
             }
 
@@ -146,8 +137,9 @@ public class DemoActivity extends Activity implements View.OnClickListener{
      * 下单获取charge ，需要异步处理，此处类似于系统的AsyncTask的HTTP异步任务，开发者根据自己客户端的
      * 异步处理框架自行开发就行
      * @param channel   支付渠道
-     * @param partnerTradeNo 订单号
-     * @param amount 金额
+     * @param subChannel   子渠道
+     * @param partnerTradeNo 交易号
+     * @param amount 金额（分）
      * @param title 标题
      */
     private void orderPay(String channel, String subChannel,
@@ -183,7 +175,6 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     public void onException(AgnettyResult result) {
                         super.onException(result);
                         //todo ui线程回调，获取charge失败
-                        XPay.pay(DemoActivity.this, "{}");
                     }
 
                     @Override
@@ -196,11 +187,4 @@ public class DemoActivity extends Activity implements View.OnClickListener{
 
 
     }
-
-
-
-
-
-
-
 }

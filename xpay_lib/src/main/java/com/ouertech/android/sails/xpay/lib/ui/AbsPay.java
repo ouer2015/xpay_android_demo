@@ -2,7 +2,7 @@
  * ========================================================
  * Copyright(c) 2014 杭州偶尔科技-版权所有
  * ========================================================
- * 本软件由杭州龙骞科技所有, 未经书面许可, 任何单位和个人不得以
+ * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
  * 公司网址
  * 
@@ -28,7 +28,7 @@ abstract class AbsPay {
     //支付备注信息
     protected static final String INVALID_CHARGE              = "支付凭证格式不合法";
     protected static final String INVALID_CHARGE_CREDENTIAL   = "支付认证数据缺失";
-    protected static final String INVALID_PAY_CHANNEL         = "支付渠道不合法";
+    protected static final String INVALID_PAY_CHANNEL         = "渠道调用不合法";
     protected static final String INVALID_WX_UNINSTALLED      = "微信未安装";
     protected static final String INVALID_WX_UNSUPPORTED      = "微信版本不支持支付";
     protected static final String INVALID_BAIDU_NOSUPPORT     = "百度支付不支持该种支付方式";

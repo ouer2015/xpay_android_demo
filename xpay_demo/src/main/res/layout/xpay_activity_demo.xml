@@ -19,27 +19,14 @@
         android:id="@+id/xpay_id_wx"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/xpay_string_wx"/>
 
     <Button
         android:id="@+id/xpay_id_alipay"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/xpay_string_alipay"/>
 
-    <Button
-        android:id="@+id/xpay_id_unionpay"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="银联支付"/>
-
-    <Button
-        android:id="@+id/xpay_id_baidupay"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="百度支付"/>
 </LinearLayout>

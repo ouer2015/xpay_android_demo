@@ -2,7 +2,7 @@
  * ========================================================
  * Copyright(c) 2014 杭州偶尔科技-版权所有
  * ========================================================
- * 本软件由杭州龙骞科技所有, 未经书面许可, 任何单位和个人不得以
+ * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
  * 公司网址
  * 
@@ -50,9 +50,9 @@ public class XPay{
     private static final String STAT_VMODULE 		= "_vmodule";
 
     //测试服务端接口地址
-    protected static final String API_TEST_URL      = "http://api.kkkdtest.com/pay";
+    private static final String API_TEST_URL        = "http://api.kkkdtest.com/pay";
     //现网服务端接口地址
-    protected static final String API_RELEASE_URL   = "http://api.kkkdtest.com/pay";
+    private static final String API_RELEASE_URL     = "http://api.kkkdtest.com/pay";
 
     //获取支付方式接口地址
     private static final String GET_PAYMENTS        = "/getPayMode";
@@ -111,11 +111,11 @@ public class XPay{
     }
 
     /**
-     * 获取支付方式接口
+     * 获取支付方式接口(暂不开放）
      * @param listener  任务监听器
      * @return
      */
-    public static AgnettyFuture getPayments(OuerFutureListener listener) {
+    private static AgnettyFuture getPayments(OuerFutureListener listener) {
         PaymentsReq req = new PaymentsReq();
         req.setDevice("ANDROID");
 
