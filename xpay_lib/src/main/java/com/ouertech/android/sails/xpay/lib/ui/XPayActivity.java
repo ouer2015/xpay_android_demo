@@ -78,10 +78,10 @@ public class XPayActivity extends Activity{
             } else if(CstXPay.CHANNEL_ALIPAY.equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_ALIPAY)) {//支付宝渠道支付
                 mAbsPay = new AlipayPay(this, charge);
-            } else if(CstXPay.CHANNEL_UNIONPAY.equals(channel)
+            } else if("UNIONPAY".equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_UNIONPAY)) {//银联支付
                 mAbsPay = new UnionPay(this, charge);
-            } else if(CstXPay.CHANNEL_BAIDUPAY.equals(channel)
+            } else if("BAIDUPAY".equals(channel)
                     && UtilRef.isClassExist(CLASS_VERIFY_BAIDUPAY)) {//百度支付
                 mAbsPay = new BaiduPay(this, charge);
             } else {//不支持的渠道支付

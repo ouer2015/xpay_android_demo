@@ -61,13 +61,13 @@ public class PaymentsHandler extends OuerHttpHandler {
 
         //银联支付方式检查
         Verify unionpayVerify = new Verify();
-        unionpayVerify.channel = CstXPay.CHANNEL_UNIONPAY;
+        unionpayVerify.channel = "UNIONPAY"; //CstXPay.CHANNEL_UNIONPAY;
         unionpayVerify.verifyCls = CLASS_VERIFY_UNIONPAY;
         verifies.add(unionpayVerify);
 
         //百度支付方式检查
         Verify baiduVerify = new Verify();
-        unionpayVerify.channel = CstXPay.CHANNEL_BAIDUPAY;
+        unionpayVerify.channel = "BAIDUPAY"; //CstXPay.CHANNEL_BAIDUPAY;
         unionpayVerify.verifyCls = CLASS_VERIFY_BAIDUPAY;
         verifies.add(unionpayVerify);
 
