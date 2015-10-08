@@ -166,7 +166,5 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     }
                 })
                 .execute();
-
-
     }
 }
