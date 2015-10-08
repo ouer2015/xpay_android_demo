@@ -1,1 +1,1 @@
-include ':ouer_base',':xpay_lib',':xpay_pay'
+include ':ouer_base',':xpay_lib',':xpay_pay',':xpay_demo', ':ouer_ui', ':bdwallet_pay_sdk', ':bdwallet_pay_sdk_demo'
