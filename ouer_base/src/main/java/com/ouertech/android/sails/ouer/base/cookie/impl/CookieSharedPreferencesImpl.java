@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-
 import com.ouertech.android.sails.ouer.base.cookie.data.SerializableCookie;
 
 import org.apache.http.client.CookieStore;

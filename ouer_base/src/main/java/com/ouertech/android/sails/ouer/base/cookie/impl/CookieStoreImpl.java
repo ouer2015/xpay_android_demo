@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import com.ouertech.android.sails.ouer.base.cookie.data.SCookie;
 import com.ouertech.android.sails.ouer.base.cookie.units.CookieUtils;
 

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
-
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
 
 import java.util.ArrayList;
