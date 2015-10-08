@@ -89,7 +89,9 @@
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
-    <orderEntry type="module" module-name="xpay_lib" exported="" />
+    <orderEntry type="library" exported="" name="libammsdk" level="project" />
+    <orderEntry type="library" exported="" name="xpay_lib_1.0.00" level="project" />
+    <orderEntry type="library" exported="" name="ouer_base_1.0.00" level="project" />
+    <orderEntry type="library" exported="" name="alipaySDK-20150610" level="project" />
   </component>
 </module>

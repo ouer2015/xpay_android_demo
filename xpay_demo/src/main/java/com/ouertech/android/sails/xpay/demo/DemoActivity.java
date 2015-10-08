@@ -15,16 +15,9 @@ package com.ouertech.android.sails.xpay.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.baidu.android.pay.PayCallBack;
-import com.baidu.paysdk.PayCallBackManager;
-import com.baidu.paysdk.api.BaiduPay;
-import com.baidu.wallet.core.utils.LogUtil;
 import com.google.gson.reflect.TypeToken;
 import com.ouertech.android.sails.ouer.base.constant.CstHttp;
 import com.ouertech.android.sails.ouer.base.future.base.OuerFutureData;
@@ -33,16 +26,10 @@ import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
 import com.ouertech.android.sails.ouer.base.future.impl.OuerClient;
-import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
 import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
-
-import java.math.BigDecimal;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
@@ -83,15 +70,12 @@ public class DemoActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         String channel = null;
-        String subChannel = null;
         switch (v.getId()) {
             case R.id.xpay_id_wx:
                 channel = CstXPay.CHANNEL_WX;
-                subChannel = CstXPay.SUBCHANNEL_WX_APP;
                 break;
             case R.id.xpay_id_alipay:
                 channel = CstXPay.CHANNEL_ALIPAY;
-                subChannel = CstXPay.SUBCHANNEL_ALIPAY_APP;
                 break;
             default:
                 break;
@@ -99,7 +83,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
 
 
         //下单支付
-        orderPay(channel, subChannel, String.valueOf(System.currentTimeMillis()), 1, "XPay测试");
+        orderPay(channel, String.valueOf(System.currentTimeMillis()), 1, "XPay测试");
     }
 
     @Override
@@ -137,16 +121,14 @@ public class DemoActivity extends Activity implements View.OnClickListener{
      * 下单获取charge ，需要异步处理，此处类似于系统的AsyncTask的HTTP异步任务，开发者根据自己客户端的
      * 异步处理框架自行开发就行
      * @param channel   支付渠道
-     * @param subChannel   子渠道
      * @param partnerTradeNo 交易号
      * @param amount 金额（分）
      * @param title 标题
      */
-    private void orderPay(String channel, String subChannel,
-                          String partnerTradeNo, int amount, String title) {
+    private void orderPay(String channel, String partnerTradeNo,
+                          int amount, String title) {
         OrderReq req = new OrderReq();
         req.setChannel(channel);
-        req.setSubChannel(subChannel);
         req.setPartnerTradeNo(partnerTradeNo);
         req.setAmount(amount);
         req.setTitle(title);

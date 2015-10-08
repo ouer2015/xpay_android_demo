@@ -21,11 +21,13 @@ import com.ouertech.android.sails.ouer.base.bean.BaseRequest;
  */
 public class OrderReq extends BaseRequest {
     private static final long serialVersionUID = 1L;
-
+    //渠道
     private String channel;
-    private String subChannel;
+    //交易号
     private String partnerTradeNo;
+    //金额（分）
     private int amount;
+    //标题
     private String title;
 
     public String getChannel() {
@@ -35,15 +37,6 @@ public class OrderReq extends BaseRequest {
     public void setChannel(String channel) {
         this.channel = channel;
         add("channel", channel);
-    }
-
-    public String getSubChannel() {
-        return subChannel;
-    }
-
-    public void setSubChannel(String subChannel) {
-        this.subChannel = subChannel;
-        add("subchannel", subChannel);
     }
 
     public String getPartnerTradeNo() {

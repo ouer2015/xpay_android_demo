@@ -2,22 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ouertech.android.sails.xpay.demo" >
 
-    <!--XPay权限（必填）-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <!--微信支付权限（可选）-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <!--支付宝支付权限（可选）-->
+    <!--XPay权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -58,9 +49,8 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
-
-        <!--平台渠道 -->
-        <meta-data android:name="OUER_CHANNEL" android:value="ouertech" />
+        <!--平台渠道（可选） -->
+        <meta-data android:name="OUER_CHANNEL" android:value="YOUR_CHANNEL" />
 
     </application>
 
