@@ -40,20 +40,11 @@ public class CstXPay {
     public static final int PAY_INVALID                         = PAY_FAILED + 1;
 
     //支付宝支付
-    public static final String CHANNEL_ALIPAY          = "ALIPAY";
+    public static final String CHANNEL_ALIPAY          = "ALIPAY_APP";
     //微信支付
-    public static final String CHANNEL_WX              = "WXPAY";
+    public static final String CHANNEL_WX              = "WXPAY_APP";
     //银联支付
-    //public static final String CHANNEL_UNIONPAY        = "UNIONPAY";
+    //public static final String CHANNEL_UNIONPAY        = "UNIONPAY_APP";
     //百度支付
-    //public static final String CHANNEL_BAIDUPAY        = "BAIDUPAY";
-
-    //支付宝支付
-    public static final String SUBCHANNEL_ALIPAY_APP          = "ALIPAY_APP";
-    //微信支付
-    public static final String SUBCHANNEL_WX_APP              = "WXPAY_APP";
-    //银联支付
-    //public static final String SUBCHANNEL_UNIONPAY_APP        = "UNIONPAY_APP";
-    //百度支付
-    //public static final String SUBCHANNEL_BAIDUPAY_APP        = "BAIDUPAY_APP";
+    //public static final String CHANNEL_BAIDUPAY        = "BAIDUPAY_APP";
 }

@@ -13,20 +13,9 @@
 package com.ouertech.android.sails.xpay.lib.ui;
 
 import android.content.Intent;
-import android.text.TextUtils;
-import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
-import com.baidu.android.pay.PayCallBack;
-import com.baidu.paysdk.PayCallBackManager;
-import com.baidu.paysdk.PayCallBackManager.PayStateModle;
-import com.baidu.wallet.core.utils.LogUtil;
-import com.ouertech.android.sails.ouer.base.utils.UtilLog;
-import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 
-import java.math.BigDecimal;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,18 +35,18 @@ public class BaiduPay extends AbsPay{
         //创建保留字段
         Map<String, String> map = new HashMap<String, String>();
         //获取百度支付实例对象执行支付
-        com.baidu.paysdk.api.BaiduPay.getInstance().doPay(mActivity, sign, new PayCallBack() {
-            //回调结果
-            public void onPayResult(int stateCode, String payDesc) {
-                UtilLog.d("stateCode=" + stateCode + "#payDesc=" + payDesc);
-                handlepayResult(stateCode, payDesc);
-            }
-
-            //是否隐藏滚动条
-            public boolean isHideLoadingDialog() {
-                return true;
-            }
-        }, map);
+//        com.baidu.paysdk.api.BaiduPay.getInstance().doPay(mActivity, sign, new PayCallBack() {
+//            //回调结果
+//            public void onPayResult(int stateCode, String payDesc) {
+//                UtilLog.d("stateCode=" + stateCode + "#payDesc=" + payDesc);
+//                handlepayResult(stateCode, payDesc);
+//            }
+//
+//            //是否隐藏滚动条
+//            public boolean isHideLoadingDialog() {
+//                return true;
+//            }
+//        }, map);
     }
 
     @Override
@@ -83,31 +72,31 @@ public class BaiduPay extends AbsPay{
     private void handlepayResult(int stateCode, String payDesc) {
         String attach = mCharge.getAttach();
         switch (stateCode) {
-            case PayStateModle.PAY_STATUS_SUCCESS:// 需要到服务端验证支付结果
-                setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, attach);
-                break;
-            case PayStateModle.PAY_STATUS_PAYING:// 需要到服务端验证支付结果
-                setPayResult(CstXPay.PAY_PENDING, PENDING_PAY_RESULT, attach);
-                break;
-            case PayStateModle.PAY_STATUS_CANCEL://取消
-                setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, attach);
-                break;
-            case PayStateModle.PAY_STATUS_NOSUPPORT://不支持该种支付方式
-                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_NOSUPPORT, attach);
-                break;
-            case PayStateModle.PAY_STATUS_TOKEN_INVALID://无效的登陆状态
-                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_TOKEN_INVALID, attach);
-                break;
-            case PayStateModle.PAY_STATUS_LOGIN_ERROR://登陆失败
-                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_LOGIN_ERROR, attach);
-                break;
-            case PayStateModle.PAY_STATUS_LOGIN_OUT://退出登录
-                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_LOGIN_OUT, attach);
-                break;
-            case PayStateModle.PAY_STATUS_ERROR://支付失败
-            default:
-                setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, attach);
-                break;
+//            case PayStateModle.PAY_STATUS_SUCCESS:// 需要到服务端验证支付结果
+//                setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_PAYING:// 需要到服务端验证支付结果
+//                setPayResult(CstXPay.PAY_PENDING, PENDING_PAY_RESULT, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_CANCEL://取消
+//                setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_NOSUPPORT://不支持该种支付方式
+//                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_NOSUPPORT, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_TOKEN_INVALID://无效的登陆状态
+//                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_TOKEN_INVALID, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_LOGIN_ERROR://登陆失败
+//                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_LOGIN_ERROR, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_LOGIN_OUT://退出登录
+//                setPayResult(CstXPay.PAY_INVALID, INVALID_BAIDU_LOGIN_OUT, attach);
+//                break;
+//            case PayStateModle.PAY_STATUS_ERROR://支付失败
+//            default:
+//                setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, attach);
+//                break;
         }
     }
 }

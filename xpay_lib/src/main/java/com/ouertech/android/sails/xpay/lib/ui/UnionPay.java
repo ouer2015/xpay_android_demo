@@ -13,20 +13,11 @@
 package com.ouertech.android.sails.xpay.lib.ui;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 
 import com.ouertech.android.sails.ouer.base.constant.CstBase;
 import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
-import com.unionpay.UPPayAssistEx;
-import com.unionpay.uppay.PayActivity;
-
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * @author : Zhenshui.Xia
@@ -45,8 +36,8 @@ public class UnionPay extends AbsPay{
         String serverMode = CstBase.DEBUG ? "01" : "00";
 
         //启动银联jar支付
-        UPPayAssistEx.startPayByJAR(mActivity, PayActivity.class, null, null,
-                mCharge.getPartnerTradeNo(), serverMode);
+//        UPPayAssistEx.startPayByJAR(mActivity, PayActivity.class, null, null,
+//                mCharge.getPartnerTradeNo(), serverMode);
     }
 
     @Override

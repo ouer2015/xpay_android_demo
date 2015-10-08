@@ -91,11 +91,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="libammsdk" level="project" />
-    <orderEntry type="library" exported="" name="UPPayPluginExStd" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="alipaySDK-20150610" level="project" />
-    <orderEntry type="library" exported="" name="UPPayAssistEx" level="project" />
     <orderEntry type="module" module-name="ouer_base" exported="" />
-    <orderEntry type="module" module-name="bdwallet_pay_sdk" exported="" />
   </component>
 </module>
