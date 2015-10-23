@@ -21,7 +21,6 @@ import com.ouertech.android.sails.ouer.ui.R;
  * Todd Davies' Progress Wheel https://github.com/Todd-Davies/ProgressWheel
  *
  * @author Nico Hormazábal
- *         <p/>
  *         Licensed under the Apache License 2.0 license see:
  *         http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -147,7 +146,7 @@ public class ProgressWheel extends View {
 
     /**
      * Use onSizeChanged instead of onAttachedToWindow to get the dimensions of the view,
-     * because this method is called after measuring the dimensions of MATCH_PARENT & WRAP_CONTENT.
+     * because this method is called after measuring the dimensions of MATCH_PARENT,WRAP_CONTENT.
      * Use this dimensions to setup the bounds and paints.
      */
     @Override
@@ -537,7 +536,7 @@ public class ProgressWheel extends View {
     //----------------------------------
 
     /**
-     * @return the current progress between 0.0 and 1.0,
+     * @return TODO the current progress between 0.0 and 1.0,
      * if the wheel is indeterminate, then the result is -1
      */
     public float getProgress() {
@@ -557,7 +556,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the radius of the wheel in pixels
+     * @return TODO the radius of the wheel in pixels
      */
     public int getCircleRadius() {
         return circleRadius;
@@ -576,7 +575,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the width of the spinning bar
+     * @return TODO the width of the spinning bar
      */
     public int getBarWidth() {
         return barWidth;
@@ -595,7 +594,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the color of the spinning bar
+     * @return TODO the color of the spinning bar
      */
     public int getBarColor() {
         return barColor;
@@ -615,7 +614,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the color of the wheel's contour
+     * @return TODO the color of the wheel's contour
      */
     public int getRimColor() {
         return rimColor;
@@ -635,7 +634,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the base spinning speed, in full circle turns per second
+     * @return TODO the base spinning speed, in full circle turns per second
      * (1.0 equals on full turn in one second), this value also is applied for
      * the smoothness when setting a progress
      */
@@ -655,7 +654,7 @@ public class ProgressWheel extends View {
     }
 
     /**
-     * @return the width of the wheel's contour in pixels
+     * @return TODO the width of the wheel's contour in pixels
      */
     public int getRimWidth() {
         return rimWidth;

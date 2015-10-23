@@ -20,7 +20,7 @@ public interface StickyListHeadersAdapter extends ListAdapter {
 	 * view.
 	 * @param parent
 	 * The parent that this view will eventually be attached to.
-	 * @return
+	 * @return TODO
 	 * A View corresponding to the data at the specified position.
 	 */
 	View getHeaderView(int position, View convertView, ViewGroup parent);
@@ -31,7 +31,7 @@ public interface StickyListHeadersAdapter extends ListAdapter {
 	 * @param position
 	 * The position of the item within the adapter's data set whose header id we
 	 * want.
-	 * @return
+	 * @return TODO
 	 * The id of the header at the specified position.
 	 */
 	long getHeaderId(int position);

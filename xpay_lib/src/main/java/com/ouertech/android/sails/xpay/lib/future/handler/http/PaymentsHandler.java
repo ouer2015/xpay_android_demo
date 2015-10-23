@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -25,8 +25,8 @@ import java.util.List;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/9/17.
- * @desc : 获取支付方式业务逻辑
+ * @since : 2015/9/17.
+ * desc : 获取支付方式业务逻辑
  */
 public class PaymentsHandler extends OuerHttpHandler {
     //存在微信支付sdk检查类
@@ -49,7 +49,7 @@ public class PaymentsHandler extends OuerHttpHandler {
         List<Verify> verifies = new ArrayList<>();
         //微信支付方式检查
         Verify wxVerify = new Verify();
-        wxVerify.channel = CstXPay.CHANNEL_WX;
+        wxVerify.channel = CstXPay.CHANNEL_WXPAY;
         wxVerify.verifyCls = CLASS_VERIFY_WXPAY;
         verifies.add(wxVerify);
 
@@ -61,13 +61,13 @@ public class PaymentsHandler extends OuerHttpHandler {
 
         //银联支付方式检查
         Verify unionpayVerify = new Verify();
-        unionpayVerify.channel = "UNIONPAY"; //CstXPay.CHANNEL_UNIONPAY;
+        unionpayVerify.channel = CstXPay.CHANNEL_UNIONPAY;
         unionpayVerify.verifyCls = CLASS_VERIFY_UNIONPAY;
         verifies.add(unionpayVerify);
 
         //百度支付方式检查
         Verify baiduVerify = new Verify();
-        unionpayVerify.channel = "BAIDUPAY"; //CstXPay.CHANNEL_BAIDUPAY;
+        unionpayVerify.channel = CstXPay.CHANNEL_BAIDUPAY;
         unionpayVerify.verifyCls = CLASS_VERIFY_BAIDUPAY;
         verifies.add(unionpayVerify);
 

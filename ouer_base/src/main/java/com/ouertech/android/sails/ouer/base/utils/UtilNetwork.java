@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -29,8 +29,8 @@ import java.net.Proxy;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 网络相关工具类
+ * @since   : 2013-9-19
+ * desc   : 网络相关工具类
  */
 public class UtilNetwork {
 	private static final Uri PREFERRED_APN_URI = Uri.parse("content://telephony/carriers/preferapn");
@@ -40,7 +40,7 @@ public class UtilNetwork {
 	 * 判断是否有网络可用
 	 *  Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isNetAvailable(Context context) {
 		NetworkInfo networkInfo = getActiveNetworkInfo(context);
@@ -51,7 +51,7 @@ public class UtilNetwork {
 	 * 获取可用的网络信息 
 	 * Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static NetworkInfo getActiveNetworkInfo(Context context) {
 		ConnectivityManager cm = (ConnectivityManager) context
@@ -64,7 +64,7 @@ public class UtilNetwork {
 	 * 获取网络接入类型, 请查看ApnType定义
 	 * Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static EApnType getApnType(Context context) {
 		EApnType apnType = EApnType.APN_UNKNOWN;
@@ -97,7 +97,7 @@ public class UtilNetwork {
 	 * 获取网络运营商类型, 请查看OperatorType定义
 	 * Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static EOperatorType getOperatorType(Context context) {
 		EOperatorType operatorType = EOperatorType.OPERATOR_UNKNOWN;
@@ -132,7 +132,7 @@ public class UtilNetwork {
 	 * 获取当前的网络类型 2G、3G、4G、WIFI、UNKNOWN, 请查看NetworkType定义
 	 * Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static ENetworkType getNetworkType(Context context) {
 		NetworkInfo networkInfo = getActiveNetworkInfo(context); 
@@ -206,7 +206,7 @@ public class UtilNetwork {
 	 * 获取当前网络的代理，断网或wifi下返回为NULL
 	 * Permission:android.permission.ACCESS_NETWORK_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static Proxy getNetworkProxy(Context context) {
 		NetworkInfo networkInfo = getActiveNetworkInfo(context);

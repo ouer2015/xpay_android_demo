@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -14,8 +14,8 @@ package com.ouertech.android.sails.ouer.base.utils;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 进制工具类
+ * @since   : 2013-9-19
+ * desc   : 进制工具类
  */
 public class UtilNumBase {
 	private static String mHexStr =  "0123456789abcdef";
@@ -28,7 +28,7 @@ public class UtilNumBase {
 	/**
 	 * 转换为二进制字符串
 	 * @param bytes
-	 * @return
+	 * @return TODO
 	 */
 	public static String bytesToBinaryString(byte[] bytes){
 		if(bytes == null || bytes.length == 0) {
@@ -52,7 +52,7 @@ public class UtilNumBase {
 	/**
 	 * 将二进制转换为十六进制字符输出
 	 * @param bytes
-	 * @return
+	 * @return TODO
 	 */
 	public static String bytesToHexString(byte[] bytes){
 		if(bytes == null || bytes.length == 0) {
@@ -74,7 +74,7 @@ public class UtilNumBase {
 	/**
 	 * 将十六进制转换为字节数组
 	 * @param hexString
-	 * @return
+	 * @return TODO
 	 */
 	public static byte[] hexStringToBytes(String hexString){
 		if(UtilString.isEmpty(hexString)) {

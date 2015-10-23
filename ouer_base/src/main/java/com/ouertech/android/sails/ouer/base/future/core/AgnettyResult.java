@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -16,8 +16,8 @@ package com.ouertech.android.sails.ouer.base.future.core;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 处理器Handler执行后提交的结果， 该结果将被提交给任务注册的监听器处理
+ * @since   : 2013-9-19
+ * desc   : 处理器Handler执行后提交的结果， 该结果将被提交给任务注册的监听器处理
  * 
  * 			 example:
  * 			//------------------------------------------
@@ -46,7 +46,7 @@ public class AgnettyResult {
 	
 	/**
 	 * 获取Handler提交的附件
-	 * @return
+	 * @return TODO
 	 */
 	public Object getAttach() {
 		return this.mAttach;
@@ -63,7 +63,7 @@ public class AgnettyResult {
 	
 	/**
 	 * 获取Handler执行的异常
-	 * @return
+	 * @return TODO
 	 */
 	public Exception getException() {
 		return this.mException;
@@ -79,7 +79,7 @@ public class AgnettyResult {
 	
 	/**
 	 * 获取Handler的处理进度
-	 * @return
+	 * @return TODO
 	 */
 	public int getProgress() {
 		return this.mProgress;

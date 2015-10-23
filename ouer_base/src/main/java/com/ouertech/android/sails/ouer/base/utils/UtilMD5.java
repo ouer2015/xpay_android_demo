@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -22,14 +22,14 @@ import java.security.MessageDigest;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : MD5工具类
+ * @since   : 2013-9-19
+ * desc   : MD5工具类
  */
 public class UtilMD5 {
 	/**
      * 获取字符串MD5值
      * @param string
-     * @return
+     * @return TODO
      */
     public static String getStringMD5(String string) {
         return getStringMD5(string, CstCharset.UTF_8);
@@ -39,7 +39,7 @@ public class UtilMD5 {
      * 获取字符串MD5值
      * @param string
      * @param charset
-     * @return
+     * @return TODO
      */
     public static String getStringMD5(String string, String charset) {
         String md5Str = null;
@@ -60,7 +60,7 @@ public class UtilMD5 {
 	/**
 	 * 获取文件获取md5值
 	 * @param path 文件路径
-	 * @return
+	 * @return TODO
 	 */
 	public static String getFileMD5(String path) {
         String md5Str = null;

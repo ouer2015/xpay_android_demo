@@ -8,10 +8,9 @@ import com.ouertech.android.sails.ouer.base.cookie.cst.SCookieCst;
 import java.io.Serializable;
 
 /**
- * @ClassName: SCookie
- * @Description: TODO
+ * description: TODO
  * @author bluestome
- * @date 2015-1-18 下午7:11:56
+ * @since 2015-1-18 下午7:11:56
  */
 public class SCookie implements Serializable {
 

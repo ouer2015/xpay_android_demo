@@ -295,7 +295,7 @@ public class SystemBarTintManager {
     /**
      * Get the system bar configuration.
      *
-     * @return The system bar configuration for the current device configuration.
+     * @return TODO The system bar configuration for the current device configuration.
      */
     public SystemBarConfig getConfig() {
         return mConfig;
@@ -304,7 +304,7 @@ public class SystemBarTintManager {
     /**
      * Is tinting enabled for the system status bar?
      *
-     * @return True if enabled, False otherwise.
+     * @return TODO True if enabled, False otherwise.
      */
     public boolean isStatusBarTintEnabled() {
         return mStatusBarTintEnabled;
@@ -313,7 +313,7 @@ public class SystemBarTintManager {
     /**
      * Is tinting enabled for the system navigation bar?
      *
-     * @return True if enabled, False otherwise.
+     * @return TODO True if enabled, False otherwise.
      */
     public boolean isNavBarTintEnabled() {
         return mNavBarTintEnabled;
@@ -471,7 +471,7 @@ public class SystemBarTintManager {
          * device configuration? A navigation bar may appear on the right side of
          * the screen in certain configurations.
          *
-         * @return True if navigation should appear at the bottom of the screen, False otherwise.
+         * @return TODO True if navigation should appear at the bottom of the screen, False otherwise.
          */
         public boolean isNavigationAtBottom() {
             return (mSmallestWidthDp >= 600 || mInPortrait);
@@ -480,7 +480,7 @@ public class SystemBarTintManager {
         /**
          * Get the height of the system status bar.
          *
-         * @return The height of the status bar (in pixels).
+         * @return TODO The height of the status bar (in pixels).
          */
         public int getStatusBarHeight() {
             return mStatusBarHeight;
@@ -489,7 +489,7 @@ public class SystemBarTintManager {
         /**
          * Get the height of the action bar.
          *
-         * @return The height of the action bar (in pixels).
+         * @return TODO The height of the action bar (in pixels).
          */
         public int getActionBarHeight() {
             return mActionBarHeight;
@@ -498,7 +498,7 @@ public class SystemBarTintManager {
         /**
          * Does this device have a system navigation bar?
          *
-         * @return True if this device uses soft key navigation, False otherwise.
+         * @return TODO True if this device uses soft key navigation, False otherwise.
          */
         public boolean hasNavigtionBar() {
             return mHasNavigationBar;
@@ -507,7 +507,7 @@ public class SystemBarTintManager {
         /**
          * Get the height of the system navigation bar.
          *
-         * @return The height of the navigation bar (in pixels). If the device does not have
+         * @return TODO The height of the navigation bar (in pixels). If the device does not have
          * soft navigation keys, this will always return 0.
          */
         public int getNavigationBarHeight() {
@@ -517,7 +517,7 @@ public class SystemBarTintManager {
         /**
          * Get the width of the system navigation bar when it is placed vertically on the screen.
          *
-         * @return The width of the navigation bar (in pixels). If the device does not have
+         * @return TODO The width of the navigation bar (in pixels). If the device does not have
          * soft navigation keys, this will always return 0.
          */
         public int getNavigationBarWidth() {
@@ -528,7 +528,7 @@ public class SystemBarTintManager {
          * Get the layout inset for any system UI that appears at the top of the screen.
          *
          * @param withActionBar True to include the height of the action bar, False otherwise.
-         * @return The layout inset (in pixels).
+         * @return TODO The layout inset (in pixels).
          */
         public int getPixelInsetTop(boolean withActionBar) {
             return (mTranslucentStatusBar ? mStatusBarHeight : 0) + (withActionBar ? mActionBarHeight : 0);
@@ -537,7 +537,7 @@ public class SystemBarTintManager {
         /**
          * Get the layout inset for any system UI that appears at the bottom of the screen.
          *
-         * @return The layout inset (in pixels).
+         * @return TODO The layout inset (in pixels).
          */
         public int getPixelInsetBottom() {
             if (mTranslucentNavBar && isNavigationAtBottom()) {
@@ -550,7 +550,7 @@ public class SystemBarTintManager {
         /**
          * Get the layout inset for any system UI that appears at the right of the screen.
          *
-         * @return The layout inset (in pixels).
+         * @return TODO The layout inset (in pixels).
          */
         public int getPixelInsetRight() {
             if (mTranslucentNavBar && !isNavigationAtBottom()) {

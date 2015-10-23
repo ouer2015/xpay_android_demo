@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -28,8 +28,8 @@ import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 文件下载任务，支持文件的断点续传功能；如果下载的文件（如图片）不需要缓存到本地磁盘，请考虑使用HTTP future
+ * @since   : 2013-9-19
+ * desc   : 文件下载任务，支持文件的断点续传功能；如果下载的文件（如图片）不需要缓存到本地磁盘，请考虑使用HTTP future
  */
 public class DownloadFuture extends AgnettyFuture {
 	
@@ -78,7 +78,7 @@ public class DownloadFuture extends AgnettyFuture {
 	/**
 	 * 获取HTTP请求头属性
 	 * @param field
-	 * @return
+	 * @return TODO
 	 */
 	public String getProperty(String field) {
 		return mProperties.get(field);
@@ -86,7 +86,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取当前设置的所有HTTP请求头属性
-	 * @return
+	 * @return TODO
 	 */
 	public HashMap<String, String> getProperties() {
 		return this.mProperties;
@@ -111,7 +111,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取HTTP请求连接超时时间
-	 * @return
+	 * @return TODO
 	 */
 	public int getConnectionTimeout() {
 		return this.mConnectionTimeout;
@@ -127,7 +127,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取HTTP请求数据读取超时时间
-	 * @return
+	 * @return TODO
 	 */
 	public int getReadTimeout() {
 		return this.mReadTimeout;
@@ -143,7 +143,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取下载文件的URL
-	 * @return
+	 * @return TODO
 	 */
 	public String getUrl() {
 		return this.mUrl;
@@ -159,7 +159,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取下载文件的保存路径
-	 * @return
+	 * @return TODO
 	 */
 	public String getPath() {
 		return this.mPath;
@@ -177,7 +177,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取当前文件的下载模式，默认为 ：DownloadFuture.DIRECT_MODE
-	 * @return
+	 * @return TODO
 	 */
 	public int getDownloadMode() {
 		return this.mMode;
@@ -193,7 +193,7 @@ public class DownloadFuture extends AgnettyFuture {
 	
 	/**
 	 * 获取下载进度计算时间间隔
-	 * @return
+	 * @return TODO
 	 */
 	public int getProgressInterval() {
 		return this.mProgressInterval;
@@ -286,7 +286,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务处理器
 		 * @param handler
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setHandler(Class<? extends AgnettyHandler> handler) {
 			this.mHandlerCls = handler;
@@ -296,7 +296,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务处理器执行数据
 		 * @param data
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setData(Object data) {
 			this.mData = data;
@@ -306,7 +306,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务监听器
 		 * @param listener
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setListener(AgnettyFutureListener listener) {
 			this.mListener = listener;
@@ -316,7 +316,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务标记
 		 * @param tag
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setTag(Object tag) {
 			this.mTag = tag;
@@ -336,7 +336,7 @@ public class DownloadFuture extends AgnettyFuture {
 		 * 设置定时执行的任务
 		 * @param startTime 	
 		 * @param intervalTime  
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int startTime, int intervalTime, int maxTimes) {
 			setSchedule(RTC_WAKEUP, startTime, intervalTime, maxTimes);
@@ -348,7 +348,7 @@ public class DownloadFuture extends AgnettyFuture {
 		 * @param type   
 		 * @param startTime     
 		 * @param intervalTime 
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int type, int startTime, int intervalTime, int maxTimes) {
 			mIsDelay = false;
@@ -375,7 +375,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务执行的延迟时间
 		 * @param delayTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int delayTime) {   
 			setDelay(RTC_WAKEUP, delayTime);
@@ -386,7 +386,7 @@ public class DownloadFuture extends AgnettyFuture {
 		 * 设置任务执行的延迟时间
 		 * @param type  								  
 		 * @param delayTime  
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int type, int delayTime) { 
 			mIsSchedule = false;
@@ -487,7 +487,7 @@ public class DownloadFuture extends AgnettyFuture {
 		/**
 		 * 设置任务完成（或异常）后是否自动提交
 		 * @param autoCommit
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setAutoCommit(boolean autoCommit) {
 			mAutoCommit = autoCommit;
@@ -497,7 +497,7 @@ public class DownloadFuture extends AgnettyFuture {
 
 		/**
 		 * 创建一个本地任务
-		 * @return
+		 * @return TODO
 		 */
 		public DownloadFuture create() {
 			final DownloadFuture future = new DownloadFuture(mContext);
@@ -532,7 +532,7 @@ public class DownloadFuture extends AgnettyFuture {
 		
 		/**
 		 * 异步执行任务
-		 * @return
+		 * @return TODO
 		 */
 		public DownloadFuture execute() {
 			DownloadFuture future = create();

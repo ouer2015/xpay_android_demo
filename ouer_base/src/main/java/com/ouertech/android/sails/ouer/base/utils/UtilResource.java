@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -29,8 +29,8 @@ import java.io.InputStreamReader;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   :
+ * @since   : 2013-9-19
+ * desc   :
  */
 public class UtilResource {
 
@@ -38,7 +38,7 @@ public class UtilResource {
 	 * 读取assets文件的内容
 	 * @param context
 	 * @param fileName
-	 * @return
+	 * @return TODO
 	 */
 	public static String readAssetsToString(Context context, String fileName) {
 		StringBuilder s = new StringBuilder();
@@ -70,7 +70,7 @@ public class UtilResource {
 	 * 获取raw下文件的内容
 	 * @param context
 	 * @param resId
-	 * @return
+	 * @return TODO
 	 */
 	public static String readRawToString(Context context, int resId) {
 		StringBuilder s = new StringBuilder();
@@ -104,7 +104,7 @@ public class UtilResource {
 	 * @param context 上下文
 	 * @param type 资源的类型
 	 * @param resName 资源的名称
-	 * @return
+	 * @return TODO
 	 */
 	public static int getResId(Context context, String type, String resName) {
 		int resId = 0;
@@ -123,7 +123,7 @@ public class UtilResource {
 	 * 			应用上下文
 	 * @param image
 	 * 			图片文件
-	 * @return
+	 * @return TODO
 	 */
 	public static Bitmap getAssetsBitmap(Context context, String image) {
 		if(context == null || UtilString.isBlank(image)) return null;
@@ -151,7 +151,7 @@ public class UtilResource {
 	 * 获取assets下图片的drawable对象
 	 * @param context
 	 * @param image
-	 * @return
+	 * @return TODO
 	 */
 	public static BitmapDrawable getAssetsBitmapDrawable(Context context, String image){
 		Bitmap bitmap = getAssetsBitmap(context, image);
@@ -168,7 +168,7 @@ public class UtilResource {
 	 * 			正常状态图片文件
 	 * @param imagePressed
 	 * 			按下状态图片文件
-	 * @return
+	 * @return TODO
 	 */
 	public static StateListDrawable getAssetsStateListDrawable(Context context, String imageNormal, String imagePressed){
 		Drawable normalDrawable = getAssetsBitmapDrawable(context, imageNormal);
@@ -190,7 +190,7 @@ public class UtilResource {
 	 * 			应用上下文
 	 * @param source
 	 * 			资产文件下文件
-	 * @return
+	 * @return TODO
 	 */
 	public static AssetFileDescriptor getAssetsFileDescriptor(Context context, String source, String defType) {
 		if(context == null
@@ -210,7 +210,7 @@ public class UtilResource {
 	 *      assets文件夹下源文件
 	 * @param dest
 	 *      目标文件
-	 * @return
+	 * @return TODO
 	 *      true:拷贝成功，false：拷贝失败
 	 */
 	public static boolean copyAssetsFile(Context context,String source, String dest) {

@@ -13,7 +13,6 @@ public interface ICookie {
 	/**
 	 * 保存到内存中
 	 * @param cookie
-	 * @return
 	 */
 	void save(String url, String cookie);
 	
@@ -27,7 +26,7 @@ public interface ICookie {
 	/**
 	 * 根据指定的URL获取Cookie字符串
 	 * @param url
-	 * @return
+	 * @return TODO
 	 */
 	String get(String url);
 	

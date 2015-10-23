@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -22,8 +22,8 @@ import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/9/15.
- * @desc :支付宝支付
+ * @since : 2015/9/15.
+ * desc :支付宝支付
  */
 class AlipayPay extends AbsPay{
     public AlipayPay(XPayActivity activity, Charge charge) {
@@ -49,16 +49,20 @@ class AlipayPay extends AbsPay{
                 //判断resultStatus 为“9000”则代表支付成功
                 if("9000".equals(resultStatus)) {
                     setPayResult(CstXPay.PAY_SUCCESS, SUCCESS_PAY_RESULT, attach);
+                    UtilLog.d("status:" + CstXPay.PAY_SUCCESS + " memo:" + SUCCESS_PAY_RESULT);
                 } else if("8000".equals(resultStatus)) {
                     //“8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，
                     // 最终交易是否成功以服务端异步通知为准（小概率状态）
                     setPayResult(CstXPay.PAY_PENDING, PENDING_PAY_RESULT, attach);
+                    UtilLog.d("status:" + CstXPay.PAY_PENDING + " memo:" + PENDING_PAY_RESULT);
                 } else if("6001".equals(resultStatus)) {
                     //"6001"代表支付取消
                     setPayResult(CstXPay.PAY_CANCELED, CANCELED_PAY_RESULT, attach);
+                    UtilLog.d("status:" + CstXPay.PAY_CANCELED + " memo:" + CANCELED_PAY_RESULT);
                 } else {
                     //其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
                     setPayResult(CstXPay.PAY_FAILED, FAILED_PAY_RESULT, attach);
+                    UtilLog.d("status:" + CstXPay.PAY_FAILED + " memo:" + FAILED_PAY_RESULT);
                 }
             }
         };
@@ -86,8 +90,8 @@ class AlipayPay extends AbsPay{
 
     /**
      * @author : Zhenshui.Xia
-     * @date : 2015/9/14.
-     * @desc :支付宝支付结果
+     * @since : 2015/9/14.
+     * desc :支付宝支付结果
      */
     class AlipayResult {
         private String resultStatus;
@@ -126,21 +130,21 @@ class AlipayPay extends AbsPay{
         }
 
         /**
-         * @return the resultStatus
+         * @return TODO the resultStatus
          */
         public String getResultStatus() {
             return resultStatus;
         }
 
         /**
-         * @return the memo
+         * @return TODO the memo
          */
         public String getMemo() {
             return memo;
         }
 
         /**
-         * @return the result
+         * @return TODO the result
          */
         public String getResult() {
             return result;

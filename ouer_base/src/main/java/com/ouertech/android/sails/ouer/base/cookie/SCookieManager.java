@@ -15,10 +15,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @ClassName: SCookieManager
- * @Description: CookieManager for CookieBundle
+ * description: CookieManager for CookieBundle
  * @author bluestome
- * @date 2015-1-20 上午10:21:48
+ * @since 2015-1-20 上午10:21:48
  */
 public class SCookieManager extends CookieHandler {
 
@@ -130,7 +129,7 @@ public class SCookieManager extends CookieHandler {
 
 	/**
 	 * 获取ICookie实例
-	 * @return ICookie 实例
+	 * @return TODO ICookie 实例
 	 */
 	public ICookie getICookie(){
 	    checkCookieConfig();
@@ -139,7 +138,7 @@ public class SCookieManager extends CookieHandler {
 
 	/**
      * 获取CookieStore实例
-     * @return CookieStore 实例
+     * @return TODO CookieStore 实例
      */
 	public CookieStore getCookieStore(){
 	    checkCookieConfig();

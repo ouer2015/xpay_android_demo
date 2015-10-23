@@ -26,7 +26,7 @@ public class PartnerConfig {
 
     /**
      * 
-     * @return true - 通过检测；false - 未通过检测
+     * @return TODO true - 通过检测；false - 未通过检测
      */
     public static boolean isPartnerValid() {
         return !(TextUtils.isEmpty(PARTNER_ID) || TextUtils.isEmpty(MD5_PRIVATE));

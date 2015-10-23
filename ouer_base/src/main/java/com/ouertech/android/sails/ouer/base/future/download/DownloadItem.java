@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -15,8 +15,8 @@ package com.ouertech.android.sails.ouer.base.future.download;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   :
+ * @since   : 2013-9-19
+ * desc   :
  */
 public class DownloadItem {
 	//下载地址
@@ -38,7 +38,7 @@ public class DownloadItem {
 	
 	/**
 	 * 获取下载文件路径
-	 * @return
+	 * @return TODO
 	 */
 	public String getPath() {
 		return this.mPath;
@@ -54,7 +54,7 @@ public class DownloadItem {
 	
 	/**
 	 * 获取文件下载地址
-	 * @return
+	 * @return TODO
 	 */
 	public String getUrl() {
 		return this.mUrl;
@@ -70,7 +70,7 @@ public class DownloadItem {
 	
 	/**
 	 * 获取文件总长度
-	 * @return
+	 * @return TODO
 	 */
 	public long getTotal() {
 		return this.mTotal;
@@ -86,7 +86,7 @@ public class DownloadItem {
 	
 	/**
 	 * 获取已下载文件长度
-	 * @return
+	 * @return TODO
 	 */
 	public long getDownlen() {
 		return this.mDownlen;

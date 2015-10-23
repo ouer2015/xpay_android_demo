@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -30,8 +30,8 @@ import java.util.List;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 文件工具类
+ * @since   : 2013-9-19
+ * desc   : 文件工具类
  * 
  * public method
  */
@@ -43,7 +43,7 @@ public class UtilFile {
      * 读取文件为字符串，字符集使用utf-8
      * @param filePath
      *      文件路径（绝对路径）
-     * @return
+     * @return TODO
      *      文件字符串内容
      */
     public static String readFileToString(String filePath) {
@@ -54,7 +54,7 @@ public class UtilFile {
      * 读取文件为字符串，字符集使用utf-8
      * @param file
      *      文件
-     * @return
+     * @return TODO
      *      文件字符串内容
      */
     public static String readFileToString(File file) {
@@ -67,7 +67,7 @@ public class UtilFile {
      *      文件路径（绝对路径）
      * @param charset
      *      字符集
-     * @return
+     * @return TODO
      *      文件字符串内容
      */
     public static String readFileToString(String filePath, String charset) {
@@ -80,7 +80,7 @@ public class UtilFile {
      *      文件
      * @param charset
      *      字符集
-     * @return
+     * @return TODO
      *      文件字符串内容
      */
     public static String readFileToString(File file, String charset) {
@@ -114,7 +114,7 @@ public class UtilFile {
      * 读取文件到list集合里
      * @param filePath
      *      文件路径
-     * @return
+     * @return TODO
      *      文件内容字符串list集合
      */
     public static List<String> readFileToList(String filePath) {
@@ -125,7 +125,7 @@ public class UtilFile {
      * 读取文件到list集合里
      * @param file
      *      文件路径
-     * @return
+     * @return TODO
      *      文件内容字符串list集合
      */
     public static List<String> readFileToList(File file) {
@@ -138,7 +138,7 @@ public class UtilFile {
      *      文件路径
      * @param charset
      *      字符集
-     * @return
+     * @return TODO
      *      文件内容字符串list集合
      */
     public static List<String> readFileToList(String filePath, String charset) {
@@ -151,7 +151,7 @@ public class UtilFile {
      *      文件路径
      * @param charset
      *      字符集
-     * @return
+     * @return TODO
      *      文件内容字符串list集合
      */
     public static List<String> readFileToList(File file, String charset) {
@@ -183,7 +183,7 @@ public class UtilFile {
      *      文件路径
      * @param content
      *      写入的字符串
-     * @return
+     * @return TODO
      *      true：字符串写入成功， false：字符串写入失败
      */
     public static boolean writeFile(String filePath, String content) {
@@ -196,7 +196,7 @@ public class UtilFile {
      *      文件
      * @param content
      *      写入的字符串
-     * @return
+     * @return TODO
      *      true：字符串写入成功， false：字符串写入失败
      */
     public static boolean writeFile(File file, String content) {
@@ -211,7 +211,7 @@ public class UtilFile {
      *      写入的字符串
      * @param append
      *      是否添加文件末尾
-     * @return
+     * @return TODO
      *      true：字符串写入成功， false：字符串写入失败
      */
     public static boolean writeFile(String filePath, String content, boolean append) {
@@ -226,7 +226,7 @@ public class UtilFile {
      *      写入的字符串
      * @param append
      *      是否添加文件末尾
-     * @return
+     * @return TODO
      *      true：字符串写入成功， false：字符串写入失败
      */
     public static boolean writeFile(File file, String content, boolean append) {
@@ -256,7 +256,7 @@ public class UtilFile {
      *      文件路径(绝对路径）
      * @param stream
      *      输入流
-     * @return
+     * @return TODO
      *      true：写入成功，false：写入失败
      */
     public static boolean writeFile(String filePath, InputStream stream) {
@@ -269,7 +269,7 @@ public class UtilFile {
      *      文件
      * @param stream
      *      输入流
-     * @return
+     * @return TODO
      *      true：写入成功，false：写入失败
      */
     public static boolean writeFile(File file, InputStream stream) {
@@ -304,7 +304,7 @@ public class UtilFile {
      * 根据文件路径获取文件夹路径名称
      * @param filePath
      *      文件路径
-     * @return
+     * @return TODO
      *      文件夹路径
      */
     public static String getFileDir(String filePath) {
@@ -321,7 +321,7 @@ public class UtilFile {
      * 根据文件路径获取文件路径名称
      * @param filePath
      *      文件路径
-     * @return
+     * @return TODO
      *      文件名
      */
     public static String getFileName(String filePath) {
@@ -339,7 +339,7 @@ public class UtilFile {
      * 获取指定路径的文件名，但不包括文件的扩展名
      * @param filePath
      *      文件扩展名
-     * @return
+     * @return TODO
      *      文件名
      */
     public static String getFileNameWithoutExtension(String filePath) {
@@ -363,7 +363,7 @@ public class UtilFile {
      * 获取指定文件路径文件的扩展名，如果获取失败则返回为空串
      * @param filePath
      *      文件路径
-     * @return
+     * @return TODO
      *      文件扩展名
      */
     public static String getFileExtension(String filePath) {
@@ -383,7 +383,7 @@ public class UtilFile {
      * 获取指定文件的大小，单位为byte，文件不存在，则大小为-1
      * @param filePath
      *      文件路径
-     * @return
+     * @return TODO
      *      文件大小
      */
     public static long getFileSize(String filePath) {
@@ -399,7 +399,7 @@ public class UtilFile {
      * 获取指定文件的大小，单位为byte，文件不存在，则大小为-1
      * @param file
      *      文件
-     * @return
+     * @return TODO
      *      文件大小
      */
     public static long getFileSize(File file) {
@@ -412,7 +412,7 @@ public class UtilFile {
      *      源文件(绝对路径）
 	 * @param dest
      *      目标文件(绝对路径）
-	 * @return
+	 * @return TODO
      *      true:文件拷贝到指定路径，false：文件拷贝失败
 	 */
 	public static boolean copyFile(String source, String dest) {
@@ -452,7 +452,7 @@ public class UtilFile {
      *      输入流
 	 * @param dest
      *      目标文件
-	 * @return
+	 * @return TODO
      *      true:文件拷贝到指定路径，false：文件拷贝失败
 	 */
 	public static boolean copyFile(InputStream inStream, String dest) {
@@ -487,7 +487,7 @@ public class UtilFile {
 	 * 创建文件
 	 * @param filePath
      *      文件路径
-	 * @return
+	 * @return TODO
      *      true：文件创建成功，false：文件创建失败
 	 */
 	public static boolean createFile(String filePath) {
@@ -516,7 +516,7 @@ public class UtilFile {
 	 * 根据文件路径，创建目录，目录为文件路径最后一个"/"之前的路径
 	 * @param filePath
      *      文件路径
-	 * @return
+	 * @return TODO
      *      true:创建目录成功，false：创建目录失败
 	 */
 	public static boolean createDirByFilePath(String filePath) {
@@ -533,7 +533,7 @@ public class UtilFile {
      * 根据文件夹路径，创建目录
      * @param fileDir
      *      文件夹路径
-     * @return
+     * @return TODO
      *      true:创建目录成功，false：创建目录失败
      */
     public static boolean createDirByFileDir(String fileDir) {
@@ -550,7 +550,6 @@ public class UtilFile {
      * 删除指定路径下的文件和文件夹
      * @param path
      *      路径
-     * @return
      */
     public static void deleteFile(String path) {
         if (UtilString.isBlank(path)) {
@@ -588,7 +587,7 @@ public class UtilFile {
      * 判断指定文件是否存在
      * @param filePath
      *      文件路径（绝对路径）
-     * @return
+     * @return TODO
      *      true:指定的文件存在，false：指定的文件不存在
      */
     public static boolean isFileExist(String filePath) {
@@ -604,7 +603,7 @@ public class UtilFile {
      * 判断指定文件是否存在
      * @param file
      *      文件
-     * @return
+     * @return TODO
      *      true:指定的文件存在，false：指定的文件不存在
      */
     public static boolean isFileExist(File file) {
@@ -615,7 +614,7 @@ public class UtilFile {
      * 判断指定文件夹是否存在
      * @param dirPath
      *      文件夹路径（绝对路径）
-     * @return
+     * @return TODO
      *      true:指定的文件夹存在，false：指定的文件夹不存在
      */
     public static boolean isDirExist(String dirPath) {
@@ -631,7 +630,7 @@ public class UtilFile {
      * 判断指定文件夹是否存在
      * @param dir
      *      文件夹
-     * @return
+     * @return TODO
      *      true:指定的文件夹存在，false：指定的文件夹不存在
      */
     public static boolean isDirExist(File dir) {

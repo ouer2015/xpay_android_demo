@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/xpay_color_primary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="@string/xpay_string_app_name"/>
+        <TextView
+            android:id="@+id/xpay_id_log"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="@string/xpay_string_log"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:paddingLeft="16dp"
+                      android:paddingRight="16dp"
+                      android:orientation="vertical">
+            <!--调试模式-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_debug" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--appId-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_appId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_appId" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--凭证接口URL-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_url" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--渠道-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_channel" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!--订单号-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_tn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_tn" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!--标题-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_title" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--价格-->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/xpay_id_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:hint="@string/xpay_string_price" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--支付-->
+            <Button
+                android:id="@+id/xpay_id_pay"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_centerInParent="true"
+                android:background="@color/xpay_color_accent"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:text="@string/xpay_string_pay"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

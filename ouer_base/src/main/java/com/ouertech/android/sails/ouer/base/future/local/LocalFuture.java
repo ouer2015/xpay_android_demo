@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -25,8 +25,8 @@ import java.lang.reflect.Constructor;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 
+ * @since   : 2013-9-19
+ * desc   :
  */
 public class LocalFuture extends AgnettyFuture {
 	private LocalHandler mHandler;
@@ -111,8 +111,8 @@ public class LocalFuture extends AgnettyFuture {
 		
 		/**
 		 * 设置任务处理器
-		 * @param handler
-		 * @return
+		 * @param handler TODO
+		 * @return TODO
 		 */
 		public Builder setHandler(Class<? extends AgnettyHandler> handler) {
 			this.mHandlerCls = handler;
@@ -121,8 +121,8 @@ public class LocalFuture extends AgnettyFuture {
 		
 		/**
 		 * 设置任务处理器执行数据
-		 * @param data
-		 * @return
+		 * @param data TODO
+		 * @return TODO
 		 */
 		public Builder setData(Object data) {
 			this.mData = data;
@@ -132,7 +132,7 @@ public class LocalFuture extends AgnettyFuture {
 		/**
 		 * 设置任务监听器
 		 * @param listener
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setListener(AgnettyFutureListener listener) {
 			this.mListener = listener;
@@ -142,7 +142,7 @@ public class LocalFuture extends AgnettyFuture {
 		/**
 		 * 设置任务标记
 		 * @param tag
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setTag(Object tag) {
 			this.mTag = tag;
@@ -162,7 +162,7 @@ public class LocalFuture extends AgnettyFuture {
 		 * 设置定时执行的任务
 		 * @param startTime 	
 		 * @param intervalTime  
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int startTime, int intervalTime, int maxTimes) {
 			setSchedule(RTC_WAKEUP, startTime, intervalTime, maxTimes);
@@ -174,7 +174,7 @@ public class LocalFuture extends AgnettyFuture {
 		 * @param type   
 		 * @param startTime     
 		 * @param intervalTime 
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int type, int startTime, int intervalTime, int maxTimes) {
 			mIsDelay = false;
@@ -201,7 +201,7 @@ public class LocalFuture extends AgnettyFuture {
 		/**
 		 * 设置任务执行的延迟时间
 		 * @param delayTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int delayTime) {   
 			setDelay(RTC_WAKEUP, delayTime);
@@ -212,7 +212,7 @@ public class LocalFuture extends AgnettyFuture {
 		 * 设置任务执行的延迟时间
 		 * @param type  								  
 		 * @param delayTime  
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int type, int delayTime) { 
 			mIsSchedule = false;
@@ -235,7 +235,7 @@ public class LocalFuture extends AgnettyFuture {
 		/**
 		 * 设置任务完成（或异常）后是否自动提交
 		 * @param autoCommit
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setAutoCommit(boolean autoCommit) {
 			mAutoCommit = autoCommit;
@@ -245,7 +245,7 @@ public class LocalFuture extends AgnettyFuture {
 
 		/**
 		 * 创建一个本地任务
-		 * @return
+		 * @return TODO
 		 */
 		public LocalFuture create() {
 			final LocalFuture future = new LocalFuture(mContext);
@@ -271,7 +271,7 @@ public class LocalFuture extends AgnettyFuture {
 		
 		/**
 		 * 异步执行任务
-		 * @return
+		 * @return TODO
 		 */
 		public LocalFuture execute() {
 			LocalFuture future = create();

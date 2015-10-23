@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="xpay_string_app_name">漩付</string>
+    <string name="xpay_string_log">日志</string>
+    <string name="xpay_string_debug">调试模式</string>
+    <string name="xpay_string_appId">appId</string>
+    <string name="xpay_string_url">凭证接口URL</string>
+    <string name="xpay_string_channel">渠道</string>
+    <string name="xpay_string_tn">订单号</string>
+    <string name="xpay_string_title">标题</string>
+    <string name="xpay_string_price">价格（分）</string>
+    <string name="xpay_string_pay">支付</string>
+</resources>

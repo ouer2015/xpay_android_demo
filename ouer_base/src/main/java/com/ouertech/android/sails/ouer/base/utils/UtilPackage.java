@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -27,16 +27,16 @@ import java.util.List;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 安装包工具类
+ * @since   : 2013-9-19
+ * desc   : 安装包工具类
  * public method
- * 	<li>isApkInstalled(Context, String)		判断指定包名的应用是否安装 </li>
- * 	<li>installApk(Context, String)			安装应用</li>
- * 	<li>uninstallApk(Context, String)		卸载指定包名的应用</li>
- * 	<li>launchApk(Context, String)			打开指定包名的应用 </li>
- * 	<li>isUserApk(Context, String)			判断指定包名的应用是否是第三方应用 </li>
- * 	<li>isSystemApk(Context)				判断当前应用是否是系统应用 </li>
- * 	<li>isSystemApk(Context, String)		判断指定包名的应用是否是系统应用</li>
+ * 	isApkInstalled(Context, String)		判断指定包名的应用是否安装 
+ * 	installApk(Context, String)			安装应用
+ * 	uninstallApk(Context, String)		卸载指定包名的应用
+ * 	launchApk(Context, String)			打开指定包名的应用 
+ * 	isUserApk(Context, String)			判断指定包名的应用是否是第三方应用 
+ * 	isSystemApk(Context)				判断当前应用是否是系统应用 
+ * 	isSystemApk(Context, String)		判断指定包名的应用是否是系统应用
  */
 public class UtilPackage {
 	
@@ -44,7 +44,7 @@ public class UtilPackage {
 	 * 判断指定包名的应用是否安装
 	 * @param context
 	 * @param packageName
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isApkInstalled(Context context, String packageName) {
 		if(context == null || UtilString.isBlank(packageName)) return false;
@@ -63,7 +63,7 @@ public class UtilPackage {
 	 * 安装应用
 	 * @param context
 	 * @param filePath
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean installApk(Context context, String filePath) {
         if (context == null || UtilFile.getFileSize(filePath) <=0) {
@@ -81,7 +81,7 @@ public class UtilPackage {
 	 * 卸载指定包名的应用
 	 * @param context
 	 * @param packageName
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean uninstallApk(Context context, String packageName) {
 		if(context==null
@@ -114,7 +114,7 @@ public class UtilPackage {
 	 * 判断指定包名的应用是否是第三方应用
 	 * @param context
 	 * @param packageName
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isUserApk(Context context, String packageName) {
 		return isSystemApk(context, packageName);
@@ -123,7 +123,7 @@ public class UtilPackage {
 	/**
 	 * 判断当前应用是否是系统应用
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isSystemApk(Context context) {
 		return isSystemApk(context, context.getPackageName());
@@ -133,7 +133,7 @@ public class UtilPackage {
 	 * 判断指定包名的应用是否是系统应用
 	 * @param context
 	 * @param packageName
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isSystemApk(Context context, String packageName) {
         if(context == null || UtilString.isBlank(packageName)) return false;
@@ -151,7 +151,7 @@ public class UtilPackage {
 	/**
 	 * 获取已安装的应用
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static List<PackageInfo> getInstalledApks(Context context) {
 		if(context == null) {
@@ -164,7 +164,7 @@ public class UtilPackage {
 	/**
 	 * 获取已安装的第三方应用
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static List<PackageInfo> getInstalledUserApks(Context context) {
 		if(context == null) {
@@ -188,7 +188,7 @@ public class UtilPackage {
 	/**
 	 * 获取已安装的系统应用
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static List<PackageInfo> getInstalledSystemApks(Context context) {
 		if(context == null) {

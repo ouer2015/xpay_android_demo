@@ -189,7 +189,7 @@ public class NativePay extends Activity implements OnClickListener {
      * 组装订单信息
      * 
      * @param position
-     * @return
+     * @return TODO
      */
     private String createOrderInfo(String name, String price, String num) {
         BigDecimal bigPrice = new BigDecimal(price); // 创建BigDecimal对象
@@ -265,7 +265,7 @@ public class NativePay extends Activity implements OnClickListener {
      * 字符转换从UTF-8到GBK
      * 
      * @param gbkStr
-     * @return
+     * @return TODO
      */
     public static byte[] getUTF8toGBKString(String gbkStr) {
     	//获取字符串长度

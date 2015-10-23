@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -33,8 +33,8 @@ import java.net.HttpURLConnection;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   :
+ * @since   : 2013-9-19
+ * desc   :
  */
 public abstract class HttpHandler extends AgnettyHandler {
 	public HttpHandler(Context context) {
@@ -44,14 +44,14 @@ public abstract class HttpHandler extends AgnettyHandler {
 	/**
 	 * 编码
 	 * @param evt
-	 * @return
+	 * @return TODO
 	 */
 	public abstract boolean onEncode(HttpEvent evt) throws Exception;
 
 	/**
 	 * 压缩
 	 * @param evt
-	 * @return
+	 * @return TODO
 	 * @throws Exception
 	 */
 	public abstract boolean onCompress(HttpEvent evt) throws Exception;
@@ -59,7 +59,7 @@ public abstract class HttpHandler extends AgnettyHandler {
 	/**
 	 * 解压缩
 	 * @param evt
-	 * @return
+	 * @return TODO
 	 * @throws Exception
 	 */
 	public abstract boolean onDecompress(HttpEvent evt) throws Exception;
@@ -67,14 +67,13 @@ public abstract class HttpHandler extends AgnettyHandler {
 	/**
 	 * 解码
 	 * @param evt
-	 * @return
+	 * @return TODO
 	 */
 	public abstract boolean onDecode(HttpEvent evt) throws Exception;
 
 	/**
 	 * 业务处理
 	 * @param evt
-	 * @return
 	 */
 	public abstract void onHandle(HttpEvent evt) throws Exception;
 

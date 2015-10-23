@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -20,15 +20,15 @@ import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 任务事件监听器，UI线程执行的任务，回调事件可直接进行UI控件的更新(运行UI主线程中，因此
+ * @since   : 2013-9-19
+ * desc   : 任务事件监听器，UI线程执行的任务，回调事件可直接进行UI控件的更新(运行UI主线程中，因此
  * 			 回调事件不要写耗时的代码)；非UI线程执行的任务，不能对UI控件进行更新.
  * 
  * 			 example:
  * 			//--------------------------------------------------
  * 				AgnettyFuture future = ...;
  * 				future.setListener(new AgnettyFutureListener(){
- * 						@Override
+ *
  *						public void onComplete(AgnettyResult result) {
  *							super.onComplete(result);
  * 							//todo...

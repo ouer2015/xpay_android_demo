@@ -672,7 +672,7 @@ public class StickyListHeadersListView extends FrameLayout {
      * Use the method with extreme caution!! Changing any values on the
      * underlying ListView might break everything.
      *
-     * @return the ListView backing this view.
+     * @return TODO the ListView backing this view.
      */
     public ListView getWrappedList() {
         return mList;
@@ -1062,7 +1062,7 @@ public class StickyListHeadersListView extends FrameLayout {
     }
 
     /**
-     * @return true if the fast scroller will always show. False on pre-Honeycomb devices.
+     * @return TODO true if the fast scroller will always show. False on pre-Honeycomb devices.
      * @see AbsListView#isFastScrollAlwaysVisible()
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

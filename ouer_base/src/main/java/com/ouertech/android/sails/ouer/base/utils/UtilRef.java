@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -18,23 +18,23 @@ import java.lang.reflect.Method;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 反射工具类
+ * @since   : 2013-9-19
+ * desc   : 反射工具类
  * 
  * 	public method
- * 	<li>getObject(Class, Object[])							创建指定类对象的对象 </li>
- * 	<li>getObject(String, Object[])							创建指定类名的对象</li>
- * 	<li>invokeMothod(Class, Object[], String, Object[])		通过类名，运行指定方法 </li>
- * 	<li>invokeMothod(String, Object[], String, Object[])	通过类对象，运行指定方法</li>
- * 	<li>invokeMothod(Object, String, Object[])				通过对象，运行指定方法 </li>
- * 	<li>isClassExist(String)								判断类是否存在 </li>
+ * 	getObject(Class, Object[])							创建指定类对象的对象 
+ * 	getObject(String, Object[])							创建指定类名的对象
+ * 	invokeMothod(Class, Object[], String, Object[])		通过类名，运行指定方法 
+ * 	invokeMothod(String, Object[], String, Object[])	通过类对象，运行指定方法
+ * 	invokeMothod(Object, String, Object[])				通过对象，运行指定方法 
+ * 	isClassExist(String)								判断类是否存在 
  */
 public class UtilRef {
 	/**
 	 * 创建指定类对象的对象
 	 * @param cls
 	 * @param ConstructorParams
-	 * @return
+	 * @return TODO
 	 */
 	public static Object getObject(Class cls, Object[] ConstructorParams) {
 		if(cls == null || ConstructorParams == null) return null;
@@ -58,7 +58,7 @@ public class UtilRef {
 	 * 创建指定类名的对象
 	 * @param className
 	 * @param ConstructorParams
-	 * @return
+	 * @return TODO
 	 */
 	public static Object getObject(String className, Object[] ConstructorParams) {
 		if(UtilString.isBlank(className) || ConstructorParams == null) return null;
@@ -82,7 +82,7 @@ public class UtilRef {
 	 * @param ConstructorParams
 	 * @param methodName
 	 * @param methodParams
-	 * @return
+	 * @return TODO
 	 */
 	public static Object invokeMothod(String className,
 			   Object[] ConstructorParams,
@@ -97,7 +97,7 @@ public class UtilRef {
 	 * @param ConstructorParams
 	 * @param methodName
 	 * @param methodParams
-	 * @return
+	 * @return TODO
 	 */
 	public static Object invokeMothod(Class cls,
 			   Object[] ConstructorParams,
@@ -111,7 +111,7 @@ public class UtilRef {
      * @param obj 类对象
      * @param methodName 方法名
      * @param methodParams 参数值
-     * @return 失败返回null
+     * @return TODO 失败返回null
      */
 	public static Object invokeMothod(Object obj, String methodName, Object[] methodParams) {
     	if(obj == null
@@ -142,7 +142,7 @@ public class UtilRef {
 	/**
 	 * 判断类是否存在
 	 * @param className
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean isClassExist(String className) {
 		if(UtilString.isBlank(className)) return false;
@@ -161,7 +161,7 @@ public class UtilRef {
 	/**
 	 * 获取参数类型
 	 * @param params
-	 * @return
+	 * @return TODO
 	 */
 	private static Class[] getParamTypes(Object[] params) {
 		int size = params.length;

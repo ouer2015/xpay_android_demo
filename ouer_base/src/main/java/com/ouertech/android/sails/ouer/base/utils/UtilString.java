@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -23,28 +23,28 @@ import java.net.URLEncoder;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 字符串处理工具类
+ * @since   : 2013-9-19
+ * desc   : 字符串处理工具类
  * 
  * public method
- * 	<li>isEmpty(String)					字符串是否为空 </li>
- * 	<li>isNotEmpty(String)				字符串是否为非空 </li>
- * 	<li>isBlank(String)					字符串是否为空格串 </li>
- * 	<li>isNotBlank(String)				字符串是否非空格串 </li>
- *  <li>nullToEmpty(String)				将null转换为空串 </li>
- *  <li>nullToString(String)			将null转换为字符串NULL </li>
- *  <li>halfToFull(String)				半角转全角 </li>
- *  <li>fullToHalf(String)				全角转半角 </li>
- *  <li>htmlEscapeCharsToString(String)	处理html中的特殊字符串 </li>
- *  <li>utf8UrlEncode(String)			将字符串用UTF-8编码 </li>
- *  <li>urlEncode(String)				将字符串用指定的编码进行编码 </li>
+ * 	isEmpty(String)					字符串是否为空 
+ * 	isNotEmpty(String)				字符串是否为非空 
+ * 	isBlank(String)					字符串是否为空格串 
+ * 	isNotBlank(String)				字符串是否非空格串 
+ *  nullToEmpty(String)				将null转换为空串 
+ *  nullToString(String)			将null转换为字符串NULL 
+ *  halfToFull(String)				半角转全角 
+ *  fullToHalf(String)				全角转半角 
+ *  htmlEscapeCharsToString(String)	处理html中的特殊字符串 
+ *  utf8UrlEncode(String)			将字符串用UTF-8编码 
+ *  urlEncode(String)				将字符串用指定的编码进行编码 
  */
 public class UtilString {
 
     /**
      * 字符串是否为空
      * @param str
-     * @return
+     * @return TODO
      */
     public static boolean isEmpty(String str) {
         return (str == null || str.length() == 0);
@@ -53,7 +53,7 @@ public class UtilString {
     /**
      * 字符串是否为非空
      * @param str
-     * @return
+     * @return TODO
      */
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
@@ -62,7 +62,7 @@ public class UtilString {
     /**
      * 字符串是否为空格串
      * @param str
-     * @return
+     * @return TODO
      */
     public static boolean isBlank(String str) {
         return (str == null || str.trim().length() == 0);
@@ -71,7 +71,7 @@ public class UtilString {
     /**
      * 字符串是否非空格串
      * @param str
-     * @return
+     * @return TODO
      */
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
@@ -81,7 +81,7 @@ public class UtilString {
     /**
      * 将null转换为空串,如果参数为非null，则直接返回
      * @param str
-     * @return
+     * @return TODO
      */
     public static String nullToEmpty(String str) {
         return (str == null ? "" : str);
@@ -91,7 +91,7 @@ public class UtilString {
     /**
      * 将null转换为字符串"null",如果参数为非null，则直接返回
      * @param str
-     * @return
+     * @return TODO
      */
     public static String nullToString(String str) {
         return (str == null ? "null" : str);
@@ -101,7 +101,7 @@ public class UtilString {
 	/**
      * 半角转全角
      * @param half
-     * @return 全角字符串.
+     * @return TODO 全角字符串.
      */
 	public static String halfToFull(String half) {
 		if(isEmpty(half)) return half;
@@ -122,7 +122,7 @@ public class UtilString {
 	/**
      * 全角转半角
      * @param full
-     * @return 半角字符串
+     * @return TODO 半角字符串
      */
 	public static String fullToHalf(String full) {
 		if(isEmpty(full)) return full;
@@ -142,20 +142,9 @@ public class UtilString {
 	
 	/**
      * 处理html中的特殊字符串
-     * 
-     * <pre>
-     * htmlEscapeCharsToString(null) = null;
-     * htmlEscapeCharsToString("") = "";
-     * htmlEscapeCharsToString("mp3") = "mp3";
-     * htmlEscapeCharsToString("mp3&lt;") = "mp3<";
-     * htmlEscapeCharsToString("mp3&gt;") = "mp3\>";
-     * htmlEscapeCharsToString("mp3&amp;mp4") = "mp3&mp4";
-     * htmlEscapeCharsToString("mp3&quot;mp4") = "mp3\"mp4";
-     * htmlEscapeCharsToString("mp3&lt;&gt;&amp;&quot;mp4") = "mp3\<\>&\"mp4";
-     * </pre>
-     * 
+     *
      * @param html
-     * @return
+     * @return TODO
      */
     public static String htmlEscapeCharsToString(String html) {
         return isBlank(html) ? html : html.replaceAll("&lt;", "<").replaceAll("&gt;", ">")
@@ -165,17 +154,9 @@ public class UtilString {
     
     /**
      * 将字符串用UTF-8编码
-     * 
-     * <pre>
-     * utf8Encode(null)        =   null
-     * utf8Encode("")          =   "";
-     * utf8Encode("aa")        =   "aa";
-     * utf8Encode("啊啊啊啊")   = "%E5%95%8A%E5%95%8A%E5%95%8A%E5%95%8A";
-     * </pre>
-     * 
+     *
      * @param str
-     * @return
-     * @throws 
+     * @return TODO
      */
     public static String utf8UrlEncode(String str) {
         return urlEncode(str, CstCharset.UTF_8);
@@ -185,7 +166,7 @@ public class UtilString {
      * 将字符串用指定的编码进行编码，发生异常时，源字符串直接返回，不做编码
      * @param str
      * @param charset
-     * @return
+     * @return TODO
      */
     public static String urlEncode(String str, String charset) {
         if (!isEmpty(str)) {
@@ -202,7 +183,7 @@ public class UtilString {
     /**
      * 将字符串用UTF-8解码
      * @param str
-     * @return
+     * @return TODO
      */
     public static String utf8UrlDecode(String str) {
         return urlDecode(str, CstCharset.UTF_8);
@@ -212,7 +193,7 @@ public class UtilString {
      * 将字符串用指定的编码进行解码，发生异常时，源字符串直接返回，不做解码
      * @param str
      * @param charset
-     * @return
+     * @return TODO
      */
     public static String urlDecode(String str, String charset) {
         if (!isEmpty(str)) {

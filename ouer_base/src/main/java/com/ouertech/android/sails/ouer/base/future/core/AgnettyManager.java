@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -29,8 +29,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 任务管理器, 单例，确保首次getInstance()实例化是在UI线程
+ * @since   : 2013-9-19
+ * desc   : 任务管理器, 单例，确保首次getInstance()实例化是在UI线程
  */
 public class AgnettyManager {
 	private static AgnettyManager mInstance;
@@ -74,7 +74,7 @@ public class AgnettyManager {
 	/**
 	 * 实例化任务管理器
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public synchronized static AgnettyManager getInstance(Context context) {
 		if(mInstance == null) {
@@ -88,7 +88,7 @@ public class AgnettyManager {
 
 	/**
 	 * 获取网络io异常重试处理器
-	 * @return
+	 * @return TODO
 	 */
 	public AgnettyRetryHandler getRetryHandler() {
 		return mRetryHandler;
@@ -269,7 +269,7 @@ public class AgnettyManager {
 	/**
 	 * 通过任务标记找到正在执行的任务
 	 * @param tag
-	 * @return
+	 * @return TODO
 	 */
 	public AgnettyFuture getFutureByTag(Object tag) {
 		return tag==null? null : mTagToFutures.get(tag);
@@ -278,7 +278,7 @@ public class AgnettyManager {
 	/**
 	 * 通过任务ID找到正在执行的任务
 	 * @param futureID
-	 * @return
+	 * @return TODO
 	 */
 	public AgnettyFuture getFutureByID(String futureID) {
 		return mIDToFutures.get(futureID);

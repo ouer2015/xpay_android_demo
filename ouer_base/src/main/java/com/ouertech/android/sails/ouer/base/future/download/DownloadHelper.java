@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -21,14 +21,14 @@ import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
- * @date   :  2014年12月12日
- * @desc   :
+ * @since   :  2014年12月12日
+ * desc   :
  */
 public class DownloadHelper {
 	/**
 	 * 设置指定的请求相关属性，打开链接
 	 * @param future
-	 * @return
+	 * @return TODO
 	 */
 	public static HttpURLConnection openConnection(DownloadFuture future) throws Exception{
 		return createGet(future);
@@ -37,7 +37,7 @@ public class DownloadHelper {
 	/**
 	 * 创建Get请求HttpURLConnection实例，并设置相关属性
 	 * @param future
-	 * @return
+	 * @return TODO
 	 * @throws Exception
 	 */
 	private static HttpURLConnection createGet(DownloadFuture future) throws Exception{

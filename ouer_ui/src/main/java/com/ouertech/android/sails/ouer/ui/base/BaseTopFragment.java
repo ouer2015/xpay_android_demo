@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -25,8 +25,8 @@ import com.ouertech.android.sails.ouer.ui.R;
 
 /**
  * @author : Zhenshui.Xia
- * @date   :  2014年11月20日
- * @desc   : 带标题栏的界面
+ * @since   :  2014年11月20日
+ * desc   : 带标题栏的界面
  */
 public abstract class BaseTopFragment extends BaseFullFragment {
     //工具栏（标题栏）
@@ -86,7 +86,7 @@ public abstract class BaseTopFragment extends BaseFullFragment {
     }
 
     /**
-     * 设置toolbar背景,支持api>=16
+     * 设置toolbar背景,支持api大于等于16
      * @param drawable
      */
     public void setTopBarDrawable(Drawable drawable) {

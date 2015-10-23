@@ -3,4 +3,6 @@
     <string name="xpay_string_app_name">漩付</string>
     <string name="xpay_string_wx">微信支付</string>
     <string name="xpay_string_alipay">支付宝支付</string>
+    <string name="xpay_string_baidu">百度支付</string>
+    <string name="xpay_string_unionpay">银联支付</string>
 </resources>

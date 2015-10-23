@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -22,20 +22,20 @@ import com.ouertech.android.sails.ouer.base.constant.CstBase;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2014-2-28
- * @desc   : SharedPreferences工具类
+ * @since   : 2014-2-28
+ * desc   : SharedPreferences工具类
  * 
  * 	public method
- * 	<li>putString(Context, String, String)			保存字符串数据 </li>
- * 	<li>getString(Context, String, String)			获取字符串数据 </li>
- * 	<li>putInt(Context, String, int)				保存整型数据 </li>
- * 	<li>getInt(Context, String, int)				获取整型数据 </li>
- * 	<li>putLong(Context, String, long)				获取长整型数据 </li>
- * 	<li>getLong(Context, String, long)				获取长整型数据 </li>
- * 	<li>putBoolean(Context, String, boolean)		获取布尔值数据 </li>
- * 	<li>getBoolean(Context, String, boolean)		获取布尔值数据 </li>
- * 	<li>putFloat(Context, String, float)			获取浮点型数据 </li>
- * 	<li>getFloat(Context, String, float)			获取浮点型数据 </li>
+ * 	putString(Context, String, String)			保存字符串数据 
+ * 	getString(Context, String, String)			获取字符串数据 
+ * 	putInt(Context, String, int)				保存整型数据 
+ * 	getInt(Context, String, int)				获取整型数据 
+ * 	putLong(Context, String, long)				获取长整型数据 
+ * 	getLong(Context, String, long)				获取长整型数据 
+ * 	putBoolean(Context, String, boolean)		获取布尔值数据 
+ * 	getBoolean(Context, String, boolean)		获取布尔值数据 
+ * 	putFloat(Context, String, float)			获取浮点型数据 
+ * 	getFloat(Context, String, float)			获取浮点型数据 
  * 
  */
 public class UtilPref {
@@ -62,7 +62,7 @@ public class UtilPref {
 	 * @param context
 	 * @param key
 	 * @param defValue
-	 * @return
+	 * @return TODO
 	 */
 	public static String getString(Context context, String key, String defValue) {
 		if(context == null || UtilString.isBlank(key)) {
@@ -98,7 +98,7 @@ public class UtilPref {
 	 * @param context
 	 * @param key
 	 * @param defValue
-	 * @return
+	 * @return TODO
 	 */
 	public static int getInt(Context context, String key, int defValue) {
 		if(context == null || UtilString.isBlank(key)) {
@@ -134,7 +134,7 @@ public class UtilPref {
 	 * @param context
 	 * @param key
 	 * @param defValue
-	 * @return
+	 * @return TODO
 	 */
 	public static long getLong(Context context, String key, long defValue) {
 		if(context == null || UtilString.isBlank(key)) {
@@ -169,7 +169,7 @@ public class UtilPref {
 	 * @param context
 	 * @param key
 	 * @param defValue
-	 * @return
+	 * @return TODO
 	 */
 	public static boolean getBoolean(Context context, String key, boolean defValue) {
 		if(context == null || UtilString.isBlank(key)) {
@@ -205,7 +205,7 @@ public class UtilPref {
 	 * @param context
 	 * @param key
 	 * @param defValue
-	 * @return
+	 * @return TODO
 	 */
 	public static float getFloat(Context context, String key, float defValue) {
 		if(context == null || UtilString.isBlank(key)) {

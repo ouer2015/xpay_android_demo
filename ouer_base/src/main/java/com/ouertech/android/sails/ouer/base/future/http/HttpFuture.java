@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -30,8 +30,8 @@ import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : HTTP请求，支持GET & POST两种方式
+ * @since   : 2013-9-19
+ * desc   : HTTP请求，支持GET和POST两种方式
  */
 public class HttpFuture extends AgnettyFuture {
 	private HttpHandler mHandler;
@@ -77,7 +77,7 @@ public class HttpFuture extends AgnettyFuture {
 	/**
 	 * 获取HTTP请求头属性
 	 * @param field
-	 * @return
+	 * @return TODO
 	 */
 	public String getProperty(String field) {
 		return mProperties.get(field);
@@ -85,7 +85,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取当前设置的所有HTTP请求头属性
-	 * @return
+	 * @return TODO
 	 */
 	public HashMap<String, String> getProperties() {
 		return this.mProperties;
@@ -109,7 +109,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取HTTP请求连接超时时间
-	 * @return
+	 * @return TODO
 	 */
 	public int getConnectionTimeout() {
 		return this.mConnectionTimeout;
@@ -125,7 +125,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取HTTP请求数据读取超时时间
-	 * @return
+	 * @return TODO
 	 */
 	public int getReadTimeout() {
 		return this.mReadTimeout;
@@ -141,7 +141,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取下载文件的URL
-	 * @return
+	 * @return TODO
 	 */
 	public String getUrl() {
 		return this.mUrl;
@@ -160,7 +160,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取当前HTTP请求方式，默认为 ：HttpFuture.GET
-	 * @return
+	 * @return TODO
 	 */
 	public String getRequestMothod() {
 		return this.mMethod;
@@ -176,7 +176,7 @@ public class HttpFuture extends AgnettyFuture {
 
 	/**
 	 * 获取是否支持重定向
-	 * @return
+	 * @return TODO
 	 */
 	public boolean getFollowRedirects() {
 		return this.mRedirects;
@@ -279,7 +279,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务处理器
 		 * @param handler
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setHandler(Class<? extends AgnettyHandler> handler) {
 			this.mHandlerCls = handler;
@@ -289,7 +289,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务处理器执行数据
 		 * @param data
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setData(Object data) {
 			this.mData = data;
@@ -299,7 +299,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务监听器
 		 * @param listener
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setListener(AgnettyFutureListener listener) {
 			this.mListener = listener;
@@ -309,7 +309,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务标记
 		 * @param tag
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setTag(Object tag) {
 			this.mTag = tag;
@@ -329,7 +329,7 @@ public class HttpFuture extends AgnettyFuture {
 		 * 设置定时执行的任务
 		 * @param startTime
 		 * @param intervalTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int startTime, int intervalTime, int maxTimes) {
 			setSchedule(RTC_WAKEUP, startTime, intervalTime, maxTimes);
@@ -341,7 +341,7 @@ public class HttpFuture extends AgnettyFuture {
 		 * @param type
 		 * @param startTime
 		 * @param intervalTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setSchedule(int type, int startTime, int intervalTime, int maxTimes) {
 			mIsDelay = false;
@@ -368,7 +368,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务执行的延迟时间
 		 * @param delayTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int delayTime) {
 			setDelay(RTC_WAKEUP, delayTime);
@@ -379,7 +379,7 @@ public class HttpFuture extends AgnettyFuture {
 		 * 设置任务执行的延迟时间
 		 * @param type
 		 * @param delayTime
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setDelay(int type, int delayTime) {
 			mIsSchedule = false;
@@ -469,7 +469,7 @@ public class HttpFuture extends AgnettyFuture {
 		/**
 		 * 设置任务完成（或异常）后是否自动提交
 		 * @param autoCommit
-		 * @return
+		 * @return TODO
 		 */
 		public Builder setAutoCommit(boolean autoCommit) {
 			mAutoCommit = autoCommit;
@@ -479,7 +479,7 @@ public class HttpFuture extends AgnettyFuture {
 
 		/**
 		 * 创建一个本地任务
-		 * @return
+		 * @return TODO
 		 */
 		public HttpFuture create() {
 			final HttpFuture future = new HttpFuture(mContext);
@@ -513,7 +513,7 @@ public class HttpFuture extends AgnettyFuture {
 
 		/**
 		 * 异步执行任务
-		 * @return
+		 * @return TODO
 		 */
 		public HttpFuture execute() {
 			HttpFuture future = create();

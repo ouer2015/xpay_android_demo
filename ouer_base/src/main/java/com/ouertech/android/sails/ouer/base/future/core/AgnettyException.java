@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -14,8 +14,8 @@ package com.ouertech.android.sails.ouer.base.future.core;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-12-26
- * @desc   : 任务异常
+ * @since   : 2013-12-26
+ * desc   : 任务异常
  */
 public class AgnettyException extends Exception{
 	//未知code值
@@ -44,7 +44,7 @@ public class AgnettyException extends Exception{
 	
 	/**
 	 * 获取错误编码
-	 * @return
+	 * @return TODO
 	 */
 	public int getCode() {
 		return this.mCode;

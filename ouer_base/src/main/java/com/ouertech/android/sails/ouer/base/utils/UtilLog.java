@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -36,8 +36,8 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 日志工具类，支持日志的显示、日志文件的保存以及日志文件的上传
+ * @since   : 2013-9-19
+ * desc   : 日志工具类，支持日志的显示、日志文件的保存以及日志文件的上传
  */
 public class UtilLog {
 	//日志文件最大值
@@ -54,7 +54,9 @@ public class UtilLog {
 	public static void v(String msg) {
 		if(CstBase.DEBUG) {
 			Log.v(CstBase.PROJECT, UtilString.nullToString(msg));
-			//saveLog(msg);
+			if(CstBase.INNER_DEBUG) {
+				saveLog(msg);
+			}
 		}
 	}
 
@@ -65,7 +67,9 @@ public class UtilLog {
 	public static void d(String msg) {
 		if(CstBase.DEBUG) {
 			Log.d(CstBase.PROJECT, UtilString.nullToString(msg));
-			//saveLog(msg);
+			if(CstBase.INNER_DEBUG) {
+				saveLog(msg);
+			}
 		}
 	}
 
@@ -76,7 +80,9 @@ public class UtilLog {
 	public static void i(String msg) {
 		if(CstBase.DEBUG) {
 			Log.i(CstBase.PROJECT, UtilString.nullToString(msg));
-			//saveLog(msg);
+			if(CstBase.INNER_DEBUG) {
+				saveLog(msg);
+			}
 		}
 	}
 
@@ -87,7 +93,9 @@ public class UtilLog {
 	public static void w(String msg) {
 		if(CstBase.DEBUG) {
 			Log.w(CstBase.PROJECT, UtilString.nullToString(msg));
-			//saveLog(msg);
+			if(CstBase.INNER_DEBUG) {
+				saveLog(msg);
+			}
 		}
 	}
 
@@ -98,7 +106,9 @@ public class UtilLog {
 	public static void e(String msg) {
 		if(CstBase.DEBUG) {
 			Log.e(CstBase.PROJECT, UtilString.nullToString(msg));
-			//saveLog(msg);
+			if(CstBase.INNER_DEBUG) {
+				saveLog(msg);
+			}
 		}
 	}
 
@@ -111,13 +121,15 @@ public class UtilLog {
 
 			@Override
 			public void run() {
-				String fileName = new SimpleDateFormat("yyyyMMdd_HH")
-										.format(new Date())+ CstFile.SUFFIX_LOG;
+				String fileName = CstBase.PROJECT +"_ANDROID_"
+						+ new SimpleDateFormat("yyyyMMdd_HH").format(new Date())
+						+ CstFile.SUFFIX_LOG;
 				String filePath = UtilStorage.createFilePath(null, fileName);
+
 				if(UtilString.isNotBlank(filePath)) {
 					File file = new File(filePath);
 					writeLogFile(file, msg);
-					uploadLogFile(file, msg);
+					//uploadLogFile(file, msg);
 				}
 			}
 		});
@@ -259,8 +271,8 @@ public class UtilLog {
 	
 	/**
 	 * @author : Zhenshui.Xia
-	 * @date   : 2013-9-19
-	 * @desc   :
+	 * @since   : 2013-9-19
+	 * desc   :
 	 */
 	private static class FormUploadFile {
 		//上传文件的数据 

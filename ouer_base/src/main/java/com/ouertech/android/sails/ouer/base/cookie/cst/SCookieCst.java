@@ -2,10 +2,9 @@
 package com.ouertech.android.sails.ouer.base.cookie.cst;
 
 /**
- * @ClassName: SCookieCst
- * @Description: TODO
+ * description: TODO
  * @author bluestome
- * @date 2015-1-18 下午7:17:00
+ * @since 2015-1-18 下午7:17:00
  */
 public class SCookieCst {
     

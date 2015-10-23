@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -21,8 +21,8 @@ import java.util.UUID;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 任务基类，
+ * @since   : 2013-9-19
+ * desc   : 任务基类，
  */
 public abstract class AgnettyFuture implements Runnable{
 	//-------------------Thread Pool------------------
@@ -111,7 +111,7 @@ public abstract class AgnettyFuture implements Runnable{
 	/**
 	 * 获取任务ID，每创建一个新任务，都会自动生成一个唯一的ID
 	 * <pre>ID: 9d0ce584-a086-46b5-8f51-bce79433221e</pre>
-	 * @return
+	 * @return TODO
 	 */
 	public String getFutureID() {
 		return this.mFutureID;
@@ -120,7 +120,6 @@ public abstract class AgnettyFuture implements Runnable{
 	/**
 	 * 设置任务处理器
 	 * @param cls
-	 * @return
 	 */
 	public void setHandler(Class<? extends AgnettyHandler> cls) {
 		this.mHandlerCls = cls;
@@ -128,7 +127,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务处理器
-	 * @return
+	 * @return TODO
 	 */
 	public Class<? extends AgnettyHandler> getHandler() {
 		return this.mHandlerCls;
@@ -137,7 +136,6 @@ public abstract class AgnettyFuture implements Runnable{
 	/**
 	 * 设置任务处理器执行数据
 	 * @param data
-	 * @return
 	 */
 	public void setData(Object data) {
 		this.mData = data;
@@ -145,7 +143,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务处理器执行数据
-	 * @return
+	 * @return TODO
 	 */
 	public Object getData() {
 		return this.mData;
@@ -155,7 +153,6 @@ public abstract class AgnettyFuture implements Runnable{
 	/**
 	 * 设置任务监听器
 	 * @param listener
-	 * @return
 	 */
 	public void setListener(AgnettyFutureListener listener) {
 		this.mListener = listener;
@@ -163,7 +160,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务监听器
-	 * @return
+	 * @return TODO
 	 */
 	public AgnettyFutureListener getListener() {
 		return this.mListener;
@@ -174,7 +171,6 @@ public abstract class AgnettyFuture implements Runnable{
 	 * tag为空，则此标记无效
 	 * <pre>AgnettyFuture future = manager.getFutureByTag(tag)</pre>
 	 * @param tag
-	 * @return
 	 */
 	public void setTag(Object tag) {
 		this.mTag = tag;
@@ -182,7 +178,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务标记
-	 * @return
+	 * @return TODO
 	 */
 	public Object getTag() {
 		return this.mTag;
@@ -194,7 +190,6 @@ public abstract class AgnettyFuture implements Runnable{
 	 * @see #setSchedule(int,int, int, int)
 	 * @param startTime 	任务首次执行时间,毫秒
 	 * @param intervalTime  任务两次执行的间隔时间,毫秒
-	 * @return
 	 */
 	public void setSchedule(int startTime, int intervalTime, int maxTimes) {
 		setSchedule(RTC_WAKEUP, startTime, intervalTime, maxTimes);
@@ -202,15 +197,10 @@ public abstract class AgnettyFuture implements Runnable{
 
 
 	/**
-	 * 用于设定时执行的任务，如果任务类型不在指定的类型中或首次执行时间<0或者任务执行间隔时间<=0，则定时执行任务设置失败
+	 * 用于设定时执行的任务，如果任务类型不在指定的类型中或首次执行时间小于0或者任务执行间隔时间小于等于0，则定时执行任务设置失败
 	 * @param type   任务类型
-	 * 					AgnettyFuture.RTC_WAKEUP
-	 * 					AgnettyFuture.RTC
-	 * 					AgnettyFuture.ELAPSED_REALTIME_WAKEUP
-	 * 					AgnettyFuture.ELAPSED_REALTIME
-	 * @param startTime     must>=0，任务首次执行时间,毫秒
-	 * @param intervalTime  must>0，任务两次执行的间隔时间,毫秒
-	 * @return
+	 * @param startTime    任务首次执行时间,毫秒
+	 * @param intervalTime 任务两次执行的间隔时间,毫秒
 	 */
 	@Deprecated
 	public void setSchedule(int type, int startTime, int intervalTime, int maxTimes) {
@@ -244,7 +234,6 @@ public abstract class AgnettyFuture implements Runnable{
 	 * 设置任务执行的延迟时间, 默认任务类型AgnettyFuture.RTC_WAKEUP
 	 * @see #setDelay(int, int)
 	 * @param delayTime  任务延迟时间，毫秒
-	 * @return
 	 */
 	public void setDelay(int delayTime) {
 		setDelay(RTC_WAKEUP, delayTime);
@@ -252,16 +241,11 @@ public abstract class AgnettyFuture implements Runnable{
 
 
 	/**
-	 * 设置任务执行的延迟时间, 如果任务类型不在指定的类型中或者延迟时间<0，则延迟功能设置失败；如果延迟时间为0，
+	 * 设置任务执行的延迟时间, 如果任务类型不在指定的类型中或者延迟时间小于0，则延迟功能设置失败；如果延迟时间为0，
 	 * 则没有延迟，立即执行任务
 	 * @param type  任务类型
-	 * 				AgnettyFuture.RTC_WAKEUP
-	 * 				AgnettyFuture.RTC
-	 * 				AgnettyFuture.ELAPSED_REALTIME_WAKEUP
-	 * 				AgnettyFuture.ELAPSED_REALTIME
 	 *
-	 * @param delayTime  must>=0, 任务延迟时间，毫秒
-	 * @return
+	 * @param delayTime 任务延迟时间，毫秒
 	 */
 	@Deprecated
 	public void setDelay(int type, int delayTime) {
@@ -303,7 +287,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取执行任务的线程池类型
-	 * @return
+	 * @return TODO
 	 */
 	public int getPool() {
 		return this.mPool;
@@ -319,7 +303,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务结束后是否自动提交
-	 * @return
+	 * @return TODO
 	 */
 	public boolean getAutoCommit() {
 		return mAutoCommit;
@@ -327,7 +311,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 执行任务，返回任务的ID,如果该任务正在运行，则不会重复执行该任务
-	 * @return
+	 * @return TODO
 	 */
 	public synchronized String execute(){
 		//任务失败假如当前的任务正在被执行
@@ -503,7 +487,7 @@ public abstract class AgnettyFuture implements Runnable{
 
 	/**
 	 * 获取任务的名称
-	 * @return
+	 * @return TODO
 	 */
 	public String getName() {
 		return mHandlerCls==null ? "" : mHandlerCls.getName();

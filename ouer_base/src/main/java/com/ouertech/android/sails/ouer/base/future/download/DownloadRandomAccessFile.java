@@ -29,7 +29,7 @@ import java.nio.channels.FileChannel;
 /**
  * 高效随机读写文件，提供一个内部缓存，减少访问磁盘的次数，加快文件下载的度写访问速度。
  * source code come from #http://www.cnblogs.com/622698abc/archive/2013/08/18/3265584.html
- * @author 
+ * @author
  *
  */
 public class DownloadRandomAccessFile extends RandomAccessFile 
@@ -420,7 +420,7 @@ public class DownloadRandomAccessFile extends RandomAccessFile
     }
 
     /**
-     * @return true if there is no more data to read
+     * @return TODO true if there is no more data to read
      */
     public boolean isEOF() throws IOException
     {

@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -25,8 +25,8 @@ import java.lang.reflect.Field;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 设备相关工具类
+ * @since   : 2013-9-19
+ * desc   : 设备相关工具类
  */
 public class UtilDevice {
 	
@@ -34,7 +34,7 @@ public class UtilDevice {
 	 * 获取设备MAC
 	 * Permission: android.permission.ACCESS_WIFI_STATE
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static String getMAC(Context context) {
 		WifiManager manager = (WifiManager) context
@@ -46,7 +46,7 @@ public class UtilDevice {
 	/**
 	 * 获取设备ID
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static String getAndroidID(Context context) {
 		return Secure.getString(context.getContentResolver(), Secure.ANDROID_ID); 
@@ -78,7 +78,7 @@ public class UtilDevice {
      * 是否是电信卡
      * Permission: android.permission.READ_PHONE_STATE
      * @param context
-     * @return
+     * @return TODO
      */
     public static boolean isCTC(Context context) {
     	String imsi = getImsi(context);
@@ -89,7 +89,7 @@ public class UtilDevice {
      * 是否是电信卡
      * Permission: android.permission.READ_PHONE_STATE
      * @param imsi
-     * @return
+     * @return TODO
      */
     public static boolean isCTC(String imsi) {
     	return UtilString.isNotBlank(imsi) && imsi.startsWith("46003");
@@ -99,7 +99,7 @@ public class UtilDevice {
      * 是否是移动卡
      * Permission: android.permission.READ_PHONE_STATE
      * @param context
-     * @return
+     * @return TODO
      */
     public static boolean isCMCC(Context context) {
     	String imsi = getImsi(context);
@@ -109,7 +109,7 @@ public class UtilDevice {
     /**
      *
      * @param imsi
-     * @return
+     * @return TODO
      */
     public static boolean isCMCC(String imsi) {
     	return UtilString.isNotBlank(imsi)
@@ -121,7 +121,7 @@ public class UtilDevice {
      * 是否是联通卡
      * Permission: android.permission.READ_PHONE_STATE
      * @param context
-     * @return
+     * @return TODO
      */
     public static boolean isCUC(Context context) {
     	String imsi = getImsi(context);
@@ -131,7 +131,7 @@ public class UtilDevice {
     /**
      *
      * @param imsi
-     * @return
+     * @return TODO
      */
     public static boolean isCUC(String imsi) {
     	return UtilString.isNotBlank(imsi) && imsi.startsWith("46001");
@@ -141,7 +141,7 @@ public class UtilDevice {
     /**
      * 判断是否是平板
      * @param context
-     * @return
+     * @return TODO
      */
     public static boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout
@@ -168,7 +168,7 @@ public class UtilDevice {
     /**
      * 获取手机屏幕设备相关的信息
      * @param context
-     * @return
+     * @return TODO
      */
     public static Device getDevice(Context context) {
     	return Device.getInstance(context);
@@ -194,7 +194,7 @@ public class UtilDevice {
         /**
          * 单例，获取device对象
          * @param context
-         * @return
+         * @return TODO
          */
         public static synchronized Device getInstance(Context context) {
             if(mInstance == null) {
@@ -206,7 +206,7 @@ public class UtilDevice {
     	
     	/**
     	 * 获取屏幕的宽度
-    	 * @return
+    	 * @return TODO
     	 */
     	public int getWidth() {
     		return mDm != null ? mDm.widthPixels : 0;
@@ -214,7 +214,7 @@ public class UtilDevice {
     	
     	/**
     	 * 获取屏幕的高度
-    	 * @return
+    	 * @return TODO
     	 */
     	public int getHeight() {
     		return mDm != null ? mDm.heightPixels : 0;
@@ -222,7 +222,7 @@ public class UtilDevice {
     	
     	/**
     	 * 获取屏幕的密度
-    	 * @return
+    	 * @return TODO
     	 */
     	public float getDensity() {
     		return mDm != null ? mDm.density : 0;
@@ -230,7 +230,7 @@ public class UtilDevice {
     	
     	/**
     	 * 获取屏幕的dpi
-    	 * @return
+    	 * @return TODO
     	 */
     	public float getDensityDpi() {
     		return mDm != null ? mDm.densityDpi : 0;
@@ -238,7 +238,7 @@ public class UtilDevice {
     	
     	/**
     	 * 获取状态栏的高度，系统默认高度为25dp
-    	 * @return
+    	 * @return TODO
     	 */
     	public int getStatusBarHeight(){
     		if(mContext == null) return 0;

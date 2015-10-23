@@ -200,7 +200,7 @@ public class CookieStoreImpl extends CookieDBImpl implements CookieStore {
     /**
      * 获取字符串资源
      * @param cookie
-     * @return
+     * @return TODO
      */
     private String getCookieStr(Cookie cookie){
         StringBuilder builder = new StringBuilder();
@@ -282,7 +282,7 @@ public class CookieStoreImpl extends CookieDBImpl implements CookieStore {
      * @param domain 域名
      * @param path 路径 
      * @param isSecure 是否需要安全连接
-     * @return
+     * @return TODO
      */
     private String formatUrl(String domain,String path,boolean isSecure){
         StringBuilder sb = new StringBuilder(isSecure?"https://":"http://");

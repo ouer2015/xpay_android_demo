@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -31,15 +31,15 @@ import java.util.Locale;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/7/3.
- * @desc : 应用常用工具类
+ * @since : 2015/7/3.
+ * desc : 应用常用工具类
  */
 public class UtilOuer {
     private static final String UNKNOWN = "unknown";
     /**
      * 获取当前项目的应用名
      * @param context
-     * @return
+     * @return TODO
      */
     public static String getAppName(Context context) {
         PackageManager pm = context.getPackageManager();
@@ -51,7 +51,7 @@ public class UtilOuer {
      * 获取当前运行的进程名
      *
      * @param context
-     * @return
+     * @return TODO
      */
     public static String getProcessName(Context context) {
         int pid = android.os.Process.myPid();
@@ -71,7 +71,7 @@ public class UtilOuer {
      * 获取当前运行界面的包名
      *
      * @param context
-     * @return
+     * @return TODO
      */
     public static String getTopPackageName(Context context) {
         ActivityManager am = (ActivityManager) context
@@ -83,7 +83,7 @@ public class UtilOuer {
     /**
      * 获取当前运行界面的activity名
      * @param context
-     * @return
+     * @return TODO
      */
     public static String getTopActivity(Context context) {
         ActivityManager am = (ActivityManager) context
@@ -95,7 +95,7 @@ public class UtilOuer {
     /**
      * 获取清单指定meta key的值
      * @param key
-     * @return
+     * @return TODO
      */
     public static String getMetaValue(Context context, String key) {
         String metaValue = "";
@@ -114,7 +114,7 @@ public class UtilOuer {
     /**
      * 获取当前的应用渠道
      * @param context
-     * @return
+     * @return TODO
      */
     public static String getAppChannel(Context context	) {
         String channel = getMetaValue(context, CstBase.CHANNEL_META);
@@ -128,7 +128,7 @@ public class UtilOuer {
 
     /**
      * 获取系统ua信息
-     * @return
+     * @return TODO
      */
     public static String getWebUA(Context context) {
         String ua = null;
@@ -142,7 +142,7 @@ public class UtilOuer {
     /**
      * 获取本地语言
      *
-     * @return
+     * @return TODO
      */
     public static String getLocale() {
         Locale locales = Locale.getDefault();
@@ -156,7 +156,7 @@ public class UtilOuer {
 
     /**
      * 获取版本号
-     * @return
+     * @return TODO
      */
     public static int getVersionCode(Context context) {
         int code = 0;
@@ -173,7 +173,7 @@ public class UtilOuer {
 
     /**
      * 获取版本名
-     * @return
+     * @return TODO
      */
     public static String getVersionName(Context context) {
         String name = "";
@@ -192,7 +192,7 @@ public class UtilOuer {
     /**
      * 获取统计信息
      * @param ctx
-     * @return
+     * @return TODO
      */
     public static OuerStat getOuerStat(Context ctx) {
         OuerStat info = new OuerStat();

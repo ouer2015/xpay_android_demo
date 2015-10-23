@@ -11,10 +11,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * @ClassName: CookieUtils
- * @Description: TODO
+ * description: TODO
  * @author bluestome
- * @date 2015-1-18 下午7:16:08
+ * @since 2015-1-18 下午7:16:08
  */
 public class CookieUtils {
     
@@ -24,7 +23,7 @@ public class CookieUtils {
      * Get the base domain for a give host. E.g. mail.google.com will return
      * google.com
      * @param host The give host
-     * @return the base domain
+     * @return TODO the base domain
      */
     public static String getBaseDomain(String host) {
         int startIndex = 0;
@@ -102,7 +101,7 @@ public class CookieUtils {
      * @param host The default host
      * @param path The default path
      * @param cookieString The string coming from "Set-Cookie:"
-     * @return A list of Cookies
+     * @return TODO A list of Cookies
      */
     public static ArrayList<SCookie> parseCookie(String host, String path,
             String cookieString) {

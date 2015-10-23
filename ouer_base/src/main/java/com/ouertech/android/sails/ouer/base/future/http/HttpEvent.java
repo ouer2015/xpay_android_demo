@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -22,8 +22,8 @@ import java.util.Map;
 
 /**
  * @author : Zhenshui.Xia
- * @date   :  2014年12月12日
- * @desc   : 基于HTTP任务的消息事件
+ * @since   :  2014年12月12日
+ * desc   : 基于HTTP任务的消息事件
  */
 public class HttpEvent extends MessageEvent {
 	private HttpURLConnection conn;
@@ -39,7 +39,7 @@ public class HttpEvent extends MessageEvent {
 	/**
 	 *
 	 * @param key
-	 * @return
+	 * @return TODO
 	 */
 	public String getHeaderField(String key) {
 		return conn == null? null: conn.getHeaderField(key);
@@ -47,7 +47,7 @@ public class HttpEvent extends MessageEvent {
 
 	/**
 	 *
-	 * @return
+	 * @return TODO
 	 */
 	public Map<String, List<String>> getHeaderFields() {
 		return conn == null? null: conn.getHeaderFields();

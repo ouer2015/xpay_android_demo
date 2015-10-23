@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- xpay demo默认主题 -->
+    <style name="xpay_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 背景 -->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+</resources>

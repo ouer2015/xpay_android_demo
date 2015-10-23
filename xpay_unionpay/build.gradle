@@ -1,0 +1,144 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+
+// project version
+version = "1.0.00"
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 22
+        versionCode 1000
+        versionName "1.0.00"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile files('libs/UPPayAssistEx.jar')
+    compile files('libs/UPPayPluginExStd.jar')
+}
+
+// project homepage
+def siteUrl = 'https://gitlab.ixiaopu.com/qianfan/xpay_android'
+// project git
+def gitUrl = 'git@gitlab.ixiaopu.com:qianfan/xpay_android.git'
+// Maven Group ID for the artifact (pageckage name is ok)
+group = "com.ouertech.android.sails.xpay.unionpay"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // project title
+                name 'XPay unionpay'
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        // your user id
+                        id 'ouer'
+                        // your user name
+                        name 'ouer'
+                        // your email
+                        email 'developer01@ixiaopu.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    options.charSet = 'UTF-8'
+//    options.encoding = 'UTF-8'
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+
+
+android.libraryVariants.all { variant ->
+    println variant.javaCompile.classpath.files
+    if(variant.name == 'release') { //我们只需 release 的 javadoc
+        task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+            // title = ''
+            // description = ''
+            source = variant.javaCompile.source
+            classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
+            options {
+                encoding "utf-8"
+                links "http://docs.oracle.com/javase/7/docs/api/"
+                linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
+            }
+            exclude '**/BuildConfig.java'
+            exclude '**/R.java'
+        }
+        task("javadoc${variant.name.capitalize()}Jar", type: Jar, dependsOn: "generate${variant.name.capitalize()}Javadoc") {
+            classifier = 'javadoc'
+            from tasks.getByName("generate${variant.name.capitalize()}Javadoc").destinationDir
+        }
+        artifacts {
+            archives tasks.getByName("javadoc${variant.name.capitalize()}Jar")
+        }
+    }
+}
+
+
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven"
+//        // project name in jcenter
+//        name = "xpay_unionpay"
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//    }
+//}
+
+

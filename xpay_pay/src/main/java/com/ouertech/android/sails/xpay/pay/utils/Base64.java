@@ -64,7 +64,7 @@ public final class Base64 {
 	 * 
 	 * @param binaryData
 	 *            Array containing binaryData
-	 * @return Encoded Base64 array
+	 * @return TODO Encoded Base64 array
 	 */
 	public static String encode(byte[] binaryData) {
 
@@ -147,7 +147,7 @@ public final class Base64 {
 	 * 
 	 * @param encoded
 	 *            string containing Base64 data
-	 * @return Array containind decoded data.
+	 * @return TODO Array containind decoded data.
 	 */
 	public static byte[] decode(String encoded) {
 
@@ -248,7 +248,7 @@ public final class Base64 {
 	 * 
 	 * @param data
 	 *            the byte array of base64 data (with WS)
-	 * @return the new length
+	 * @return TODO the new length
 	 */
 	private static int removeWhiteSpace(char[] data) {
 		if (data == null) {

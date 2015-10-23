@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
@@ -26,6 +27,7 @@ import com.ouertech.android.sails.ouer.base.future.core.AgnettyResult;
 import com.ouertech.android.sails.ouer.base.future.defaults.OuerHttpDefaultHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
 import com.ouertech.android.sails.ouer.base.future.impl.OuerClient;
+import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.xpay.lib.constant.CstXPay;
 import com.ouertech.android.sails.xpay.lib.data.bean.Charge;
 import com.ouertech.android.sails.xpay.lib.data.bean.PayResult;
@@ -33,24 +35,33 @@ import com.ouertech.android.sails.xpay.lib.future.impl.XPay;
 
 /**
  * @author : Zhenshui.Xia
- * @date : 2015/9/10.
- * @desc : XPay示例程序，仅供开发者参考。当前demo仅提供使用流程，尚不能演示完整的渠道支付流程，
+ * @since : 2015/9/10.
+ * description : XPay示例程序，仅供开发者参考。当前demo仅提供使用流程，尚不能演示完整的渠道支付流程，
  * 我们会在后续迭代中完善。
- * 【说明文档】开发前请参考XPay安卓SDK开发者使用指南，地址：http://xxx
+ * 【说明文档】开发前请参考XPay安卓SDK开发者使用指南，地址：http://www.kkkd.com/home/_resources/files/xpay_android.zip
  * 【开发流程】
  * 1）客户端下单和支付可以合并为一个流程也可以分开处理，如果分开处理，下单可以分为交易下单、支付下单，无论哪种方式
  *    支付前都需要先获取到支付凭证。
  * 2）客户端请求服务端获得charge。获取charge的接口需要商户服务端自己开发，相关接口开发规范请参考XPay官方文档，
- *    地址： http://xxx
+ *    地址： http://www.kkkd.com/home/_resources/files/xpay_api.pdf
  * 3）收到服务端的charge，调用XPay SDK的支付接口：XPay.pay(activty, charge)。
  * 4）onActivityResult 中获得支付结果，开发者根据支付结果做出相应的处理
  * 5）如果支付成功。服务端会收到XPay的异步通知，支付成功依据服务端异步通知为准。
  */
 public class DemoActivity extends Activity implements View.OnClickListener{
     //填写开发者申请应用的app ID
-    private static final String APP_ID      = "abc";
+    private static final String APP_ID      = "4ab6526f6d19fecfb3be6a07d7e62f1d";
     //下单地址
-    private static final String ORDER_URL   = "http://api.kkkdtest.com/payDemo/chargeSubmit.jsp";
+    private static final String ORDER_URL   = "http://api.kkkd.com/payDemo/chargeSubmit.jsp";
+
+    //微信支付
+    private Button mBtnWx;
+    //支付宝支付
+    private Button mBtnAlipay;
+    //百度支付
+    private Button mBtnBaidu;
+    //银联支付
+    private Button mBtnUnionpay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +72,14 @@ public class DemoActivity extends Activity implements View.OnClickListener{
         OuerClient.init(getApplication(), APP_ID, true, "xpay");
 
         //微信支付
-        findViewById(R.id.xpay_id_wx).setOnClickListener(this);
+        mBtnWx = (Button)findViewById(R.id.xpay_id_wx);
         //支付宝支付
-        findViewById(R.id.xpay_id_alipay).setOnClickListener(this);
+        mBtnAlipay = (Button)findViewById(R.id.xpay_id_alipay);
+        //百度支付
+        mBtnBaidu = (Button)findViewById(R.id.xpay_id_baidu);
+        //银联支付
+        mBtnUnionpay = (Button)findViewById(R.id.xpay_id_unionpay);
+        setPayListener();
     }
 
 
@@ -72,10 +88,16 @@ public class DemoActivity extends Activity implements View.OnClickListener{
         String channel = null;
         switch (v.getId()) {
             case R.id.xpay_id_wx:
-                channel = CstXPay.CHANNEL_WX;
+                channel = CstXPay.CHANNEL_WXPAY;
                 break;
             case R.id.xpay_id_alipay:
                 channel = CstXPay.CHANNEL_ALIPAY;
+                break;
+            case R.id.xpay_id_baidu:
+                channel = CstXPay.CHANNEL_BAIDUPAY;
+                break;
+            case R.id.xpay_id_unionpay:
+                channel = CstXPay.CHANNEL_UNIONPAY;
                 break;
             default:
                 break;
@@ -96,7 +118,6 @@ public class DemoActivity extends Activity implements View.OnClickListener{
             int status = result.getStatus(); //支付状态
             String memo = result.getMemo(); //支付状态说明
             String attach = result.getAttach();//额外信息
-
             //todo 此处开发者根据支付结果做出相应的处理
             switch (status) {
                 case CstXPay.PAY_SUCCESS: //支付成功
@@ -133,7 +154,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
         req.setAmount(amount);
         req.setTitle(title);
 
-        new HttpFuture.Builder(this, CstHttp.POST)
+        new HttpFuture.Builder(this, CstHttp.GET)
                 .setUrl(ORDER_URL)
                 .setHandler(OuerHttpDefaultHandler.class)
                 .setData(new OuerFutureData(req, new TypeToken<Charge>() {}.getType()))
@@ -142,6 +163,7 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                     public void onStart(AgnettyResult result) {
                         super.onStart(result);
                         //todo ui线程回调，任务开始
+                        clearPayListener();
                     }
 
                     @Override
@@ -150,21 +172,43 @@ public class DemoActivity extends Activity implements View.OnClickListener{
                         //todo ui线程回调，获取charge成功
                         Charge charge = (Charge) result.getAttach();
                         XPay.pay(DemoActivity.this, charge);
-
+                        setPayListener();
                     }
 
                     @Override
                     public void onException(AgnettyResult result) {
                         super.onException(result);
                         //todo ui线程回调，获取charge失败
+                        setPayListener();
                     }
 
                     @Override
                     public void onNetUnavaiable(AgnettyResult result) {
                         super.onNetUnavaiable(result);//主要此处有个默认的Toast提示，如果不展示，可以删除父类方法的实现
                         //todo ui线程回调，当前网络不给力
+                        setPayListener();
                     }
                 })
                 .execute();
+    }
+
+    /**
+     * 设置支付监听器
+     */
+    private void setPayListener() {
+        mBtnWx.setOnClickListener(this);
+        mBtnAlipay.setOnClickListener(this);
+        mBtnBaidu.setOnClickListener(this);
+        mBtnUnionpay.setOnClickListener(this);
+    }
+
+    /**
+     * 取消支付监听器，避免重复提交
+     */
+    private void clearPayListener() {
+        mBtnWx.setOnClickListener(null);
+        mBtnAlipay.setOnClickListener(null);
+        mBtnBaidu.setOnClickListener(null);
+        mBtnUnionpay.setOnClickListener(null);
     }
 }

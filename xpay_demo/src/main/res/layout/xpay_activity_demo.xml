@@ -29,4 +29,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/xpay_string_alipay"/>
 
+    <Button
+        android:id="@+id/xpay_id_baidu"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/xpay_string_baidu"/>
+
+    <Button
+        android:id="@+id/xpay_id_unionpay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/xpay_string_unionpay"/>
+
 </LinearLayout>

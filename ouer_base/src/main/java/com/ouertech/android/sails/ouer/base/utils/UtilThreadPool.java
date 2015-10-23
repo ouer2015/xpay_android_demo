@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -19,8 +19,8 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 线程池工具类
+ * @since   : 2013-9-19
+ * desc   : 线程池工具类
  */
 public class UtilThreadPool {
 	//默认建议使用线程池的大小
@@ -28,17 +28,17 @@ public class UtilThreadPool {
    
     /**
      * 获取建议使用线程池的大小，最多个数为16个
-     * @return
+     * @return TODO
      */
     public static int getDefaultThreadPoolSize() {
         return getDefaultThreadPoolSize(16);
     }
 
     /**
-     * 获取建议使用线程池的大小，大小将为num =（4 * cpu + 1）， 如果num > max,
+     * 获取建议使用线程池的大小，大小将为num =（4 * cpu + 1）， 如果num大于max,
      * 则大小为max
      * @param max 最多可用线程池数
-     * @return
+     * @return TODO
      */
     public static int getDefaultThreadPoolSize(int max) { 
         int processors = 4 * Runtime.getRuntime().availableProcessors() + 1;
@@ -47,7 +47,7 @@ public class UtilThreadPool {
     
     /**
      * 获取单线程池
-     * @return
+     * @return TODO
      */
     public static ExecutorService getSingleThreadPool() {
     	return Executors.newSingleThreadExecutor();
@@ -55,7 +55,7 @@ public class UtilThreadPool {
     
     /**
      * 获取缓存线程池
-     * @return
+     * @return TODO
      */
     public static ExecutorService getCachedThreadPool() {
     	return Executors.newCachedThreadPool();
@@ -64,7 +64,7 @@ public class UtilThreadPool {
     /**
      * 获取固定线程池，线程池大小请查看getDefaultThreadPoolSize(int)
      * @param size
-     * @return
+     * @return TODO
      */
     public static ExecutorService getFixedThreadPool(int size) {
     	return Executors.newFixedThreadPool(getDefaultThreadPoolSize(size)); 
@@ -72,7 +72,7 @@ public class UtilThreadPool {
     
     /**
      * 获取固定线程池，线程池大小为8个
-     * @return
+     * @return TODO
      */
     public static ExecutorService getFixedThreasdPool() {
     	return Executors.newFixedThreadPool(getDefaultThreadPoolSize()); 
@@ -81,7 +81,7 @@ public class UtilThreadPool {
     /**
      * 获取定时线程池，线程池大小请查看getDefaultThreadPoolSize(int)
      * @param size
-     * @return
+     * @return TODO
      */
     public static ScheduledExecutorService getScheduledThreadPool(int size) {
     	return Executors.newScheduledThreadPool(getDefaultThreadPoolSize(size));
@@ -89,7 +89,7 @@ public class UtilThreadPool {
     
     /**
      * 获取定时线程池，线程池大小为8个
-     * @return
+     * @return TODO
      */
     public static ScheduledExecutorService getScheduledThreadPool() {
     	return Executors.newScheduledThreadPool(getDefaultThreadPoolSize());

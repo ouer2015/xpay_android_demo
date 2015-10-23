@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技-版权所有
+ * Copyright(c) 2014 杭州偶尔科技版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -27,20 +27,20 @@ import java.util.ArrayList;
 
 /**
  * @author : Zhenshui.Xia
- * @date   : 2013-9-19
- * @desc   : 
+ * @since   : 2013-9-19
+ * desc   :
  * 
  * 	public method
- *  <li>getRootDir(Context)				获取可用存储空间的根目录 </li>
- *  <li>getFileType(String) 			获取文件类型</li>
- *  <li>getFileDir(Context, int) 		根据文件类型获取文件目录名</li>
- *  <li>getFileDir(Context, String) 	根据文件名获取文件目录名</li>
- *  <li>createFileDir(Context, int) 	根据文件名创建文件目录</li>
- *  <li>createFileDir(Context, String) 	根据文件名创建文件目录</li>
- *  <li>getFilePath(Context, String) 	获取文件的绝对路径</li>
- *  <li>createFilePath(Context, String) 创建文件</li>
- *  <li>getLeftSpace(String) 			获取指定目录剩余存储空间</li>
- *  <li>getTotalSpace(String) 			获取指定目录所有存储空间</li>
+ *  getRootDir(Context)				获取可用存储空间的根目录 
+ *  getFileType(String) 			获取文件类型
+ *  getFileDir(Context, int) 		根据文件类型获取文件目录名
+ *  getFileDir(Context, String) 	根据文件名获取文件目录名
+ *  createFileDir(Context, int) 	根据文件名创建文件目录
+ *  createFileDir(Context, String) 	根据文件名创建文件目录
+ *  getFilePath(Context, String) 	获取文件的绝对路径
+ *  createFilePath(Context, String) 创建文件
+ *  getLeftSpace(String) 			获取指定目录剩余存储空间
+ *  getTotalSpace(String) 			获取指定目录所有存储空间
  *  
  *  private method
  *  
@@ -51,7 +51,7 @@ public class UtilStorage {
 	 * 获取可用存储空间的根目录，一般先获取外置存储空间，如果没有，再去获取内置存储空间，
 	 * 如果都没有，则获取本地应用的可用目录
 	 * @param context
-	 * @return
+	 * @return TODO
 	 */
 	public static String getRootDir(Context context) {
 		//先找外置存储路径
@@ -120,7 +120,7 @@ public class UtilStorage {
 	/**
 	 * 获取文件类型，文件类型请查看FileCst定义
 	 * @param fileName 文件名
-	 * @return
+	 * @return TODO
 	 */
 	public static int getFileType(String fileName) {
 		if(UtilString.isBlank(fileName)) return CstFile.TYPE_ERROR;
@@ -161,7 +161,7 @@ public class UtilStorage {
 	/**
 	 * 获取文件目录名, 相对目录请查看FileCst定义
 	 * @param fileType
-	 * @return
+	 * @return TODO
 	 */
 	public static String getFileDir(Context context, int fileType) {
 		String rootDir = getRootDir(context);
@@ -211,7 +211,7 @@ public class UtilStorage {
 	 * @param context
 	 * @param fileName
 	 * @see #getFileDir(Context, int)
-	 * @return
+	 * @return TODO
 	 */
 	public static String getFileDir(Context context, String fileName) {
 		int fileType = getFileType(fileName);
@@ -224,7 +224,7 @@ public class UtilStorage {
 	 * 获取文件的绝对路径
 	 * @param context
 	 * @param fileName
-	 * @return
+	 * @return TODO
 	 */
 	public static String getFilePath(Context context, String fileName) {
 		String fileDir = getFileDir(context, fileName);
@@ -235,7 +235,7 @@ public class UtilStorage {
 	/**
 	 * 获取指定目录剩余存储空间，返回单位为字节
 	 * @param directory
-	 * @return
+	 * @return TODO
 	 */
 	public static long getLeftSpace(String directory) {
 		long space = 0;
@@ -254,7 +254,7 @@ public class UtilStorage {
 	/**
 	 * 获取指定目录所有存储空间, 返回单位为字节
 	 * @param directory
-	 * @return
+	 * @return TODO
 	 */
 	public static long getTotalSpace(String directory) {
 		long space = 0;
@@ -275,7 +275,7 @@ public class UtilStorage {
 	 * 根据文件类型创建文件的目录
 	 * @param context
 	 * @param fileType
-	 * @return
+	 * @return TODO
 	 */
 	public static String createFileDir(Context context, int fileType) {
 		String fileDir = getFileDir(context, fileType);
@@ -288,7 +288,7 @@ public class UtilStorage {
 	 * @param context
 	 * @param fileName
 	 * @see #createFileDir(Context, int)
-	 * @return
+	 * @return TODO
 	 */
 	public static String createFileDir(Context context, String fileName) {
 		int fileType = getFileType(fileName);
@@ -300,7 +300,7 @@ public class UtilStorage {
 	 * 创建文件
 	 * @param context
 	 * @param fileName
-	 * @return
+	 * @return TODO
 	 */
 	public static String createFilePath(Context context, String fileName) {
 		String fileDir = createFileDir(context, fileName);
@@ -371,8 +371,8 @@ public class UtilStorage {
 	
 	/**
 	 * @author : Zhenshui.Xia
-	 * @date   : 2013-11-1
-	 * @desc   : vold配置文件， 文件位置/etc/vold.fstab
+	 * @since   : 2013-11-1
+	 * desc   : vold配置文件， 文件位置/etc/vold.fstab
 	 * 			 example:
 	 * 			 # external sd card
 	 *			 dev_mount sdcard-ext /mnt/sdcard-ext:none:lun1 auto /devices/platform/goldfish_mmc.0 /devices/platform/mmci-omap-hs.0/mmc_host/mmc0

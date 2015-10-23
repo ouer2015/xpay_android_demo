@@ -47,7 +47,7 @@ public class MD5 {
      * 
      * @param algorithm
      *            The MessageDigest algorithm name.
-     * @return An MD5 digest instance.
+     * @return TODO An MD5 digest instance.
      * @throws RuntimeException
      *             when a {@link java.security.NoSuchAlgorithmException} is
      *             caught
@@ -67,7 +67,7 @@ public class MD5 {
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest
+     * @return TODO MD5 digest
      */
     public static byte[] md5(byte[] data) {
         return getDigest().digest(data);
@@ -79,7 +79,7 @@ public class MD5 {
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest
+     * @return TODO MD5 digest
      */
     public static byte[] md5(String data) {
         return md5(data.getBytes());
@@ -91,7 +91,7 @@ public class MD5 {
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest as a hex string
+     * @return TODO MD5 digest as a hex string
      */
     public static String md5Hex(byte[] data) {
         return bytesToHexString(md5(data));
@@ -103,7 +103,7 @@ public class MD5 {
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest as a hex string
+     * @return TODO MD5 digest as a hex string
      */
     public static String md5Hex(String data) {
         return bytesToHexString(md5(data));
