@@ -61,7 +61,7 @@ public class CstHttp {
 	//Http请求头ETAG
 	public static final String ETAG					= "ETag";
 	//Http请求头content-type URLENCODED_FORM
-	public static final String APPLICATION_URLENCODED_FORM	= "application/x-www-form-urlencoded;charset=UTF-8";
+	public static final String APPLICATION_URLENCODED_FORM	 = "application/x-www-form-urlencoded;charset=UTF-8";
 	//Http请求头content-type JSON
 	public static final String APPLICATION_JSON				= "application/json";
 	//Http请求头content-type OCTET_STREAM
