@@ -26,6 +26,8 @@ import com.ouertech.android.sails.ouer.base.future.base.OuerStat;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyFuture;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyHandler;
 import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
+import com.ouertech.android.sails.ouer.base.future.upload.form.FormUploadFile;
+import com.ouertech.android.sails.ouer.base.future.upload.form.FormUploadFuture;
 import com.ouertech.android.sails.ouer.base.system.CrashHandler;
 import com.ouertech.android.sails.ouer.base.utils.UtilOuer;
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
@@ -208,6 +210,32 @@ public class OuerClient {
                 .setHandler(handler)
                 .setData(new OuerFutureData(req, respType))
                 .setDelay(delay)
+                .setListener(listener)
+                .setProperties(mProperties)
+                .execute();
+    }
+
+
+    /**
+     * 执行HTTP form upload任务
+     * @param url
+     * @param handler
+     * @param req
+     * @param listener
+     * @param files
+     * @return
+     */
+    protected AgnettyFuture execFormUploadFuture(String url,
+                                                 Class<? extends AgnettyHandler> handler,
+                                                 BaseRequest req,
+                                                 Type respType,
+                                                 OuerFutureListener listener,
+                                                 FormUploadFile... files) {
+        return new FormUploadFuture.Builder(mContext)
+                .setUrl(url)
+                .setHandler(handler)
+                .setData(new OuerFutureData(req, respType))
+                .setUploadFiles(files)
                 .setListener(listener)
                 .setProperties(mProperties)
                 .execute();

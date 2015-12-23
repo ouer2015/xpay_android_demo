@@ -163,22 +163,13 @@ public class UtilLog {
 		}
 
 		try {
-			String url = "http://upload9.163disk.com/?ac=upload&temp=0.8839586193207651";
+			String url = "http://10.8.73.20:8080/fs";
 
 			HashMap<String, String> contents = new HashMap<String, String>();
-	        contents.put("Filename",  file.getName());
-	        contents.put("up_folder", "0");
-	        contents.put("up_server", "9");
-	        contents.put("up_key", 	  "bbb127a4d091297f7de2b3839e2d0740");
-	        contents.put("up_list",   "8");
-	        contents.put("up_share",  "0");
-	        contents.put("up_ip",     "202.101.166.113");
-	        contents.put("up_user",   "395871");
-	        contents.put("Upload",    "Submit Query");
-
+	        contents.put("key",  file.getName());
 			FileInputStream in = new FileInputStream(file);
 	        byte[] data = UtilStream.toByteArray(in);
-	        FormUploadFile uploadFile = new FormUploadFile("Filedata", file.getName(), data);
+	        FormUploadFile uploadFile = new FormUploadFile("file", file.getName(), data);
 	        FormUploadFile[] uploadFiles = {uploadFile};
 	        httpUploadFile(url, contents, uploadFiles);
 		}catch (Exception ex) {

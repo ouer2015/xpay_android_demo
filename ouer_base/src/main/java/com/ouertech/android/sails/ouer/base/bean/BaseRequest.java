@@ -43,7 +43,7 @@ public abstract class BaseRequest extends BaseBean{
 
     public BaseRequest() {
         init();
-        add("appId", CstBase.APP_ID);
+        //add("appId", CstBase.APP_ID);
     }
 
 

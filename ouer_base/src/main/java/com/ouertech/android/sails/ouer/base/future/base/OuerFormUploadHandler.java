@@ -1,6 +1,6 @@
 /*
  * ========================================================
- * Copyright(c) 2014 杭州偶尔科技版权所有
+ * Copyright(c) 2014 杭州偶尔科技-版权所有
  * ========================================================
  * 本软件由杭州偶尔科技所有, 未经书面许可, 任何单位和个人不得以
  * 任何形式复制代码的部分或全部, 并以任何形式传播。
@@ -12,20 +12,16 @@
  */
 package com.ouertech.android.sails.ouer.base.future.base;
 
-
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.ouertech.android.sails.ouer.base.bean.BaseRequest;
 import com.ouertech.android.sails.ouer.base.constant.CstCharset;
-import com.ouertech.android.sails.ouer.base.constant.CstHttp;
-import com.ouertech.android.sails.ouer.base.future.base.OuerFutureCst.KEY;
-import com.ouertech.android.sails.ouer.base.future.base.OuerFutureCst.STATUS;
 import com.ouertech.android.sails.ouer.base.future.core.AgnettyException;
 import com.ouertech.android.sails.ouer.base.future.core.event.ExceptionEvent;
-import com.ouertech.android.sails.ouer.base.future.http.HttpEvent;
-import com.ouertech.android.sails.ouer.base.future.http.HttpFuture;
-import com.ouertech.android.sails.ouer.base.future.http.HttpHandler;
+import com.ouertech.android.sails.ouer.base.future.upload.form.FormUploadEvent;
+import com.ouertech.android.sails.ouer.base.future.upload.form.FormUploadFuture;
+import com.ouertech.android.sails.ouer.base.future.upload.form.FormUploadHandler;
 import com.ouertech.android.sails.ouer.base.utils.UtilLog;
 import com.ouertech.android.sails.ouer.base.utils.UtilString;
 
@@ -35,20 +31,20 @@ import java.lang.reflect.Type;
 
 /**
  * @author : Zhenshui.Xia
- * @since : 2014年8月10日
- * desc : 封装基类的http任务处理器
+ * @date : 2014年8月11日
+ * @desc : 封装基类的表单上传任务处理器
  */
-public abstract class OuerHttpHandler extends HttpHandler {
+public abstract class OuerFormUploadHandler extends FormUploadHandler {
 	private Gson mGson;
 	private Type mType;
-
-	public OuerHttpHandler(Context context) {
+	
+	public OuerFormUploadHandler(Context context) {
 		super(context);
 		mGson = new Gson();
 	}
-
+	
 	@Override
-	public boolean onEncode(HttpEvent evt) throws Exception {
+	public boolean onEncode(FormUploadEvent evt) throws Exception {
 		if(mType == null) {
 			OuerFutureData futureData = (OuerFutureData)evt.getData();
 			BaseRequest params = null;
@@ -61,69 +57,55 @@ public abstract class OuerHttpHandler extends HttpHandler {
 			if(params != null) {
 				String value = params.toString();
 				if(UtilString.isNotBlank(value)) {
-					HttpFuture future = (HttpFuture)evt.getFuture();
+					FormUploadFuture future = (FormUploadFuture)evt.getFuture();
 					UtilLog.i(future.getName() + " url: " + future.getUrl() + "\nonEncode: " + value);
-					String method = future.getRequestMothod();
-					if(CstHttp.POST.equals(method)
-							|| CstHttp.PUT.equals(method)) {
-						evt.setData(value.getBytes(CstCharset.UTF_8));
+					
+					if(future.getUrl().contains("?")) {
+						future.setUrl(future.getUrl() + "&" + value);
 					} else {
-						if(future.getUrl().contains("?")) {
-							future.setUrl(future.getUrl() + "&" + value);
-						} else {
-							future.setUrl(future.getUrl() + "?" + value);
-						}
+						future.setUrl(future.getUrl() + "?" + value);
 					}
-				} else {
-					HttpFuture future = (HttpFuture)evt.getFuture();
-					UtilLog.i(future.getName() + " url: " + future.getUrl());
-					evt.setData(null);
 				}
-			} else {
-				HttpFuture future = (HttpFuture)evt.getFuture();
-				UtilLog.i(future.getName() + " url: " + future.getUrl());
-				evt.setData(null);
 			}
 		}
 		
 		return false;
 	}
-
+	
 	@Override
-	public boolean onCompress(HttpEvent evt) throws Exception {
+	public boolean onCompress(FormUploadEvent evt) throws Exception {
+		return false;
+	}
+	
+	@Override
+	public boolean onDecompress(FormUploadEvent evt) throws Exception {
 		return false;
 	}
 
 	@Override
-	public boolean onDecompress(HttpEvent evt) throws Exception {
-		return false;
-	}
-
-	@Override
-	public boolean onDecode(HttpEvent evt) throws Exception {
+	public boolean onDecode(FormUploadEvent evt) throws Exception {
 		String jsonResp = new String((byte[])evt.getData(), CstCharset.UTF_8);
 		UtilLog.i(evt.getFuture().getName() + " onDecode: " + jsonResp);
 		JSONObject obj = new JSONObject(jsonResp);
 
-		int status = obj.optInt(KEY.STATUS);
+		int status = obj.optInt(OuerFutureCst.KEY.STATUS);
 		//接口失败
-		if(status != STATUS.OK ) {
-			if(status == STATUS.UNAUTH) {
+		if(status != OuerFutureCst.STATUS.OK ) {
+			if(status == OuerFutureCst.STATUS.UNAUTH) {
 
 			}
 
-			OuerException oe = new OuerException(obj.optString(KEY.MSG), status);
+			OuerException oe = new OuerException(obj.optString(OuerFutureCst.KEY.MSG), status);
 			evt.getFuture().commitException(null, oe);
 
 			return true;
 		}
 
 		if(mType != null) {
-			evt.setData(mGson.fromJson(obj.optString(KEY.DATA), mType));
+			evt.setData(mGson.fromJson(obj.optString(OuerFutureCst.KEY.DATA), mType));
 		} else {
 			evt.setData(null);
 		}
-
 		return false;
 	}
 
@@ -133,15 +115,15 @@ public abstract class OuerHttpHandler extends HttpHandler {
 		//未登录
 		if(ex instanceof AgnettyException) {
 			AgnettyException aex = (AgnettyException)ex;
-			
-			if(aex.getCode() == STATUS.UNAUTH) {
+
+			if(aex.getCode() == OuerFutureCst.STATUS.UNAUTH) {
 
 			}
 		}
-		
+
 		evt.getFuture().commitException(null, ex);
 	}
-
+	
 	@Override
 	public void onDispose() {
 		
